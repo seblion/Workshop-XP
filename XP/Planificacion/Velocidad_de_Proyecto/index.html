@@ -8,6 +8,71 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
+  <style>
+    /* Tarjeta simple para la visual de barras */
+    .velocity-card {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f7f9fc 0%, #eef1f7 100%);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      max-width: 420px;
+        width: 100%;
+    }
+
+    .velocity-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .velocity-bars {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 15px;
+      min-height: 200px;
+    }
+
+    .bar {
+      width: 70px;
+      border-radius: 10px 10px 6px 6px;
+      background: linear-gradient(180deg, #2bb4ff 0%, #1e8bdd 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: #1c2a39;
+      text-align: center;
+      padding-bottom: 10px;
+      box-shadow: 0 8px 24px rgba(30, 139, 221, 0.22);
+    }
+
+    .bar small {
+      margin-top: 6px;
+      color: #4b5a6b;
+      font-weight: 600;
+    }
+
+    .bar[data-height="15"] { height: 140px; }
+    .bar[data-height="19"] { height: 170px; }
+
+    .iteration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      align-items: start;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .velocity-card { max-width: 100%; }
+      .velocity-bars { justify-content: space-between; }
+      .bar { width: 56px; }
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -23,8 +88,47 @@
   <main>
     <section>
       <h2>Velocidad de Proyecto</h2>
-      <p class="muted">Define como se mide la velocidad del equipo (horas/iteracion, puntos, pares).</p>
     </section>
+
+    <section>
+      <h2>Cálculo Inicial</h2>
+      <p>Carga Total del Proyecto: 34 Puntos de Historia (PH).</p>
+      <p>Tiempo Estimado: 5 días de desarrollo.</p>
+      <p>Velocidad Diaria Estimada:</p>
+    </section>
+    <div class="iteration-grid">
+      <section >
+        <div class="velocity-card">
+          <h3>Velocidad del Equipo</h3>
+          <div class="velocity-bars">
+            <div class="bar" data-height="15">
+              <small>Iter 1</small>
+            </div>
+            <div class="bar" data-height="19">
+              <small>Iter 2</small>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section style="grid-column: span 3;">
+        <h2>Velocidad por Iteración</h2>
+        <p>Siguiendo nuestro Plan de Entregas, hemos dividido el trabajo en 2 Iteraciones esparcidas en 5 días cada una:</p>
+        <table>
+          <tr>
+            <th>Parámetro</th>
+            <th>Valor Estimado</th>
+          </tr>
+          <tr>
+            <td>Velocidad de Iteración 1</td>
+            <td> 15 Puntos (Historias Críticas)</td>
+          </tr>
+          <tr>
+            <td>Velocidad de Iteración 2</td>
+            <td> 19 Puntos (Historias Complementarias)</td>
+          </tr>
+        </table>
+      </section>
+    </div>
   </main>
 </body>
 </html>

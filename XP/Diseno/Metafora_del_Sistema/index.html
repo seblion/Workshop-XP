@@ -22,9 +22,117 @@
   </header>
   <main>
     <section>
-      <h2>Metafora del Sistema</h2>
-      <p class="muted">Describe la metafora o concepto guia del sistema (ej. hormiguero militar).</p>
+      <h2>Metáfora del Sistema: El Hormiguero Militar AntCiberDron</h2>
+      <p class="muted">Concepto guía que unifica arquitectura, actores y comportamiento del sistema</p>
     </section>
+
+    <section>
+      <h3>1. Visión General de la Metáfora</h3>
+      <div class="card">
+        <div class="row"><strong>Concepto Central</strong><span class="badge">Analogía de Guerra</span></div>
+        <p style="margin-top:6px;">El sistema es un <strong>hormiguero militar autónomo</strong> que coordina múltiples agentes (AntCiberDrones) para interceptar y neutralizar objetivos bélicos.</p>
+        <p style="margin-top:6px;">Así como las hormigas guerreras rusas trabajarían en coordinación, cada AntCiberDron es un agente autónomo que recibe instrucciones de inteligencia desde el Centro de Comando (KGD) y ejecuta misiones de forma independiente pero coordinada.</p>
+      </div>
+    </section>
+
+    <section>
+      <h3>2. Componentes Principales y sus Analogías</h3>
+      
+      <div class="card">
+        <div class="row"><strong>KGD (Centro de Comando)</strong><span class="badge">Sistema Central</span></div>
+        <p style="margin-top:6px;"><strong>Rol:</strong> Es la "reina" del hormiguero. Centraliza las decisiones, autentica operarios, y mantiene el registro de inteligencia.</p>
+        <p style="margin-top:6px;"><strong>Responsabilidades:</strong></p>
+        <ul style="margin-top:4px; margin-left:20px;">
+          <li>Autenticación y autorización (control de acceso)</li>
+          <li>Gestión de coordenadas y arsenal (base de datos de inteligencia)</li>
+          <li>Distribución de ordenes a drones</li>
+          <li>Registro y auditoría de operaciones</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="row"><strong>AntCiberDron (Agente Autónomo)</strong><span class="badge">Ejecutor de Misiones</span></div>
+        <p style="margin-top:6px;"><strong>Rol:</strong> Es el "soldado autónomo" del hormiguero. Recibe coordenadas, horarios y tipos de arsenal; luego evalúa y ejecuta la misión.</p>
+        <p style="margin-top:6px;"><strong>Responsabilidades:</strong></p>
+        <ul style="margin-top:4px; margin-left:20px;">
+          <li>Leer y procesar coordenadas de ataque desde el CSV</li>
+          <li>Validar el tipo de arsenal usando el autómata BBA</li>
+          <li>Ejecutar la neutralización del objetivo si es válido</li>
+          <li>Reportar estado de la misión al KGD</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="row"><strong>Bomba BBA (Autómata)</strong><span class="badge">Mecanismo de Validación</span></div>
+        <p style="margin-top:6px;"><strong>Rol:</strong> Es el "detector inteligente" integrado en cada dron. Reconoce patrones de lenguaje válidos para el arsenal.</p>
+        <p style="margin-top:6px;"><strong>Comportamiento:</strong></p>
+        <ul style="margin-top:4px; margin-left:20px;">
+          <li>Si el arsenal coincide con el patrón → DETONACIÓN AUTORIZADA </li>
+          <li>Si no coincide → NEUTRALIZACIÓN RECHAZADA </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="row"><strong>Archivo de Inteligencia (CSV)</strong><span class="badge">Ordenes de Misión</span></div>
+        <p style="margin-top:6px;"><strong>Rol:</strong> Es el "parte de guerra" que contiene todas las coordenadas, horarios y tipos de arsenal.</p>
+        <p style="margin-top:6px;"><strong>Estructura:</strong> Cada fila es una misión (coordenada, día, franja horaria, tipo de arsenal)</p>
+        <p style="margin-top:6px;"><strong>Flujo:</strong> El KGD lee este archivo → asigna drones → cada dron ejecuta su misión</p>
+      </div>
+
+      <div class="card">
+        <div class="row"><strong>Panel de Control (UI Hormiguero)</strong><span class="badge">Visualización Táctica</span></div>
+        <p style="margin-top:6px;"><strong>Rol:</strong> Es el "mapa de comando" donde operarios ven el estado en tiempo real del hormiguero.</p>
+        <p style="margin-top:6px;"><strong>Información Visible:</strong></p>
+        <ul style="margin-top:4px; margin-left:20px;">
+          <li>Identidad del equipo y operarios autenticados</li>
+          <li>Coordenadas cargadas y procesadas</li>
+          <li>Estado de cada drone (en misión, completado, rechazado)</li>
+          <li>Estadísticas de neutralización</li>
+          <li>Entrenamientos activos en idiomas</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h3>3. Flujo de Misión: De la Orden a la Ejecución</h3>
+      <div class="card">
+        <p style="margin:0;"><strong>Paso 1: Autenticación (Identificación del Operario)</strong></p>
+        <p style="margin-top:8px; margin-bottom:6px;">El operario se identifica ante el KGD.</p>
+        <p style="margin:0; color:#666; font-size:0.95rem;">→ Sistema: Valida credenciales y carga el equipo del operario.</p>
+      </div>
+
+      <div class="card">
+        <p style="margin:0;"><strong>Paso 2: Carga de Inteligencia (Lectura del CSV)</strong></p>
+        <p style="margin-top:8px; margin-bottom:6px;">El KGD lee el archivo CSV que contiene todas las misiones.</p>
+        <p style="margin:0; color:#666; font-size:0.95rem;">→ Sistema: Muestra una barra de progreso (loading) mientras procesa cada coordenada.</p>
+      </div>
+
+      <div class="card">
+        <p style="margin:0;"><strong>Paso 3: Asignación de Drones (Iteración por Misión)</strong></p>
+        <p style="margin-top:8px; margin-bottom:6px;">Para cada coordenada del CSV, el KGD asigna un AntCiberDron.</p>
+        <p style="margin:0; color:#666; font-size:0.95rem;">→ Sistema: Cada dron recibe (geoposición, día, horario, tipo de arsenal).</p>
+      </div>
+
+      <div class="card">
+        <p style="margin:0;"><strong>Paso 4: Validación con Bomba BBA (Evaluación del Arsenal)</strong></p>
+        <p style="margin-top:8px; margin-bottom:6px;">El dron envía el tipo de arsenal al autómata BBA para validar si es detonable.</p>
+        <p style="margin:0; color:#666; font-size:0.95rem;">→ Ejemplo: "abcdt" coincide con L={abcdt⁺, ab*} → VÁLIDO ✓</p>
+      </div>
+
+      <div class="card">
+        <p style="margin:0;"><strong>Paso 5: Ejecución (Neutralización del Objetivo)</strong></p>
+        <p style="margin-top:8px; margin-bottom:6px;">Si el arsenal es válido, el dron se moviliza a la coordenada y ejecuta la neutralización en el horario especificado.</p>
+        <p style="margin:0; color:#666; font-size:0.95rem;">→ Sistema: Reporta éxito y actualiza estadísticas de misiones completadas.</p>
+      </div>
+
+      <div class="card">
+        <p style="margin:0;"><strong>Paso 6: Entrenamiento (Mejora Continua)</strong></p>
+        <p style="margin-top:8px; margin-bottom:6px;">Los operarios entrenan sus habilidades en múltiples idiomas para mejorar comunicación y coordinación.</p>
+        <p style="margin:0; color:#666; font-size:0.95rem;">→ Sistema: Registra progreso y desbloquea niveles de dificultad.</p>
+      </div>
+    </section>
+
   </main>
+  <script src="../../../main.js"></script>
 </body>
 </html>
