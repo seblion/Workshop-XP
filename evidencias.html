@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evidencias XP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body data-page="evidencias">
+  <header>
+    <div class="flex">
+      <div class="title">Evidencias por fase</div>
+      <div class="pill">Videos <= 3 min</div>
+    </div>
+    <nav class="nav">
+      <a href="../index.html">Inicio</a>
+      <a class="active" href="evidencias.html">Evidencias</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Checklist de evidencias</h2>
+      <div class="cards" id="evidence-cards"></div>
+    </section>
+
+    <section>
+      <h2>Estructura de carpetas recomendada</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="row"><strong>evidencias/planning</strong><span class="badge">Backlog, plan</span></div>
+          <div class="muted" style="margin-top:6px;">Sube videos de historias, plan de iteraciones, roles y rotaciones.</div>
+        </div>
+        <div class="card">
+          <div class="row"><strong>evidencias/diseno</strong><span class="badge">Metafora, diagramas</span></div>
+          <div class="muted" style="margin-top:6px;">Casos de uso, grafo DFA, clases, ER, arquitectura, prototipo UI.</div>
+        </div>
+        <div class="card">
+          <div class="row"><strong>evidencias/coding</strong><span class="badge">Parejas</span></div>
+          <div class="muted" style="margin-top:6px;">Programacion en pares, integracion CSV+automata, AntCiberDron.</div>
+        </div>
+        <div class="card">
+          <div class="row"><strong>evidencias/testing</strong><span class="badge">Aceptacion</span></div>
+          <div class="muted" style="margin-top:6px;">Ejecucion de pruebas por HU y checklist de criterios.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="../main.js"></script>
+</body>
+</html>

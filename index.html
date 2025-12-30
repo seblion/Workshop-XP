@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard XP - Grupo Supreme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="home">
+  <header>
+    <div class="flex">
+      <div class="title">Dashboard XP - Supreme</div>
+      <div class="pill">Vista general</div>
+    </div>
+    <nav class="nav">
+      <a class="active" href="index.html">Inicio</a>
+      <a href="XP/Planificacion/Historias_de_Usuario/index.html">Historias</a>
+      <a href="evidencias.html">Evidencias</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Fases XP</h2>
+      <div class="phase-grid">
+        <div class="phase-col">
+          <div class="phase-title">I. Planificacion</div>
+          <a class="square" href="XP/Planificacion/Historias_de_Usuario/index.html">1. Historias de Usuario</a>
+          <a class="square" href="XP/Planificacion/Plan_de_Entregas/index.html">2. Plan de Entregas</a>
+          <a class="square" href="XP/Planificacion/Velocidad_de_Proyecto/index.html">3. Velocidad de Proyecto</a>
+          <a class="square" href="XP/Planificacion/Iteraciones/index.html">4. Iteraciones</a>
+          <a class="square" href="XP/Planificacion/Rotaciones/index.html">5. Rotaciones</a>
+          <a class="square" href="XP/Planificacion/Reuniones/index.html">6. Reuniones</a>
+        </div>
+        <div class="phase-col">
+          <div class="phase-title">II. Diseño</div>
+          <a class="square" href="XP/Diseno/Metafora_del_Sistema/index.html">1. Metafora del Sistema</a>
+          <a class="square" href="XP/Diseno/Tarjetas_CRC/index.html">2. Tarjetas CRC</a>
+          <a class="square" href="XP/Diseno/Soluciones_Puntuales/index.html">3. Soluciones Puntuales</a>
+          <a class="square" href="XP/Diseno/Funcionalidad_Minima/index.html">4. Funcionalidad minima</a>
+          <a class="square" href="XP/Diseno/Reciclaje/index.html">5. Reciclaje</a>
+        </div>
+        <div class="phase-col">
+          <div class="phase-title">III. Desarrollo</div>
+          <a class="square" href="XP/Desarrollo/Disponibilidad_del_cliente/index.html">1. Disponibilidad del cliente</a>
+          <a class="square" href="XP/Desarrollo/Unidad_de_Pruebas/index.html">2. Unidad de Pruebas</a>
+          <a class="square" href="XP/Desarrollo/Programacion_por_parejas/index.html">3. Programacion por parejas</a>
+          <a class="square" href="XP/Desarrollo/Integracion/index.html">4. Integracion</a>
+        </div>
+        <div class="phase-col">
+          <div class="phase-title">IV. Pruebas</div>
+          <a class="square" href="XP/Pruebas/Implantacion/index.html">1. Implantacion</a>
+          <a class="square" href="XP/Pruebas/Pruebas_de_Aceptacion/index.html">2. Pruebas de Aceptacion</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="hero">
+        <div>
+          <div class="hero-text">Framework XP aplicado al caso</div>
+          <div class="hero-sub">Fases, iteraciones en horas, trazabilidad HU → diseño → código → pruebas.</div>
+          <div class="flex" style="margin-top:10px; flex-wrap: wrap;">
+            <div class="pill">Trabajo en pares obligatorio</div>
+
+          </div>
+        </div>
+        <div class="card">
+          <div class="row"><strong>Alerta XP</strong><span class="badge">Recordatorio</span></div>
+          <div class="muted" style="margin-top:6px;">Cada fase requiere actividades, artefactos, roles, responsables y resultados claros.</div>
+          <div class="muted" style="margin-top:6px;">Iteraciones miden avance por horas; validar cumplimiento por fase.</div>
+        </div>
+      </div>
+    </section>
+
+  
+  </main>
+  <script src="XP/Planificacion/Historias_de_Usuario/stories.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
