@@ -1,104 +1,80 @@
 const stories = [
   {
     id: 'HU-01',
-    title: 'Login seguro para equipo KGD',
+    title: 'Control de Acceso Seguro',
     persona: 'Como miembro de la KGD',
-    want: 'quiero autenticarme con hasta 3 intentos',
-    purpose: 'para acceder al panel y presentar el equipo al profesor',
+    want: 'quiero autenticarme con una contraseña secreta',
+    purpose: 'para acceder al panel de control asegurar que solo personal autorizado de la KGD opere el dron.',
     criteria: [
-      'Solicita usuario y contrasena a cada integrante y al profesor (patmic,123)',
-      'Bloquea al tercer intento fallido y registra evento',
+      'Solicita usuario y contrasena a cada miembro, incluyendo el siguiente usuario (patmic,123)',
+      'Bloquea el acceso después de 3 intentos fallidos.',
+      'Mostrar mensaje de bienvenida al éxito.',
       'Muestra ficha del equipo (cedula, nombre) tras autenticacion'
     ],
     status: 'En progreso',
-    priority: 'Alta',
-    estimate: 6,
-    iteration: 'Iteracion 1',
-    owner: 'Par A',
-    module: 'Seguridad',
-    due: '2025-01-12'
+    priority: 'Alta'
   },
   {
     id: 'HU-02',
-    title: 'Lectura del archivo Grupo##.csv',
-    persona: 'Como operador KGD',
-    want: 'quiero cargar el archivo CSV desencriptado',
+    title: 'Carga de Datos de Inteligencia ',
+    persona: 'Como miembro de la KGD',
+    want: 'quiero cargar el archivo CSV',
     purpose: 'para ver coordenadas, horario y arsenal',
     criteria: [
       'Carga archivo Grupo##.csv y valida formato por columna',
-      'Muestra loading por cada linea antes de presentar la fila',
+      'Muestra una animación de carga (`|/- por cada linea antes de presentar la fila',
       'Presenta tabla con geoposicion, dia y tipo de arsenal'
     ],
     status: 'En progreso',
-    priority: 'Alta',
-    estimate: 8,
-    iteration: 'Iteracion 1',
-    owner: 'Par B',
-    module: 'Datos',
-    due: '2025-01-15'
+    priority: 'Alta'
   },
   {
     id: 'HU-03',
-    title: 'Automata BBA para arsenales 5 y 9',
-    persona: 'Como ingeniero de IA',
+    title: 'Validación de Objetivos (BBA) ',
+    persona: 'Como Inteligencia Artificial',
     want: 'quiero evaluar el automata determinista BBA',
-    purpose: 'para decidir si la bomba explota segun el lenguaje',
+    purpose: 'para validar si un "Tipo de Arsenal" es un objetivo legítimo de destrucción.',
     criteria: [
-      'Define DFA que reconoce L = { abcdt+, ab* } (coordenadas 5 y 9)',
-      'Muestra grafo, transiciones y acepta/rechaza cada arsenal',
-      'Regresa true/false y muestra coordenada a impactar'
+      'El autómata debe basarse en el lenguaje L (según los últimos dígitos de las cédulas).',
+      'Retornar True si la palabra es aceptada y False si no (acepta/rechaza cada arsenal).',
+      'Registrar la acción en la tabla de "Coordenadas Ucranianas a Destruir".'
     ],
     status: 'Pendiente',
-    priority: 'Alta',
-    estimate: 10,
-    iteration: 'Iteracion 1',
-    owner: 'Par C',
-    module: 'IA y bombas',
-    due: '2025-01-18'
+    priority: 'Alta'
   },
   {
     id: 'HU-04',
     title: 'Transformacion TIPO_HORMIGA',
-    persona: 'Como biologo de campo',
-    want: 'quiero definir la metamorfosis de HLarva segun alimento',
-    purpose: 'para obtener HSoldado, HZangano o HRastreadora segun grupo',
+    persona: 'Como Sistema de Gestión de Hormigas',
+    want: 'quiero que cada tipo de hormiga consuma un alimento específico ',
+    purpose: 'para asegurar su supervivencia y evolución.',
     criteria: [
-      'Mapea ALIMENTO a TIPO_HORMIGA segun grupo (1-2, 3-4, 5)',
-      'Controla estado de vida segun si come su ALIMENTO',
-      'Persistencia de estado para trazabilidad del enjambre'
+      'Implementa la jerarquía: HLarva (Néctar), HSoldado (Carnívoro).',
+      'Controla estado de vida segun si come su ALIMENTO.',
+      'Lanzar error o excepción si se intenta alimentar con el tipo incorrecto.'
     ],
     status: 'Pendiente',
-    priority: 'Media',
-    estimate: 5,
-    iteration: 'Iteracion 2',
-    owner: 'Par A',
-    module: 'Dominio hormigas',
-    due: '2025-01-24'
+    priority: 'Media'
   },
   {
     id: 'HU-05',
-    title: 'AntCiberDron armado y energia',
-    persona: 'Como tactico KGD',
-    want: 'quiero equipar extremidades y gestionar energia',
-    purpose: 'para disparar metralleta o laser y volar con turbo reactor',
+    title: 'Interfaz de Combate',
+    persona: 'Como AntCiberDron',
+    want: 'quiero gestionar mis extremidades (metralleta y láser) y mi turbo reactor ',
+    purpose: 'para realizar maniobras de ataque y vuelo.',
     criteria: [
       'Asocia pata delantera derecha a metralleta y izquierda a laser',
       'Gestiona potencia segun fuente de poder recargable',
       'Permite vuelo con turbo reactor usando energia disponible'
     ],
     status: 'En progreso',
-    priority: 'Alta',
-    estimate: 9,
-    iteration: 'Iteracion 2',
-    owner: 'Par B',
-    module: 'Hardware',
-    due: '2025-01-26'
+    priority: 'Alta'
   },
   {
     id: 'HU-06',
     title: 'Entrenamiento de idiomas para IA',
-    persona: 'Como entrenador de idiomas',
-    want: 'quiero cargar lexicos de ingles y espanol',
+    persona: 'Como experto parlante de idiomas',
+    want: 'quiero cargar lexicos de ingles y espanol al AntCiberDron',
     purpose: 'para entrenar fonetica, gramatica y vocabulario',
     criteria: [
       'Solo expertos asignados pueden entrenar cada idioma',
@@ -106,12 +82,7 @@ const stories = [
       'Registra sesiones de entrenamiento por fecha y hora'
     ],
     status: 'Pendiente',
-    priority: 'Media',
-    estimate: 6,
-    iteration: 'Iteracion 2',
-    owner: 'Par C',
-    module: 'IA y bombas',
-    due: '2025-01-28'
+    priority: 'Media'
   },
   {
     id: 'HU-07',
@@ -122,56 +93,10 @@ const stories = [
     criteria: [
       'CRUD de hormigas con tipo, energia y alimento asignado',
       'Asigna coordenadas y arsenal a cada hormiga',
-      'Dashboard lista hormigas activas y estado de energia'
+      'Lista hormigas activas y estado de energia'
     ],
     status: 'Pendiente',
-    priority: 'Media',
-    estimate: 8,
-    iteration: 'Iteracion 2',
-    owner: 'Par B',
-    module: 'UI hormiguero',
-    due: '2025-01-30'
-  },
-  {
-    id: 'HU-08',
-    title: 'Evidencias en video por fase',
-    persona: 'Como auditor XP',
-    want: 'quiero registrar videos de max 3 min por actividad',
-    purpose: 'para validar trazabilidad del trabajo en pares',
-    criteria: [
-      'Carpetas por fase: planning, diseno, coding, testing',
-      'Cada video muestra el como se construyo el artefacto',
-      'Checklist de cobertura por actividad y rol'
-    ],
-    status: 'Completa',
-    priority: 'Baja',
-    estimate: 3,
-    iteration: 'Iteracion 1',
-    owner: 'Par A',
-    module: 'Evidencias',
-    due: '2025-01-10'
-  },
-  {
-    id: 'HU-09',
-    title: 'Backlog XP visible y asignable',
-    persona: 'Como coach XP',
-    want: 'quiero gestionar el backlog de historias',
-    purpose: 'para asignar responsables, fechas y prioridad con trazabilidad',
-    criteria: [
-      'Listado de todas las HU con estado, prioridad/dificultad y estimacion en horas',
-      'Al hacer clic se muestra detalle completo (Yo como / Quiero / Para) y criterios de aceptacion',
-      'Permite asignar responsable(es) y fecha objetivo por HU',
-      'Indica estado (pendiente, en progreso, completa) y permite actualizarlo',
-      'Permite marcar prioridad Alta/Media/Baja y registrar iteracion',
-      'Mantiene evidencia vinculada a cada HU (ruta a video o carpeta)'
-    ],
-    status: 'En progreso',
-    priority: 'Alta',
-    estimate: 7,
-    iteration: 'Iteracion 1',
-    owner: 'Coach',
-    module: 'Backlog',
-    due: '2025-01-14'
+    priority: 'Media'
   }
 ];
 
@@ -227,7 +152,7 @@ function selectStoryLocal(id) {
   detail.innerHTML = `
     <div class="row"><h3 style="margin:0;">${story.id} - ${story.title}</h3><span class="badge ${statusColorLocal[story.status]}">${story.status}</span></div>
     <div class="muted" style="margin:6px 0;"><strong>Historia:</strong> ${story.persona} ${story.want} ${story.purpose}</div>
-    <div class="muted" style="margin:6px 0;">Prioridad ${story.priority} · Estimacion ${story.estimate}h · Due ${story.due}</div>
+    <div class="muted" style="margin:6px 0;">Prioridad ${story.priority}</div>
     <div style="margin-top:10px;">
       <div class="muted"><strong>Criterios de aceptacion:</strong></div>
       <div class="list" style="margin-top:6px;">${story.criteria.map(item => `<div class="muted">• ${item}</div>`).join('')}</div>
