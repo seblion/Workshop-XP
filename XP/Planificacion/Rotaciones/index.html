@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
+  <script src="rotaciones.js"></script>
 </head>
 <body>
   <header>
@@ -25,6 +26,405 @@
       <h2>Rotaciones</h2>
       <p class="muted">Define como rotaran los pares y los roles en cada iteracion.</p>
     </section>
+
+    <style>
+      .rotaciones-container {
+        margin-top: 30px;
+      }
+
+      .iteracion-box {
+        background: #ffffff;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .iteracion-header {
+        font-size: 20px;
+        font-weight: 600;
+        color: #1a202c;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #667eea;
+      }
+
+      .rotacion-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .par-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 10px;
+        padding: 15px;
+        color: white;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+
+      .par-title {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        text-align: center;
+        opacity: 0.95;
+      }
+
+      .persona-rol {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        gap: 10px;
+      }
+
+      .persona-nombre {
+        flex: 1;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .nombre-input {
+        flex: 1;
+        padding: 6px 10px;
+        border: none;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #1a202c;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .nombre-input:hover {
+        background: #ffffff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .nombre-input:focus {
+        outline: none;
+        background: #ffffff;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+      }
+
+      .rol-select {
+        flex: 1;
+        padding: 6px 10px;
+        border: none;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #1a202c;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .rol-select:hover {
+        background: #ffffff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .rol-select:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+      }
+
+      .releases-tiempo-container {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .releases-box {
+        background: #f7fafc;
+        border: 2px solid #cbd5e0;
+        border-radius: 10px;
+        padding: 15px;
+      }
+
+      .releases-header {
+        font-size: 14px;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 10px;
+      }
+
+      .releases-list {
+        display: block;
+        margin-top: 10px;
+      }
+
+      .release-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        margin-bottom: 6px;
+        background: white;
+        border-radius: 6px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .release-checkbox {
+        cursor: pointer;
+        width: 18px;
+        height: 18px;
+      }
+
+      .release-label {
+        flex: 1;
+        font-size: 13px;
+        color: #4a5568;
+        cursor: pointer;
+      }
+
+      .tiempo-box {
+        background: #f7fafc;
+        border: 2px solid #cbd5e0;
+        border-radius: 10px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: 150px;
+      }
+
+      .tiempo-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 8px;
+      }
+
+      .tiempo-input {
+        width: 80px;
+        padding: 8px 12px;
+        border: 2px solid #cbd5e0;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        color: #1a202c;
+        transition: all 0.2s ease;
+      }
+
+      .tiempo-input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .arrow-icon {
+        transition: transform 0.3s ease;
+      }
+
+      .arrow-icon.rotated {
+        transform: rotate(180deg);
+      }
+
+      .btn-guardar {
+        margin-top: 30px;
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-guardar:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+      }
+
+      .btn-guardar:active {
+        transform: translateY(0);
+      }
+    </style>
+
+    <div class="rotaciones-container" id="rotacionesContainer">
+      <!-- Las iteraciones se generarán dinámicamente aquí -->
+    </div>
+
+    <button class="btn-guardar" onclick="guardarRotaciones()">💾 Guardar Rotaciones</button>
   </main>
+
+  <script>
+    // Usar datos del archivo rotaciones.js
+    const iteraciones = rotacionesData;
+    const releases = allReleases;
+    const roles = rolesDisponibles;
+
+    // Función para generar las iteraciones
+    function generarIteraciones() {
+      const container = document.getElementById('rotacionesContainer');
+      
+      iteraciones.forEach(iteracion => {
+        const iteracionDiv = document.createElement('div');
+        iteracionDiv.className = 'iteracion-box';
+        iteracionDiv.innerHTML = `
+          <div class="iteracion-header">${iteracion.nombre}</div>
+          
+          <div class="rotacion-grid">
+            ${iteracion.pares.map((par, index) => `
+              <div class="par-box">
+                <div class="par-title">
+                  <span id="titulo-${iteracion.id}-${index}-p1">${par.persona1.nombre}</span> ↔ <span id="titulo-${iteracion.id}-${index}-p2">${par.persona2.nombre}</span>
+                </div>
+                <div class="persona-rol">
+                  <input type="text" class="nombre-input" id="nombre-${iteracion.id}-${index}-p1" value="${par.persona1.nombre}" onchange="actualizarTitulo(${iteracion.id}, ${index}, 'p1')">
+                  <select class="rol-select" id="rol-${iteracion.id}-${index}-p1">
+                    ${roles.map(rol => `<option value="${rol}" ${par.persona1.rol === rol ? 'selected' : ''}>${rol}</option>`).join('')}
+                  </select>
+                </div>
+                <div class="persona-rol">
+                  <input type="text" class="nombre-input" id="nombre-${iteracion.id}-${index}-p2" value="${par.persona2.nombre}" onchange="actualizarTitulo(${iteracion.id}, ${index}, 'p2')">
+                  <select class="rol-select" id="rol-${iteracion.id}-${index}-p2">
+                    ${roles.map(rol => `<option value="${rol}" ${par.persona2.rol === rol ? 'selected' : ''}>${rol}</option>`).join('')}
+                  </select>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="releases-tiempo-container">
+            <div class="releases-box">
+              <div class="releases-header">
+                <span>Lista de releases para hacer</span>
+              </div>
+              <div class="releases-list" id="releases-${iteracion.id}">
+                ${releases.map((release, rIndex) => `
+                  <div class="release-item">
+                    <input type="checkbox" class="release-checkbox" id="release-${iteracion.id}-${rIndex}" ${iteracion.releases.includes(release) ? 'checked' : ''}>
+                    <label class="release-label" for="release-${iteracion.id}-${rIndex}">${release}</label>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="tiempo-box">
+              <div class="tiempo-label">Tiempo en horas</div>
+              <input type="number" class="tiempo-input" id="tiempo-${iteracion.id}" value="${iteracion.tiempoHoras || ''}" placeholder="0" min="0" step="1">
+            </div>
+          </div>
+        `;
+        
+        container.appendChild(iteracionDiv);
+      });
+
+      // Cargar datos guardados si existen
+      cargarRotaciones();
+    }
+
+    // Función para actualizar el título del par cuando cambia el nombre
+    function actualizarTitulo(iteracionId, index, persona) {
+      const nombreInput = document.getElementById(`nombre-${iteracionId}-${index}-${persona}`);
+      const tituloSpan = document.getElementById(`titulo-${iteracionId}-${index}-${persona}`);
+      tituloSpan.textContent = nombreInput.value;
+    }
+
+    // Función para guardar las rotaciones
+    function guardarRotaciones() {
+      const rotacionesData = [];
+
+      iteraciones.forEach(iteracion => {
+        const paresData = [];
+        
+        iteracion.pares.forEach((par, index) => {
+          const nombreP1 = document.getElementById(`nombre-${iteracion.id}-${index}-p1`).value;
+          const nombreP2 = document.getElementById(`nombre-${iteracion.id}-${index}-p2`).value;
+          const rolP1 = document.getElementById(`rol-${iteracion.id}-${index}-p1`).value;
+          const rolP2 = document.getElementById(`rol-${iteracion.id}-${index}-p2`).value;
+          
+          paresData.push({
+            persona1: { nombre: nombreP1, rol: rolP1 },
+            persona2: { nombre: nombreP2, rol: rolP2 }
+          });
+        });
+
+        const releasesSeleccionados = [];
+        releases.forEach((release, rIndex) => {
+          const checkbox = document.getElementById(`release-${iteracion.id}-${rIndex}`);
+          if (checkbox.checked) {
+            releasesSeleccionados.push(release);
+          }
+        });
+
+        const tiempo = document.getElementById(`tiempo-${iteracion.id}`).value;
+
+        rotacionesData.push({
+          iteracion: iteracion.nombre,
+          pares: paresData,
+          releases: releasesSeleccionados,
+          tiempoHoras: tiempo
+        });
+      });
+
+      // Guardar en localStorage
+      localStorage.setItem('rotacionesXP', JSON.stringify(rotacionesData));
+      
+      alert('✅ Rotaciones guardadas correctamente');
+      console.log('Rotaciones guardadas:', rotacionesData);
+    }
+
+    // Función para cargar rotaciones guardadas
+    function cargarRotaciones() {
+      const rotacionesGuardadas = localStorage.getItem('rotacionesXP');
+      
+      if (rotacionesGuardadas) {
+        const data = JSON.parse(rotacionesGuardadas);
+        
+        data.forEach((rotacion, idx) => {
+          const iteracion = iteraciones[idx];
+          
+          // Cargar nombres y roles
+          rotacion.pares.forEach((par, index) => {
+            const nombreP1 = document.getElementById(`nombre-${iteracion.id}-${index}-p1`);
+            const nombreP2 = document.getElementById(`nombre-${iteracion.id}-${index}-p2`);
+            const selectP1 = document.getElementById(`rol-${iteracion.id}-${index}-p1`);
+            const selectP2 = document.getElementById(`rol-${iteracion.id}-${index}-p2`);
+            
+            if (nombreP1) {
+              nombreP1.value = par.persona1.nombre;
+              actualizarTitulo(iteracion.id, index, 'p1');
+            }
+            if (nombreP2) {
+              nombreP2.value = par.persona2.nombre;
+              actualizarTitulo(iteracion.id, index, 'p2');
+            }
+            if (selectP1) selectP1.value = par.persona1.rol;
+            if (selectP2) selectP2.value = par.persona2.rol;
+          });
+
+          // Cargar releases seleccionados
+          releases.forEach((release, rIndex) => {
+            const checkbox = document.getElementById(`release-${iteracion.id}-${rIndex}`);
+            if (checkbox && rotacion.releases.includes(release)) {
+              checkbox.checked = true;
+            }
+          });
+
+          // Cargar tiempo
+          const tiempoInput = document.getElementById(`tiempo-${iteracion.id}`);
+          if (tiempoInput && rotacion.tiempoHoras) {
+            tiempoInput.value = rotacion.tiempoHoras;
+          }
+        });
+      }
+    }
+
+    // Inicializar al cargar la página
+    document.addEventListener('DOMContentLoaded', generarIteraciones);
+  </script>
 </body>
 </html>
