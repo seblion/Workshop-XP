@@ -1,14 +1,266 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Soluciones Puntuales - Diseno XP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <style>
+    .tooltip {
+      position: absolute;
+      background-color: #333;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 13px;
+      max-width: 300px;
+      z-index: 1000;
+      display: none;
+      pointer-events: none;
+    }
+
+    .mermaid {
+      cursor: pointer;
+    }
+
+    foreignObject {
+      pointer-events: all !important;
+    }
+
+    .nodeLabel {
+      pointer-events: all !important;
+      cursor: pointer;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      inset: 0;
+      background-color: rgba(60, 60, 60, 0.25);
+      backdrop-filter: blur(2px);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal-content {
+      background-color: #fffff0;
+      margin: 6% auto;
+      padding: 0;
+      width: 80%;
+      max-width: 820px;
+      border-radius: 6px;
+      border: 1px solid #c9c28f;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-header {
+      background-color: #e9e6ff;
+      color: #2b2b2b;
+      padding: 16px 20px;
+      border-bottom: 1px solid #9370DB;
+      border-radius: 6px 6px 0 0;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .modal-body {
+      padding: 22px 26px;
+      max-height: 65vh;
+      overflow-y: auto;
+      background-color: #fffff8;
+    }
+
+    .close {
+      color: #555;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: #000;
+    }
+
+    .close:focus {
+      color: #ddd;
+    }
+
+    .spec-section {
+      margin-bottom: 22px;
+    }
+
+    .spec-section h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #2c2c2c;
+      border-bottom: 1px solid #b6b2e3;
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+    }
+
+    .spec-section p,
+    .spec-section li {
+      font-size: 14px;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .spec-section ul,
+    .spec-section ol {
+      padding-left: 20px;
+    }
+
+    .node {
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .node:hover {
+      opacity: 0.8;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th {
+      background-color: #e9e6ff;
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {
+      background-color: #f8f9fa;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .coordenada {
+      font-weight: bold;
+      color: #2980b9;
+    }
+
+    .patron {
+      font-family: 'Courier New', monospace;
+      background-color: #ecf0f1;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .estado-col {
+      background-color: #ecf0f1;
+      font-weight: bold;
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    .estado-inicial {
+      color: #27ae60;
+      font-weight: bold;
+    }
+
+    .estado-final {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    .estado-error {
+      color: #95a5a6;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    table td {
+      text-align: center;
+    }
+
+    table td:first-child {
+      text-align: center;
+    }
+
+    .cadena {
+      font-family: 'Courier New', monospace;
+      background-color: #ecf0f1;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-weight: bold;
+    }
+
+    .traza {
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: #2c3e50;
+    }
+
+    .aceptada {
+      color: #27ae60;
+      font-weight: bold;
+    }
+
+    .rechazada {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+
+    .lenguaje {
+      font-family: 'Courier New', monospace;
+      background-color: #e8f5e9;
+      padding: 4px 8px;
+      border-radius: 3px;
+      color: #2e7d32;
+      font-weight: 500;
+    }
+
+    .no-lenguaje {
+      color: #95a5a6;
+    }
+  </style>
 </head>
+
 <body>
   <header>
     <div class="flex">
@@ -24,7 +276,541 @@
     <section>
       <h2>Soluciones Puntuales</h2>
       <p class="muted">Anota las decisiones de diseno concretas que habilitan cada HU.</p>
+      <h3>Diagrama de Casos de Uso</h3>
+      <div class="mermaid">
+        graph LR
+        u["Miembro KGD"]
+        l["Experto Lingüista"]
+        i["Sistema IIA"]
+
+        subgraph "Sistema AntCiberDron"
+        CU01["CU-01: Autenticar miembro"]
+        CU02["CU-02: Cargar Datos Inteligencia"]
+        CU03["CU-03: Validar Objetivos (BBA)"]
+        CU04["CU-04: Gestionar Alimentación"]
+        CU05["CU-05: Controlar Armamento"]
+        CU06["CU-06: Entrenar Idiomas"]
+        CU07["CU-07: Gestionar Hormiguero"]
+        end
+
+        u --> CU01
+        u --> CU02
+        u --> CU07
+        l --> CU06
+        i --> CU03
+        i --> CU04
+        i --> CU05
+
+        CU02 -.->|include| CU01
+        CU03 -.->|include| CU02
+        CU07 -.->|include| CU04
+
+        click CU01 showSpec
+        click CU02 showSpec
+        click CU03 showSpec
+        click CU04 showSpec
+        click CU05 showSpec
+        click CU06 showSpec
+        click CU07 showSpec
+      </div>
+
+      <div class="tooltip" id="tooltip"></div>
+
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2 id="modal-title">Especificación del Caso de Uso</h2>
+          </div>
+          <div class="modal-body" id="modal-body">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h3>Aut&oacute;mata Finito Determinista (AFD)</h3>
+      <div class="container">
+        <h4>Definición del Lenguaje</h4>
+        <p class="muted">Últimos dígitos de cédulas: 1, 6, 9, 7, 5</p>
+        <p class="muted">Lenguaje L = { a⁺, ab*, abcd⁺, abcdt⁺ }</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Coordenada</th>
+              <th>Tipo Arsenal</th>
+              <th>Patrón</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="coordenada">Coord-01</td>
+              <td><span class="patron">a+</span></td>
+              <td>Una o más 'a'</td>
+            </tr>
+            <tr>
+              <td class="coordenada">Coord-05</td>
+              <td><span class="patron">abcdt+</span></td>
+              <td>'abcd' seguido de una o más 't'</td>
+            </tr>
+            <tr>
+              <td class="coordenada">Coord-06</td>
+              <td><span class="patron">abcdt+</span></td>
+              <td>'abcd' seguido de una o más 't'</td>
+            </tr>
+            <tr>
+              <td class="coordenada">Coord-07</td>
+              <td><span class="patron">abcd+</span></td>
+              <td>'abc' seguido de una o más 'd'</td>
+            </tr>
+            <tr>
+              <td class="coordenada">Coord-09</td>
+              <td><span class="patron">ab*</span></td>
+              <td>'a' seguido de cero o más 'b'</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4>Definición Formal</h4>
+        <p class="muted">A = (Q, Σ, δ, q₀, F)</p>
+        <p class="muted">Q = {q0, q1, q2, q3, q4, q5, qE}</p>
+        <p class="muted">Σ = {a, b, c, d, t}</p>
+        <p class="muted">q₀ = q0</p>
+        <p class="muted">F = {q1, q4, q5}</p>
+      </div>
+      <div>
+        <h4>Tabla de transiciones</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Estado</th>
+              <th>a</th>
+              <th>b</th>
+              <th>c</th>
+              <th>d</th>
+              <th>t</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="estado-col"><span class="estado-inicial">→q0</span></td>
+              <td>q1</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+            </tr>
+            <tr>
+              <td class="estado-col"><span class="estado-final">*q1</span></td>
+              <td>q1</td>
+              <td>q2</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+            </tr>
+            <tr>
+              <td class="estado-col">q2</td>
+              <td class="estado-error">qE</td>
+              <td>q2</td>
+              <td>q3</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+            </tr>
+            <tr>
+              <td class="estado-col">q3</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td>q4</td>
+              <td class="estado-error">qE</td>
+            </tr>
+            <tr>
+              <td class="estado-col"><span class="estado-final">*q4</span></td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td>q4</td>
+              <td>q5</td>
+            </tr>
+            <tr>
+              <td class="estado-col"><span class="estado-final">*q5</span></td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td>q5</td>
+            </tr>
+            <tr>
+              <td class="estado-col"><span class="estado-error">qE</span></td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+            </tr>
+          </tbody>
+        </table>
+        <div>
+          <p class="muted" style="margin: 5px 0;"><span class="estado-inicial">→</span> Estado inicial</p>
+          <p class="muted" style="margin: 5px 0;"><span class="estado-final">*</span> Estado final (aceptación)</p>
+          <p class="muted" style="margin: 5px 0;"><span class="estado-error">qE</span> Estado de error</p>
+        </div>
+      </div>
+      <h4>Diagrama del AFD</h4>
+      <div class="mermaid">
+        stateDiagram-v2
+        [*] --> q0
+
+        q0 --> q1 : a
+        q0 --> qE : b,c,d,t
+
+        q1 --> q1 : a
+        q1 --> q2 : b
+        q1 --> qE : c,d,t
+
+        q2 --> q2 : b
+        q2 --> q3 : c
+        q2 --> qE : a,d,t
+
+        q3 --> q4 : d
+        q3 --> qE : a,b,c,t
+
+        q4 --> q4 : d
+        q4 --> q5 : t
+        q4 --> qE : a,b,c
+
+        q5 --> q5 : t
+        q5 --> qE : a,b,c,d
+
+        qE --> qE : a,b,c,d,t
+
+        note right of q1
+        Estado Final
+        end note
+
+        note right of q4
+        Estado Final
+        end note
+
+        note right of q5
+        Estado Final
+        end note
+
+        note right of qE
+        Estado de Error
+        end note
+
+        classDef finalState fill:#90EE90
+        classDef errorState fill:#F08080
+
+        class q1,q4,q5 finalState
+        class qE errorState
+      </div>
+      <div>
+        <h4>Ejemplos de validación</h4>
+        <div class="container">
+          <table>
+            <thead>
+              <tr>
+                <th>Cadena</th>
+                <th>Traza</th>
+                <th>Resultado</th>
+                <th>Lenguaje</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="cadena">a</span></td>
+                <td class="traza">q0→q1</td>
+                <td class="aceptada">✓ Aceptada</td>
+                <td><span class="lenguaje">a+/ab*</span></td>
+              </tr>
+              <tr>
+                <td><span class="cadena">aaaa</span></td>
+                <td class="traza">q0→q1→q1→q1→q1</td>
+                <td class="aceptada">✓ Aceptada</td>
+                <td><span class="lenguaje">a+</span></td>
+              </tr>
+              <tr>
+                <td><span class="cadena">ab</span></td>
+                <td class="traza">q0→q1→q2</td>
+                <td class="aceptada">✓ Aceptada</td>
+                <td><span class="lenguaje">ab*</span></td>
+              </tr>
+              <tr>
+                <td><span class="cadena">abcd</span></td>
+                <td class="traza">q0→q1→q2→q3→q4</td>
+                <td class="aceptada">✓ Aceptada</td>
+                <td><span class="lenguaje">abcd+</span></td>
+              </tr>
+              <tr>
+                <td><span class="cadena">abcdt</span></td>
+                <td class="traza">q0→q1→q2→q3→q4→q5</td>
+                <td class="aceptada">✓ Aceptada</td>
+                <td><span class="lenguaje">abcdt+</span></td>
+              </tr>
+              <tr>
+                <td><span class="cadena">abcdttt</span></td>
+                <td class="traza">q0→q1→q2→q3→q4→q5→q5→q5</td>
+                <td class="aceptada">✓ Aceptada</td>
+                <td><span class="lenguaje">abcdt+</span></td>
+              </tr>
+              <tr>
+                <td><span class="cadena">abc</span></td>
+                <td class="traza">q0→q1→q2→q3</td>
+                <td class="rechazada">✗ Rechazada</td>
+                <td class="no-lenguaje">-</td>
+              </tr>
+              <tr>
+                <td><span class="cadena">ba</span></td>
+                <td class="traza">q0→qE</td>
+                <td class="rechazada">✗ Rechazada</td>
+                <td class="no-lenguaje">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
     </section>
   </main>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      securityLevel: 'loose'
+    });
+
+    const descripciones = {
+      'CU01': 'Permite la autenticación de miembros en el sistema mediante credenciales válidas.',
+      'CU02': 'Carga y procesa datos de inteligencia para análisis posterior.',
+      'CU03': 'Valida los objetivos mediante el sistema BBA (Batería de Baja Altura).',
+      'CU04': 'Gestiona el sistema de alimentación y energía del dron.',
+      'CU05': 'Controla y gestiona los sistemas de armamento integrados.',
+      'CU06': 'Módulo de entrenamiento en diferentes idiomas para el personal.',
+      'CU07': 'Administra el sistema de hormiguero (múltiples drones coordinados).'
+    };
+
+    const especificaciones = {
+      'CU01': {
+        nombre: 'CU-01: Autenticar miembro',
+        descripcion: 'Autenticación con miembro/contraseña. Máximo 3 intentos fallidos antes de bloqueo.',
+        actores: ['Miembro KGD'],
+        precondiciones: [
+          'El miembro debe estar registrado en el sistema',
+          'El sistema debe estar operativo',
+          'El miembro debe tener credenciales válidas'
+        ],
+        postcondiciones: [
+          'El miembro queda autenticado o bloqueado en el sistema',
+          'Se habilitan las funcionalidades según el rol del miembro'
+        ],
+        flujoNormal: [
+          'El miembro accede a la pantalla de inicio de sesión',
+          'El miembro ingresa su nombre de miembro y contraseña',
+          'El sistema valida las credenciales',
+          'El sistema verifica los permisos del miembro',
+          'El sistema muestra el panel principal según el rol'
+        ],
+        flujosAlternativos: [
+          '<strong>3a. Credenciales inválidas:</strong> El sistema muestra un mensaje de error y solicita reingresar las credenciales',
+          '<strong>3b. miembro bloqueado:</strong> El sistema muestra un mensaje indicando que la cuenta está bloqueada despues de 3 intentos fallidos',
+        ]
+      },
+      'CU02': {
+        nombre: 'CU-02: Cargar Datos de Inteligencia',
+        descripcion: 'Permite al miembro KGD cargar y procesar datos de inteligencia en el sistema para su posterior análisis y utilización en misiones.',
+        actores: ['Miembro KGD'],
+        precondiciones: [
+          'El miembro debe estar autenticado (CU-01)',
+          'El miembro debe tener permisos de carga de datos CSV'
+        ],
+        postcondiciones: [
+          'Los datos de inteligencia quedan almacenados en el sistema',
+          'Los datos están disponibles para procesamiento'
+        ],
+        flujoNormal: [
+          'El miembro selecciona la opción de cargar datos',
+          'El sistema localiza el archivo CSV en el dispositivo del miembro',
+          'El miembro selecciona el archivo de datos Grupo01.csv',
+          'El sistema valida el formato del archivo',
+          'El sistema muestra animación de carga (|/-) con porcentaje.',
+          'El sistema procesa y almacena los datos',
+          'El sistema preseta la tabla de coordenadas'
+        ]
+      },
+      'CU03': {
+        nombre: 'CU-03: Validar Objetivos (BBA)',
+        descripcion: 'El Sistema IIA valida automáticamente los objetivos utilizando la Batería de Baja Altura (BBA) para determinar viabilidad y prioridad.',
+        actores: ['Sistema IIA'],
+        precondiciones: [
+          'Los datos de inteligencia deben estar cargados (CU-02)',
+          'El sistema AFD debe estar configurado',
+        ],
+        postcondiciones: [
+          'Los objetivos quedan clasificados',
+          'Los objetivos validados están listos para asignación'
+        ],
+        flujoNormal: [
+          'El sistema IIA obtiene los datos de inteligencia cargados',
+          'El sistema AFD procesa cada objetivo mediante algoritmos BBA',
+          'El sistema verifica la pertenencia al lenguaje L',
+          'El sistema genera el reporte de validación',
+          'El sistema presenta coordenadas a destruir'
+        ]
+      },
+      'CU04': {
+        nombre: 'CU-04: Gestionar Alimentación',
+        descripcion: 'El Sistema IIA gestiona automáticamente el sistema de alimentación y energía de los drones para optimizar autonomía y rendimiento.',
+        actores: ['Sistema IIA'],
+        precondiciones: [
+          'Las hormigas deben estar conectadas al sistema',
+          'Debe haber datos de alimentos disponibles'
+        ],
+        postcondiciones: [
+          'Se actualiza el estado de la hormiga',
+          'Se generan alertas si es necesario'
+        ],
+        flujoNormal: [
+          'El miembro selecciona hormiga a gestionar',
+          'El sistema muestra alimentos disponibles',
+          'El miembro selecciona alimento',
+          'El sistema valida compatibilidad',
+          'El sistema actualiza el estado de la hormiga'
+        ]
+      },
+      'CU05': {
+        nombre: 'CU-05: Controlar Armamento',
+        descripcion: 'El Sistema IIA controla y gestiona los sistemas de armamento integrados en los drones, asegurando uso autorizado y seguro.',
+        actores: ['Sistema IIA'],
+        precondiciones: [
+          'El dron debe tener armamento instalado',
+          'La fuente de poder debe estar activa'
+        ],
+        postcondiciones: [
+          'El armamento queda en estado activado',
+          'La energía del dron se actualiza'
+        ],
+        flujoNormal: [
+          'El sistema IIA verifica nivel de energía',
+          'El miembro selecciona sistema de armamento',
+          'El sistema activa el armamento consumiento energía',
+          'El sistema actualiza el estado del dron'
+        ],
+        flujosAlternativos: [
+          '<strong>2a. Activación de laser:</strong> El sistema solicita nivel de potencia',
+        ]
+      },
+      'CU06': {
+        nombre: 'CU-06: Entrenar Idiomas',
+        descripcion: 'Módulo especializado que permite al Experto Lingüista entrenar y actualizar los sistemas de procesamiento de lenguaje natural del sistema.',
+        actores: ['Experto Lingüista'],
+        precondiciones: [
+          'El experto debe estar autenticado',
+          'El módulo de entrenamiento debe estar disponible'
+        ],
+        postcondiciones: [
+          'Los modelos de lenguaje quedan actualizados',
+        ],
+        flujoNormal: [
+          'El experto accede al módulo de entrenamiento',
+          'El sistema carga el modelo lingüístico actual',
+          'El experto selecciona idioma y área (Léxico/Gramática/Fonética)',
+          'El experto carga el corpus de entrenamiento',
+          'El sistema procesa y entrena el modelo',
+          'El sistema valida el modelo con datos de prueba',
+          'El sistema despliega el modelo actualizado'
+        ]
+      },
+      'CU07': {
+        nombre: 'CU-07: Gestionar Hormiguero',
+        descripcion: 'Permite al Miembro KGD gestionar y coordinar múltiples drones operando de forma coordinada como un "hormiguero" inteligente.',
+        actores: ['Miembro KGD'],
+        precondiciones: [
+          'El miembro debe estar autenticado',
+          'Debe haber múltiples drones disponibles',
+          'El sistema de alimentación debe estar operativo (CU-04)'
+        ],
+        postcondiciones: [
+          'Los drones quedan coordinados en formación',
+        ],
+        flujoNormal: [
+          'El miembro accede al módulo de gestión de hormiguero',
+          'El sistema muestra la colonia actual',
+          'El miembro crea nueva formación',
+          'El sistema verifica el estado de alimentación de cada unidad',
+          'El miembro define la configuración de formación',
+          'El sistema establece la red de comunicación',
+          'El sistema activa modo hormiguero y sincroniza unidades'
+        ]
+      }
+    };
+
+    function generarEspecificacion(spec) {
+      let html = `
+        <div class="spec-section">
+          <h3>Descripción</h3>
+          <p>${spec.descripcion}</p>
+        </div>
+        
+        <div class="spec-section">
+          <h3>Actores</h3>
+          <ul>
+            ${spec.actores.map(actor => `<li>${actor}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <div class="spec-section">
+          <h3>Precondiciones</h3>
+          <ul>
+            ${spec.precondiciones.map(pre => `<li>${pre}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <div class="spec-section">
+          <h3>Postcondiciones</h3>
+          <ul>
+            ${spec.postcondiciones.map(post => `<li>${post}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <div class="spec-section">
+          <h3>Flujo Normal</h3>
+          <ol>
+            ${spec.flujoNormal.map(paso => `<li>${paso}</li>`).join('')}
+          </ol>
+        </div>
+      `;
+
+      if (spec.flujosAlternativos && spec.flujosAlternativos.length > 0) {
+        html += `
+          <div class="spec-section">
+            <h3>Flujos Alternativos</h3>
+            <ul>
+              ${spec.flujosAlternativos.map(flujo => `<li>${flujo}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      }
+
+      return html;
+    }
+
+    function showSpec(id) {
+      const key = id;
+      const spec = especificaciones[key];
+      if (!spec) return;
+
+      document.getElementById('modal-title').textContent = spec.nombre;
+      document.getElementById('modal-body').innerHTML = generarEspecificacion(spec);
+      document.getElementById('modal').style.display = 'block';
+    }
+
+    const tooltip = document.getElementById('tooltip');
+    const closeBtn = document.querySelector('.close');
+
+    closeBtn.onclick = () => modal.style.display = 'none';
+    window.onclick = e => { if (e.target === modal) modal.style.display = 'none'; };
+    document.onkeydown = e => { if (e.key === 'Escape') modal.style.display = 'none'; };
+
+  </script>
 </body>
+
 </html>
