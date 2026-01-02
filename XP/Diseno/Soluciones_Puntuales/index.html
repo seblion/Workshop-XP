@@ -11,6 +11,7 @@
     rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script src="https://unpkg.com/plantuml-encoder/dist/plantuml-encoder.min.js"></script>
   <style>
     .tooltip {
       position: absolute;
@@ -376,7 +377,7 @@
         <p class="muted">Q = {q0, q1, q2, q3, q4, q5, qE}</p>
         <p class="muted">Σ = {a, b, c, d, t}</p>
         <p class="muted">q₀ = q0</p>
-        <p class="muted">F = {q1, q4, q5}</p>
+        <p class="muted">F = {q1, q2, q4, q5}</p>
       </div>
       <div>
         <h4>Tabla de transiciones</h4>
@@ -409,7 +410,7 @@
               <td class="estado-error">qE</td>
             </tr>
             <tr>
-              <td class="estado-col">q2</td>
+              <td class="estado-col"><span class="estado-final">*q2</span></td>
               <td class="estado-error">qE</td>
               <td>q2</td>
               <td>q3</td>
@@ -461,30 +462,34 @@
         stateDiagram-v2
         [*] --> q0
 
-        q0 --> q1 : a
-        q0 --> qE : b,c,d,t
+        q0 --> q1: a
 
-        q1 --> q1 : a
-        q1 --> q2 : b
-        q1 --> qE : c,d,t
+        q1 --> q1: a
+        q1 --> q2: b
 
-        q2 --> q2 : b
-        q2 --> q3 : c
-        q2 --> qE : a,d,t
+        q2 --> q2: b
+        q2 --> q3: c
 
-        q3 --> q4 : d
-        q3 --> qE : a,b,c,t
+        q3 --> q4: d
 
-        q4 --> q4 : d
-        q4 --> q5 : t
-        q4 --> qE : a,b,c
+        q4 --> q4: d
+        q4 --> q5: t
 
-        q5 --> q5 : t
-        q5 --> qE : a,b,c,d
+        q5 --> q5: t
 
-        qE --> qE : a,b,c,d,t
+        q1 --> qE: c,d,t
+        q2 --> qE: a,d,t
+        q3 --> qE: a,b,c,t
+        q4 --> qE: a,b,c
+        q5 --> qE: a,b,c,d
+        q0 --> qE: b,c,d,t
+        qE --> qE: a,b,c,d,t
 
         note right of q1
+        Estado Final
+        end note
+
+        note right of q2
         Estado Final
         end note
 
@@ -503,7 +508,7 @@
         classDef finalState fill:#90EE90
         classDef errorState fill:#F08080
 
-        class q1,q4,q5 finalState
+        class q1, q2, q4, q5 finalState
         class qE errorState
       </div>
       <div>
