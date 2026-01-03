@@ -26,10 +26,6 @@
       pointer-events: none;
     }
 
-    .mermaid {
-      cursor: pointer;
-    }
-
     foreignObject {
       pointer-events: all !important;
     }
@@ -259,6 +255,11 @@
     .no-lenguaje {
       color: #95a5a6;
     }
+
+    g[id^="elem_CU"]:hover ellipse {
+      fill: #e9e6ff;
+      stroke-width: 1.5;
+    }
   </style>
 </head>
 
@@ -278,42 +279,15 @@
       <h2>Soluciones Puntuales</h2>
       <p class="muted">Anota las decisiones de diseno concretas que habilitan cada HU.</p>
       <h3>Diagrama de Casos de Uso</h3>
-      <div class="mermaid">
-        graph LR
-        u["Miembro KGD"]
-        l["Experto Lingüista"]
-        i["Sistema IIA"]
+      <div id="usecase-diagram"></div>
 
-        subgraph "Sistema AntCiberDron"
-        CU01["CU-01: Autenticar miembro"]
-        CU02["CU-02: Cargar Datos Inteligencia"]
-        CU03["CU-03: Validar Objetivos (BBA)"]
-        CU04["CU-04: Gestionar Alimentación"]
-        CU05["CU-05: Controlar Armamento"]
-        CU06["CU-06: Entrenar Idiomas"]
-        CU07["CU-07: Gestionar Hormiguero"]
-        end
-
-        u --> CU01
-        u --> CU02
-        u --> CU07
-        l --> CU06
-        i --> CU03
-        i --> CU04
-        i --> CU05
-
-        CU02 -.->|include| CU01
-        CU03 -.->|include| CU02
-        CU07 -.->|include| CU04
-
-        click CU01 showSpec
-        click CU02 showSpec
-        click CU03 showSpec
-        click CU04 showSpec
-        click CU05 showSpec
-        click CU06 showSpec
-        click CU07 showSpec
-      </div>
+      <script>
+        fetch('casos de uso.svg')
+          .then(r => r.text())
+          .then(svg => {
+            document.getElementById('usecase-diagram').innerHTML = svg;
+          });
+      </script>
 
       <div class="tooltip" id="tooltip"></div>
 
@@ -332,8 +306,8 @@
       <h3>Aut&oacute;mata Finito Determinista (AFD)</h3>
       <div class="container">
         <h4>Definición del Lenguaje</h4>
-        <p class="muted">Últimos dígitos de cédulas: 1, 6, 9, 7, 5</p>
-        <p class="muted">Lenguaje L = { a⁺, ab*, abcd⁺, abcdt⁺ }</p>
+        <p class="muted">Últimos dígitos de cédulas: 1, 5, 6, 7, 9</p>
+        <p class="muted">Lenguaje L = { a⁺, ab*, abcd*, abcdt⁺ }</p>
         <table>
           <thead>
             <tr>
@@ -360,8 +334,8 @@
             </tr>
             <tr>
               <td class="coordenada">Coord-07</td>
-              <td><span class="patron">abcd+</span></td>
-              <td>'abc' seguido de una o más 'd'</td>
+              <td><span class="patron">abcd*</span></td>
+              <td>'abc' seguido de cero o más 'd'</td>
             </tr>
             <tr>
               <td class="coordenada">Coord-09</td>
@@ -374,10 +348,10 @@
       <div>
         <h4>Definición Formal</h4>
         <p class="muted">A = (Q, Σ, δ, q₀, F)</p>
-        <p class="muted">Q = {q0, q1, q2, q3, q4, q5, qE}</p>
+        <p class="muted">Q = {q0, q1, q2, q3, q4, q5, q6, qE}</p>
         <p class="muted">Σ = {a, b, c, d, t}</p>
         <p class="muted">q₀ = q0</p>
-        <p class="muted">F = {q1, q2, q4, q5}</p>
+        <p class="muted">F = {q1, q2, q3, q4, q5, q6}</p>
       </div>
       <div>
         <h4>Tabla de transiciones</h4>
@@ -412,17 +386,17 @@
             <tr>
               <td class="estado-col"><span class="estado-final">*q2</span></td>
               <td class="estado-error">qE</td>
-              <td>q2</td>
               <td>q3</td>
+              <td>q4</td>
               <td class="estado-error">qE</td>
               <td class="estado-error">qE</td>
             </tr>
             <tr>
-              <td class="estado-col">q3</td>
+              <td class="estado-col"><span class="estado-final">*q3</span></td>
+              <td class="estado-error">qE</td>
+              <td>q3</td>
               <td class="estado-error">qE</td>
               <td class="estado-error">qE</td>
-              <td class="estado-error">qE</td>
-              <td>q4</td>
               <td class="estado-error">qE</td>
             </tr>
             <tr>
@@ -430,16 +404,24 @@
               <td class="estado-error">qE</td>
               <td class="estado-error">qE</td>
               <td class="estado-error">qE</td>
-              <td>q4</td>
               <td>q5</td>
+              <td class="estado-error">qE</td>
             </tr>
             <tr>
               <td class="estado-col"><span class="estado-final">*q5</span></td>
               <td class="estado-error">qE</td>
               <td class="estado-error">qE</td>
               <td class="estado-error">qE</td>
-              <td class="estado-error">qE</td>
               <td>q5</td>
+              <td>q6</td>
+            </tr>
+            <tr>
+              <td class="estado-col"><span class="estado-final">*q6</span></td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td class="estado-error">qE</td>
+              <td>q6</td>
             </tr>
             <tr>
               <td class="estado-col"><span class="estado-error">qE</span></td>
@@ -458,7 +440,7 @@
         </div>
       </div>
       <h4>Diagrama del AFD</h4>
-      <div class="mermaid">
+      <div style="display: flex; justify-content: center;" class="mermaid">
         stateDiagram-v2
         [*] --> q0
 
@@ -467,48 +449,31 @@
         q1 --> q1: a
         q1 --> q2: b
 
-        q2 --> q2: b
-        q2 --> q3: c
+        q2 --> q3: b
+        q2 --> q4: c
 
-        q3 --> q4: d
+        q3 --> q3: b
 
-        q4 --> q4: d
-        q4 --> q5: t
+        q4 --> q5: d
 
-        q5 --> q5: t
+        q5 --> q5: d
+        q5 --> q6: t
 
+        q6 --> q6: t
+
+        q0 --> qE: b,c,d,t
         q1 --> qE: c,d,t
         q2 --> qE: a,d,t
-        q3 --> qE: a,b,c,t
-        q4 --> qE: a,b,c
-        q5 --> qE: a,b,c,d
-        q0 --> qE: b,c,d,t
+        q3 --> qE: a,c,d,t
+        q4 --> qE: a,b,c,t
+        q5 --> qE: a,b,c,t
+        q6 --> qE: a,b,c,d
         qE --> qE: a,b,c,d,t
-
-        note right of q1
-        Estado Final
-        end note
-
-        note right of q2
-        Estado Final
-        end note
-
-        note right of q4
-        Estado Final
-        end note
-
-        note right of q5
-        Estado Final
-        end note
-
-        note right of qE
-        Estado de Error
-        end note
 
         classDef finalState fill:#90EE90
         classDef errorState fill:#F08080
 
-        class q1, q2, q4, q5 finalState
+        class q1, q2, q3, q4, q5, q6 finalState
         class qE errorState
       </div>
       <div>
@@ -544,27 +509,27 @@
               </tr>
               <tr>
                 <td><span class="cadena">abcd</span></td>
-                <td class="traza">q0→q1→q2→q3→q4</td>
+                <td class="traza">q0→q1→q2→q4→q5</td>
                 <td class="aceptada">✓ Aceptada</td>
                 <td><span class="lenguaje">abcd+</span></td>
               </tr>
               <tr>
                 <td><span class="cadena">abcdt</span></td>
-                <td class="traza">q0→q1→q2→q3→q4→q5</td>
+                <td class="traza">q0→q1→q2→q4→q5→q6</td>
                 <td class="aceptada">✓ Aceptada</td>
                 <td><span class="lenguaje">abcdt+</span></td>
               </tr>
               <tr>
                 <td><span class="cadena">abcdttt</span></td>
-                <td class="traza">q0→q1→q2→q3→q4→q5→q5→q5</td>
+                <td class="traza">q0→q1→q2→q4→q5→q6→q6→q6</td>
                 <td class="aceptada">✓ Aceptada</td>
                 <td><span class="lenguaje">abcdt+</span></td>
               </tr>
               <tr>
                 <td><span class="cadena">abc</span></td>
-                <td class="traza">q0→q1→q2→q3</td>
-                <td class="rechazada">✗ Rechazada</td>
-                <td class="no-lenguaje">-</td>
+                <td class="traza">q0→q1→q2→q4</td>
+                <td class="aceptada">✓ Aceptada</td>
+                <td><span class="lenguaje">abcd*</span></td>
               </tr>
               <tr>
                 <td><span class="cadena">ba</span></td>
@@ -578,11 +543,6 @@
     </section>
   </main>
   <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      securityLevel: 'loose'
-    });
-
     const descripciones = {
       'CU01': 'Permite la autenticación de miembros en el sistema mediante credenciales válidas.',
       'CU02': 'Carga y procesa datos de inteligencia para análisis posterior.',
@@ -807,7 +767,7 @@
       document.getElementById('modal-body').innerHTML = generarEspecificacion(spec);
       document.getElementById('modal').style.display = 'block';
     }
-
+    window.showSpec = showSpec;
     const tooltip = document.getElementById('tooltip');
     const closeBtn = document.querySelector('.close');
 

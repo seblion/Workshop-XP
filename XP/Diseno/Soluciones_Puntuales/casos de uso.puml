@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+actor "Miembro KGD" as u
+actor "Experto Lingüista" as l
+actor "Sistema IIA" as i
+rectangle "Sistema AntCiberDron" {  
+usecase "CU-01: Autenticar Usuario" as CU01  
+usecase "CU-02: Cargar Datos Inteligencia" as CU02  
+usecase "CU-03: Validar Objetivos (BBA)" as CU03  
+usecase "CU-04: Gestionar Alimentación" as CU04  
+usecase "CU-05: Controlar Armamento" as CU05  
+usecase "CU-06: Entrenar Idiomas" as CU06  
+usecase "CU-07: Gestionar Hormiguero" as CU07
+}
+u --> CU01
+u --> CU02
+u --> CU07
+l --> CU06
+i --> CU03
+i --> CU04
+i --> CU05
+CU02 ..> CU01 : <<include>>
+CU03 ..> CU02 : <<include>>
+CU07 ..> CU04 : <<include>>
+@enduml
