@@ -8,6 +8,72 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
+  <style>
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .test-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .test-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      border-color: var(--accent);
+    }
+    .test-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+    }
+    .story-id {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: #eff6ff;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+    .story-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 0;
+      color: var(--text);
+    }
+    .test-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .test-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+      border-bottom: 1px dashed var(--border);
+    }
+    .test-item:last-child { border-bottom: none; }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-pass { background-color: var(--ok); box-shadow: 0 0 0 2px #dcfce7; }
+    .status-pending { background-color: var(--warn); box-shadow: 0 0 0 2px #fef3c7; }
+    .test-name { font-family: 'Consolas', monospace; font-size: 0.9em; color: var(--text); }
+  </style>
 </head>
 <body>
   <header>
@@ -24,6 +90,212 @@
     <section>
       <h2>Unidad de Pruebas</h2>
       <p class="muted">Documenta y enlaza las pruebas unitarias e integracion asociadas.</p>
+
+      <div class="test-grid">
+        <!-- HU-01 -->
+        <div class="test-card">
+          <div class="test-header">
+            <div>
+              <span class="story-id">HU-01</span>
+              <h3 class="story-title">Control de Acceso Seguro</h3>
+            </div>
+          </div>
+          <ul class="test-list">
+            <li class="test-item">
+              <span class="status-dot status-pass"></span>
+              <div>
+                <div class="test-name">testAutenticacionExitosa</div>
+                <small>Valida credenciales correctas</small>
+              </div>
+            </li>
+            <li class="test-item">
+              <span class="status-dot status-pass"></span>
+              <div>
+                <div class="test-name">testBloqueoTresIntentos</div>
+                <small>Bloquea tras 3 fallos</small>
+              </div>
+            </li>
+            <li class="test-item">
+              <span class="status-dot status-pass"></span>
+              <div>
+                <div class="test-name">testMostrarFichaEquipo</div>
+                <small>Verifica datos mostrados</small>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-02 -->
+        <div class="test-card">
+          <div class="test-header">
+            <div>
+              <span class="story-id">HU-02</span>
+              <h3 class="story-title">Carga de Datos de Inteligencia</h3>
+            </div>
+          </div>
+          <ul class="test-list">
+            <li class="test-item">
+              <span class="status-dot status-pass"></span>
+              <div>
+                <div class="test-name">testCargaArchivoCSV</div>
+                <small>Lectura correcta de archivo</small>
+              </div>
+            </li>
+            <li class="test-item">
+              <span class="status-dot status-pass"></span>
+              <div>
+                <div class="test-name">testValidacionColumnas</div>
+                <small>Verifica formato CSV</small>
+              </div>
+            </li>
+            <li class="test-item">
+              <span class="status-dot status-pending"></span>
+              <div>
+                <div class="test-name">testAnimacionCarga</div>
+                <small>Valida trigger de UI</small>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-03 -->
+        <div class="test-card">
+          <div class="test-header">
+            <div>
+              <span class="story-id">HU-03</span>
+              <h3 class="story-title">Validación de Objetivos (BBA)</h3>
+            </div>
+          </div>
+          <ul class="test-list">
+            <li class="test-item">
+              <span class="status-dot status-pending"></span>
+              <div>
+                <div class="test-name">testAutomataAceptacion</div>
+                <small>Palabra válida -> True</small>
+              </div>
+            </li>
+            <li class="test-item">
+              <span class="status-dot status-pending"></span>
+              <div>
+                <div class="test-name">testAutomataRechazo</div>
+                <small>Palabra inválida -> False</small>
+              </div>
+            </li>
+            <li class="test-item">
+              <span class="status-dot status-pending"></span>
+              <div>
+                <div class="test-name">testRegistroCoordenada</div>
+                <small>Persistencia de resultado</small>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-04 -->
+        <div class="test-card">
+          <div class="test-header">
+            <div>
+              <span class="story-id">HU-04</span>
+              <h3 class="story-title">Transformación TIPO_HORMIGA</h3>
+            </div>
+          </div>
+          <ul class="test-list">
+            <li class="test-item">
+              <span class="status-dot status-pending"></span>
+              <div>
+                <div class="test-name">testEvolucionSoldado</div>
+                <small>Larva + Carnívoro</small>
+              </div>
+            </li>
+            <li class="test-item">
+              <span class="status-dot status-pending"></span>
+              <div>
+                <div class="test-name">testAlimentoIncorrecto</div>
+                <small>Excepción esperada</small>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-05 -->
+        <div class="test-card">
+          <div class="test-header">
+            <div>
+              <span class="story-id">HU-05</span>
+              <h3 class="story-title">Interfaz de Combate</h3>
+            </div>
+          </div>
+          <ul class="test-list">
+            <li class="test-item">
+              <span class="status-dot status-pass"></span>
+              <div>
+                <div class="test-name">testAsociacionExtremidades</div>
+                <small>Mapeo correcto de armas</small>
+              </div>
+            </li>
+            <li class="test-item">
+              <span class="status-dot status-pass"></span>
+              <div>
+                <div class="test-name">testConsumoEnergia</div>
+                <small>Vuelo reduce batería</small>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-06 -->
+        <div class="test-card">
+          <div class="test-header">
+            <div>
+              <span class="story-id">HU-06</span>
+              <h3 class="story-title">Entrenamiento de Idiomas</h3>
+            </div>
+          </div>
+          <ul class="test-list">
+            <li class="test-item">
+              <span class="status-dot status-pending"></span>
+              <div>
+                <div class="test-name">testCargaLexico</div>
+                <small>Importación de palabras</small>
+              </div>
+            </li>
+            <li class="test-item">
+              <span class="status-dot status-pending"></span>
+              <div>
+                <div class="test-name">testPermisoExperto</div>
+                <small>Seguridad por rol</small>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-07 -->
+        <div class="test-card">
+          <div class="test-header">
+            <div>
+              <span class="story-id">HU-07</span>
+              <h3 class="story-title">Hormiguero Virtual</h3>
+            </div>
+          </div>
+          <ul class="test-list">
+            <li class="test-item">
+              <span class="status-dot status-pending"></span>
+              <div>
+                <div class="test-name">testCrearHormiga</div>
+                <small>Instanciación correcta</small>
+              </div>
+            </li>
+            <li class="test-item">
+              <span class="status-dot status-pending"></span>
+              <div>
+                <div class="test-name">testAsignarMision</div>
+                <small>Link Hormiga-Coordenada</small>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
     </section>
   </main>
 </body>

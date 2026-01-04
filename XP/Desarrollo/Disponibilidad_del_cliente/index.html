@@ -8,6 +8,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
+  <style>
+    .client-meeting-card h3 { margin-top: 0; color: var(--accent); }
+    .date { font-size: 0.9em; color: var(--muted); display: block; margin-bottom: 1rem; }
+    .module-list { list-style-type: none; padding: 0; }
+    .module-list li { 
+      background: var(--panel-2); 
+      margin-bottom: 8px; 
+      padding: 8px 12px; 
+      border-radius: 8px; 
+      border-left: 4px solid var(--accent);
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -23,7 +35,42 @@
   <main>
     <section>
       <h2>Disponibilidad del cliente</h2>
-      <p class="muted">Acordar la presencia del cliente para validaciones y aclaraciones rapidas.</p>
+    </section>
+
+    <section class="client-meeting-card">
+      <div class="card-header">
+        <h3>Cliente: Eduardo Arcos</h3>
+        <span class="date">Fecha de reunión: 3 de enero de 2026</span>
+      </div>
+      <div class="card-body">
+        <h4>Módulos revisados:</h4>
+        <ul class="module-list">
+          <li>Control de Acceso Seguro, carga de Datos e Inteligencia</li>
+          <li>Validacion de objetivos BBA</li>
+          <li>Transformacion del tipo Hormiga</li>
+          <li>Interfaz de Combate</li>
+          <li>Entrenamiento de idiomas para IA</li>
+          <li>Hormiguero virtual para KGD</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="client-meeting-card">
+      <div class="card-header">
+        <h3>Cliente: Eduardo Arcos</h3>
+        <span class="date">Fecha de reunión: 4 de enero de 2026</span>
+      </div>
+      <div class="card-body">
+        <h4>Módulos revisados:</h4>
+        <ul class="module-list">
+          <li>Control de Acceso Seguro, carga de Datos e Inteligencia</li>
+          <li>Validacion de objetivos BBA</li>
+          <li>Transformacion del tipo Hormiga</li>
+          <li>Interfaz de Combate</li>
+          <li>Entrenamiento de idiomas para IA</li>
+          <li>Hormiguero virtual para KGD</li>
+        </ul>
+      </div>
     </section>
   </main>
 </body>

@@ -8,6 +8,86 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
+  <style>
+    .pair-container {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    .programmer-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 260px;
+      text-align: center;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+    .programmer-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      border-color: var(--accent);
+    }
+    .programmer-avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 28px;
+      font-weight: 700;
+      box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
+    }
+    .programmer-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .programmer-role {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+    .exchange-icon {
+      font-size: 2.5rem;
+      color: var(--muted);
+      opacity: 0.5;
+    }
+    .agreement-section {
+      margin-top: 2rem;
+      background: var(--panel-2);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 5px solid var(--accent);
+    }
+    .agreement-title {
+      color: var(--text);
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+    .agreement-list {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+    .agreement-list li {
+      margin-bottom: 0.5rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -24,6 +104,30 @@
     <section>
       <h2>Programacion por parejas</h2>
       <p class="muted">Registra sesiones de programacion en pares y acuerdos de trabajo.</p>
+
+      <div class="pair-container">
+        <div class="programmer-card">
+          <div class="programmer-avatar">AS</div>
+          <div class="programmer-name">Alexis Sotomayor</div>
+          <div class="programmer-role">Programador A</div>
+        </div>
+
+        <div class="exchange-icon">⇄</div>
+
+        <div class="programmer-card">
+          <div class="programmer-avatar">AA</div>
+          <div class="programmer-name">Angel Anguaya</div>
+          <div class="programmer-role">Programador B</div>
+        </div>
+      </div>
+
+      <div class="agreement-section">
+        <h3 class="agreement-title">Criterios para el acuerdo de trabajo</h3>
+        <ul class="agreement-list">
+          <li>Corrección entre pares para las clases.</li>
+          <li>Adecuar el diagrama de clases para el funcionamiento del código de acuerdo a los requisitos.</li>
+        </ul>
+      </div>
     </section>
   </main>
 </body>

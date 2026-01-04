@@ -8,6 +8,74 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
+  <style>
+    .project-tree {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 2rem;
+      border-radius: 16px;
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 15px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+    .tree-item {
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
+    }
+    .tree-item:hover {
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255,255,255,0.2);
+    }
+    .tree-children {
+      margin-left: 11px;
+      border-left: 1px solid #475569;
+      padding-left: 20px;
+      margin-top: 4px;
+      margin-bottom: 4px;
+    }
+    .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+    }
+    .folder-icon { color: #fbbf24; }
+    .file-icon { color: #60a5fa; }
+    .java-ext { color: #94a3b8; font-size: 0.9em; }
+    
+    /* Animation for tree appearance */
+    .project-tree {
+      animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Documentation Card Styles */
+    .documentation-card { margin-top: 2rem; }
+    .documentation-card h2 { font-size: 1.8rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
+    .documentation-card h3 { color: var(--accent); margin-top: 2rem; font-size: 1.4rem; }
+    .documentation-card h4 { color: var(--text); margin-top: 1.5rem; font-weight: 700; font-size: 1.1rem; }
+    .documentation-card code { 
+      background: #f1f5f9; 
+      padding: 2px 6px; 
+      border-radius: 4px; 
+      font-family: 'Consolas', monospace; 
+      font-size: 0.9em; 
+      color: #d946ef;
+      border: 1px solid #e2e8f0;
+    }
+    .documentation-card ul, .documentation-card ol { padding-left: 1.5rem; color: var(--muted); }
+    .documentation-card li { margin-bottom: 0.5rem; }
+    .documentation-card strong { color: var(--text); font-weight: 600; }
+    .documentation-card hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
+  </style>
 </head>
 <body>
   <header>
@@ -23,7 +91,172 @@
   <main>
     <section>
       <h2>Integracion</h2>
-      <p class="muted">Anota integraciones, pipelines y acuerdos de CI/CD.</p>
+      <p class="muted">Estructura de clases del módulo AntiCiberDron.</p>
+
+      <div class="project-tree">
+        <!-- Controller File (Root Level) -->
+        <div class="tree-item">
+          <span class="icon file-icon">📄</span>
+          <span>SistemaRuso<span class="java-ext">.java</span></span>
+        </div>
+
+        <!-- Model Subfolders -->
+        <div class="tree-item">
+          <span class="icon folder-icon">📂</span>
+          <span>Modelo_Biologico</span>
+        </div>
+        <div class="tree-children">
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>ACarnivoro<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>AHervivoro<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>Alimento<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>ANectar<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>AOmnivoro<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>HLarva<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>Hormiga<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>HRastreadora<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>HSoldado<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>HZangano<span class="java-ext">.java</span></span></div>
+        </div>
+
+        <div class="tree-item">
+          <span class="icon folder-icon">📂</span>
+          <span>pkAntCiberDronContract</span>
+        </div>
+        <div class="tree-children">
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>IHormiga<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>IIA<span class="java-ext">.java</span></span></div>
+        </div>
+
+        <div class="tree-item">
+          <span class="icon folder-icon">📂</span>
+          <span>TecnologiaKGD</span>
+        </div>
+        <div class="tree-children">
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>FuentePoder<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>Laser<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>Metralleta<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>TurboReactor<span class="java-ext">.java</span></span></div>
+          <div class="tree-item"><span class="icon file-icon">📄</span><span>UsuarioKGD<span class="java-ext">.java</span></span></div>
+        </div>
+
+        <!-- View File (Root Level) -->
+        <div class="tree-item">
+          <span class="icon file-icon">📄</span>
+          <span>SistemaRusoView<span class="java-ext">.java</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="documentation-card">
+      <h2>Documentación de Arquitectura e Integración: Sistema AntiCiberDron</h2>
+      <p>Este documento describe la estructura lógica y la integración de componentes del proyecto <strong>AntiCiberDron</strong>, un sistema híbrido que combina lógica biológica y tecnológica para la defensa automatizada.</p>
+
+      <hr>
+
+      <h3>1. Visión General del Sistema</h3>
+      <p>El sistema opera bajo un modelo de <strong>Controlador Central (SistemaRuso)</strong> que orquesta unidades de combate autónomas (<strong>AntCiberDron</strong>). Estas unidades son pilotadas por entidades biológicas (<strong>Hormigas</strong>) y utilizan un núcleo lógico basado en autómatas (<strong>BBA</strong>) para validar amenazas.</p>
+
+      <hr>
+
+      <h3>2. Integración por Módulos</h3>
+
+      <h4>A. Gestión del Sistema (Capa de Control)</h4>
+      <p>El paquete <code>Gestión Sistema</code> actúa como el punto de entrada y orquestador.</p>
+      <ul>
+        <li><strong>Clase <code>SistemaRuso</code></strong>:
+          <ul>
+            <li><strong>Rol:</strong> Es el <code>Main Controller</code>.</li>
+            <li><strong>Integración:</strong>
+              <ul>
+                <li><strong>Autenticación:</strong> Valida credenciales contra un mapa de usuarios.</li>
+                <li><strong>Entrada de Datos:</strong> Lee archivos externos para instanciar objetos <code>CoordenadaUK</code> (ubicación y amenaza).</li>
+                <li><strong>Despliegue:</strong> Es responsable de instanciar el <code>AntCiberDron</code> y asignarle las misiones basadas en las coordenadas leídas.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>B. Tecnología KGD (La Unidad de Combate)</h4>
+      <p>El núcleo tecnológico se centra en la clase <code>AntCiberDron</code>, la cual integra hardware y software.</p>
+      <ul>
+        <li><strong>Clase <code>AntCiberDron</code></strong>:
+          <ul>
+            <li>Implementa la interfaz <code>IIA</code>, obligándose a tener capacidad de búsqueda y validación.</li>
+            <li><strong>Relaciones de Composición (<code>*--</code>):</strong>
+              <ul>
+                <li><strong><code>BBA</code> (Bomba Biológica Autómata):</strong> El cerebro lógico. El dron <em>no puede existir</em> sin este componente. Se usa para validar cadenas de texto (amenazas) mediante un Autómata Finito Determinista.</li>
+                <li><strong><code>FuentePoder</code>:</strong> Gestión de energía vital para el funcionamiento.</li>
+              </ul>
+            </li>
+            <li><strong>Relaciones de Agregación (<code>o--</code>):</strong>
+              <ul>
+                <li><strong>Armamento:</strong> <code>Metralleta</code>, <code>Laser</code>, <code>TurboReactor</code>. Son componentes intercambiables o equipables.</li>
+              </ul>
+            </li>
+            <li><strong>El Piloto:</strong> El método <code>integrarHormiga(h: Hormiga)</code> establece la conexión entre la máquina y el componente biológico.</li>
+          </ul>
+        </li>
+        <li><strong>Clase <code>BBA</code></strong>:
+          <ul>
+            <li>Encapsula la lógica de validación. Recibe una cadena (<code>tipoArsenal</code>) y transiciona entre estados. Si termina en un estado de aceptación, detona (retorna <code>true</code>).</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>C. Modelo Biológico (El Piloto)</h4>
+      <p>Define el ciclo de vida de la entidad que controla el dron.</p>
+      <ul>
+        <li><strong>Evolución Dinámica:</strong>
+          <ul>
+            <li>Todo comienza con una <code>HLarva</code>.</li>
+            <li>Dependiendo del tipo de <code>Alimento</code> inyectado (<code>ACarnivoro</code>, <code>ANectar</code>, etc.), la larva evoluciona a una subclase específica (<code>HSoldado</code>, <code>HRastreadora</code>, <code>HZangano</code>).</li>
+            <li><strong>Integración:</strong> El <code>SistemaRuso</code> debe gestionar la alimentación de la larva <em>antes</em> de integrarla al <code>AntCiberDron</code>.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <hr>
+
+      <h3>3. Flujo de Datos e Interacción</h3>
+      <p>El siguiente flujo describe cómo interactúan las clases durante una ejecución típica:</p>
+      <ol>
+        <li><strong>Inicialización:</strong>
+          <ul>
+            <li><code>SistemaRuso</code> inicia y autentica al usuario.</li>
+            <li>Se cargan las <code>CoordenadaUK</code> desde un archivo CSV/TXT.</li>
+          </ul>
+        </li>
+        <li><strong>Preparación Biológica:</strong>
+          <ul>
+            <li>Se instancia una <code>HLarva</code>.</li>
+            <li>Se instancia un <code>Alimento</code> (ej. <code>ACarnivoro</code>).</li>
+            <li>La larva ejecuta <code>comer()</code>, transformándose en <code>HSoldado</code>.</li>
+          </ul>
+        </li>
+        <li><strong>Ensamblaje Tecnológico:</strong>
+          <ul>
+            <li>Se crea el <code>AntCiberDron</code> (esto crea internamente la <code>BBA</code> y <code>FuentePoder</code>).</li>
+            <li>Se llama a <code>integrarHormiga()</code> pasando el <code>HSoldado</code> creado.</li>
+            <li>Se equipan los periféricos (<code>Laser</code>, <code>Metralleta</code>).</li>
+          </ul>
+        </li>
+        <li><strong>Ejecución de Misión:</strong>
+          <ul>
+            <li>El dron vuela a la <code>geoposicion</code> de la <code>CoordenadaUK</code>.</li>
+            <li>El dron recibe el <code>tipoArsenal</code> (String) de la coordenada.</li>
+            <li>El dron delega la validación a su componente <code>BBA</code>: <code>bba.validarObjetivo(tipoArsenal)</code>.</li>
+            <li>Si la BBA retorna <code>true</code>, la amenaza es neutralizada.</li>
+          </ul>
+        </li>
+      </ol>
+
+      <hr>
+
+      <h3>4. Diagrama de Relaciones Clave</h3>
+      <ul>
+        <li><strong>Herencia:</strong> <code>HLarva</code> <strong>es una</strong> <code>Hormiga</code>. <code>ACarnivoro</code> <strong>es un</strong> <code>Alimento</code>.</li>
+      </ul>
     </section>
   </main>
 </body>
