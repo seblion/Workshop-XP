@@ -103,3 +103,42 @@ th { color: var(--muted); font-weight: 600; }
   .story-board { grid-template-columns: 1fr; }
   header { gap: 12px; }
 }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.team-card {
+  background: #0f172a;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 35px rgba(0,0,0,0.35);
+}
+
+.team-role {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #38bdf8;
+}
+
+.team-name {
+  font-weight: 500;
+  margin-top: 4px;
+  color: #e5e7eb;
+}
+
+.team-desc {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #cbd5f5;
+}
