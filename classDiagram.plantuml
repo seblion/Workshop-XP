@@ -1,0 +1,314 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam packageStyle rectangle
+skinparam nodesep 80
+skinparam ranksep 100
+
+' ==================== INTERFACES ====================
+package "pkAntCiberDronContract" {
+    interface IHormiga {
+        + comer(alimento: Alimento): boolean
+    }
+    
+    interface IIA {
+        + buscar(tipoArsenal: String): boolean
+    }
+}
+
+' ==================== MODELO BIOLÓGICO ====================
+package "Modelo_Biológico" {
+    abstract class Alimento {
+        - tipo: String
+        + Alimento()
+        + getTipo(): String
+        + toString(): String
+    }
+
+    class ACarnivoro {
+        + ACarnivoro()
+    }
+    class AHervivoro {
+        + AHervivoro()
+    }
+    class ANectar {
+        + ANectar()
+    }
+    class AOmnivoro {
+        + AOmnivoro()
+    }
+
+    abstract class Hormiga {
+        - id: Integer
+        - sexo: String
+        - estado: String
+        + Hormiga()
+        + getId(): Integer
+        + setId(id: Integer): void
+        + getSexo(): String
+        + setSexo(sexo: String): void
+        + getEstado(): String
+        + setEstado(estado: String): void
+        + toString(): String
+    }
+
+    class HLarva {
+        + HLarva()
+        + comer(alimento: Alimento): boolean
+        + evolucionar(alimento: Alimento): Hormiga
+    }
+    
+    class HSoldado {
+        + HSoldado()
+        + comer(alimento: Alimento): boolean
+    }
+    
+    class HZangano {
+        + HZangano()
+        + comer(alimento: Alimento): boolean
+    }
+    
+    class HRastreadora {
+        + HRastreadora()
+        + comer(alimento: Alimento): boolean
+    }
+}
+
+' ==================== TECNOLOGÍA KGD ====================
+package "Tecnología KGD" {
+    class BBA {
+        - estadoActual: String
+        - estadosAceptacion: Set<String>
+        + BBA()
+        + validarObjetivo(cadenaArsenal: String): boolean
+    }
+
+    class FuentePoder {
+        - nivelEnergia: Integer
+        + FuentePoder()
+        + getNivelEnergia(): Integer
+        + setNivelEnergia(nivel: Integer): void
+        + recargar(): void
+        + consumir(cantidad: Integer): boolean
+        + toString(): String
+    }
+    
+    class Laser {
+        - potenciaBase: Integer
+        + Laser()
+        + Laser(potencia: Integer)
+        + getPotencia(): Integer
+        + setPotencia(potencia: Integer): void
+        + calcularPotencia(nivelEnergia: Integer): Integer
+        + toString(): String
+    }
+    
+    class Metralleta {
+        - municion: Integer
+        - capacidadMaxima: Integer
+        + Metralleta()
+        + getMunicion(): Integer
+        + getCapacidadMaxima(): Integer
+        + disparar(): boolean
+        + recargarMunicion(): void
+        + toString(): String
+    }
+    
+    class TurboReactor {
+        - activo: boolean
+        - consumoEnergia: Integer
+        + TurboReactor()
+        + isActivo(): boolean
+        + getConsumoEnergia(): Integer
+        + activar(): void
+        + desactivar(): void
+        + toString(): String
+    }
+    
+    class CoordenadaUK {
+        - geoposicion: String
+        - lunes: String
+        - martes: String
+        - miercoles: String
+        - jueves: String
+        - viernes: String
+        - tipoArsenal: String
+        - accion: boolean
+        + CoordenadaUK(...)
+        + getters/setters()
+        + toString(): String
+    }
+
+    class AntCiberDron {
+        - piloto: Hormiga
+        - bomba: BBA
+        - energia: FuentePoder
+        - pataDelanteraDerecha: Metralleta
+        - pataDelanteraIzquierda: Laser
+        - espalda: TurboReactor
+        - expertosPersonas: Map<String, String>
+        - historialEntrenamientos: List<String>
+        + AntCiberDron()
+        + getPiloto(): Hormiga
+        + getBomba(): BBA
+        + getEnergia(): FuentePoder
+        + getPataDelanteraDerecha(): Metralleta
+        + getPataDelanteraIzquierda(): Laser
+        + getExtremidadDer(): Metralleta
+        + getExtremidadIzq(): Laser
+        + getEspalda(): TurboReactor
+        + integrarHormiga(h: Hormiga): void
+        + volar(): void
+        + entrenarIdioma(idioma: String, hormiga: Hormiga): boolean
+        + getExpertoPorIdioma(idioma: String): String
+        + getHistorialEntrenamientos(): List<String>
+        + reemplazarFuentePoder(): boolean
+        + buscar(tipoArsenal: String): boolean
+        + dispararLaser(): void
+        + dispararMetralleta(): void
+        + toString(): String
+    }
+}
+
+' ==================== MODELO DE USUARIO ====================
+
+class UsuarioKGD {
+    - usuario: String
+    - password: String
+    - nombre: String
+    - cedula: String
+    - rol: String
+    + UsuarioKGD(...)
+    + getUsuario(): String
+    + getPassword(): String
+    + getNombre(): String
+    + getCedula(): String
+    + getRol(): String
+    + setUsuario(usuario: String): void
+    + setPassword(password: String): void
+    + setNombre(nombre: String): void
+    + setCedula(cedula: String): void
+    + setRol(rol: String): void
+    + validarPassword(pass: String): boolean
+    + esProfesor(): boolean
+    + esEstudiante(): boolean
+    + esExperto(): boolean
+    + toString(): String
+}
+
+
+' ==================== CONTROLADOR ====================
+
+class SistemaRuso {
+    - usuarios: Map<String, UsuarioKGD>
+    - coordenadasCargadas: List<CoordenadaUK>
+    - hormiguero: List<Hormiga>
+    - dron: AntCiberDron
+    - vista: SistemaRusoView
+    - scanner: Scanner
+    - usuarioActual: UsuarioKGD
+    - {static} MAX_ATTEMPTS: int = 3
+    + SistemaRuso()
+    + {static} main(args: String[]): void
+    + ejecutar(): void
+    - autenticarUsuario(): boolean
+    + readCoord(fileName: String): List<CoordenadaUK>
+    + crearArchivoLista(coordenadas: List): void
+    - mostrarMenuPrincipal(): void
+    - misionAtaque(): void
+    - hormigueroVirtual(): void
+    - crearHormiga(): void
+    - alimentarHormiga(): void
+    - verHormigas(): void
+    - eliminarHormiga(): void
+    - laboratorio(): void
+    - entrenarIdiomaHormiga(hormiga: Hormiga): void
+    - integrarHormigaSeleccionadaDron(hormiga: Hormiga): void
+    - recargarEnergia(): void
+    - reemplazarFuentePoder(): void
+    - estadoDron(): void
+    - pruebaVuelo(): void
+    - dispararLaser(): void
+    - dispararMetralleta(): void
+    - recargarMunicion(): void
+    - verHistorialEntrenamientos(): void
+}
+
+
+' ==================== VISTA ====================
+
+class SistemaRusoView {
+    - scanner: Scanner
+    + SistemaRusoView(scanner: Scanner)
+    + solicitarCredenciales(): String[]
+    + mostrarMensajeAutenticacion(): void
+    + mostrarAccesoDenegado(): void
+    + mostrarCredencialesIncorrectas(intentos: int): void
+    + mostrarBienvenida(nombre: String): void
+    - centrarTexto(texto: String, ancho: int): String
+    + mostrarEquipo(estudiantes: String[]): void
+    + mostrarErrorArchivoNoEncontrado(fileName: String): void
+    + mostrarCargaYListadoCoordenadas(fileName: String, coords: List): void
+    + mostrarLoading(): void
+    + mostrarMenuPrincipal(): void
+    + mostrarMenuHormiguero(): void
+    + mostrarMensajeMenu(tipo: String): void
+    + mostrarMisionAtaque(coordenadas: List): void
+    + mostrarMensajeHormiguero(tipo: String, params: Object...): void
+    + mostrarTablaHormigas(contexto: String, hormiguero: List): void
+    + solicitarConfirmacion(tipo: String, hormiga: Hormiga): void
+    + mostrarMenuLaboratorio(hormiga: Hormiga): void
+    + mostrarMensajeLaboratorio(tipo: String, params: Object...): void
+    + mostrarMensajeEntrenamiento(tipo: String, params: Object...): void
+    + mostrarMensajeDron(tipo: String, params: Object...): void
+    + mostrarEstadoDron(dron: AntCiberDron): void
+    + mostrarMensajeOperacion(tipo: String, params: Object...): void
+    + mostrarHistorialEntrenamientos(historial: List): void
+}
+
+
+' ==================== RELACIONES ====================
+
+' Herencia - Alimento arriba, subclases abajo
+Alimento <|-- ACarnivoro
+Alimento <|-- AHervivoro
+Alimento <|-- ANectar
+Alimento <|-- AOmnivoro
+
+' Herencia - Hormiga arriba, subclases abajo
+Hormiga <|-- HLarva
+Hormiga <|-- HSoldado
+Hormiga <|-- HZangano
+Hormiga <|-- HRastreadora
+
+' Implementación de interfaces
+Hormiga ..|> IHormiga
+AntCiberDron ..|> IIA
+
+' Composición (AntCiberDron contiene estos componentes)
+AntCiberDron *-- BBA : contiene
+AntCiberDron *-- FuentePoder : contiene
+AntCiberDron *-- Metralleta : contiene
+AntCiberDron *-- Laser : contiene
+AntCiberDron *-- TurboReactor : contiene
+
+' Agregación (AntCiberDron puede tener un piloto)
+AntCiberDron o-- Hormiga : pilota
+
+' Asociación (Controller usa Model)
+SistemaRuso ..> UsuarioKGD : gestiona
+SistemaRuso ..> CoordenadaUK : procesa
+SistemaRuso ..> AntCiberDron : controla
+SistemaRuso ..> Hormiga : administra
+SistemaRuso ..> Alimento : usa
+
+' Asociación (Controller-View)
+SistemaRuso --> SistemaRusoView : usa
+
+' Dependencia (View conoce Model para mostrar)
+SistemaRusoView ..> AntCiberDron : muestra
+SistemaRusoView ..> Hormiga : muestra
+SistemaRusoView ..> CoordenadaUK : muestra
+
+
+@enduml
