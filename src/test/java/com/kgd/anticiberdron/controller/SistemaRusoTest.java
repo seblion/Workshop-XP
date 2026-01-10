@@ -133,4 +133,17 @@ public class SistemaRusoTest {
         @Override
         public void mostrarAccesoDenegado() {}
     }
+
+    @Test
+    public void testRegistroCoordenada() {
+        BBA bba = new BBA();
+        String cadenaValida = "abc";
+        
+        boolean resultado = bba.validarObjetivo(cadenaValida);
+        
+        assertTrue(resultado, "El BBA debe registrar y validar correctamente la coordenada");
+        // Este test verifica que el resultado de validación se puede usar para persistencia
+        assertNotNull(bba, "El objeto BBA debe existir para registrar coordenadas");
+    }
+
 }

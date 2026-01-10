@@ -33,4 +33,13 @@ public class HLarvaTest {
         
         assertNull(evolucionada, "La larva no debería evolucionar con néctar");
     }
+
+    @Test
+    public void testAlimentoIncorrecto() {
+        HLarva larva = new HLarva();
+        AHervivoro hervivoro = new AHervivoro();
+        
+        // Verifica que alimentos herbívoros no son apropiados para larvas
+        assertFalse(larva.comer(hervivoro), "La larva no debería comer alimento herbívoro");
+    }
 }

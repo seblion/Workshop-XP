@@ -8,6 +8,256 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
+  <style>
+    .acceptance-grid {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .story-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.2s;
+    }
+    .story-card:hover {
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+      border-color: var(--accent);
+    }
+    .story-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    .story-id {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: #eff6ff;
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+    .story-title {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--text);
+      margin: 0.5rem 0;
+    }
+    .story-desc {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .criteria-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .criteria-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      margin-bottom: 8px;
+      background: #fafafa;
+      border-radius: 8px;
+      border-left: 3px solid var(--ok);
+    }
+    .check-icon {
+      color: var(--ok);
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .criteria-content {
+      flex: 1;
+    }
+    .scenario-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+    .acceptance-steps {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .step-keyword {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .pass-badge {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 2px 8px;
+      background: #dcfce7;
+      color: #166534;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+    .criteria-desc {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+    .stats-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: #eff6ff;
+      border-radius: 12px;
+      justify-content: center;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--ok);
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .charts-section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .chart-card {
+      background: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .chart-title {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      font-size: 0.85rem;
+    }
+    .circular-chart {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 0.5rem;
+      border-radius: 50%;
+      background: conic-gradient(var(--ok) 0deg 360deg, #e5e7eb 360deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .circular-chart::before {
+      content: '';
+      width: 70px;
+      height: 70px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .chart-percentage {
+      position: relative;
+      z-index: 1;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--ok);
+    }
+    .bar-chart {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .bar-item {
+      text-align: left;
+    }
+    .bar-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .bar-container {
+      height: 16px;
+      background: #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--ok));
+      border-radius: 12px;
+      transition: width 1s ease;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .donut-chart {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 0.5rem;
+      border-radius: 50%;
+      background: conic-gradient(
+        #10b981 0deg 328deg,
+        #3b82f6 328deg 360deg
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .donut-chart::before {
+      content: '';
+      width: 65px;
+      height: 65px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .donut-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-color {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -22,8 +272,471 @@
   </header>
   <main>
     <section>
-      <h2>Pruebas de Aceptacion</h2>
-      <p class="muted">Coloca criterios de aceptacion ejecutados y evidencias por HU.</p>
+      <h2>Pruebas de Aceptación</h2>
+      <p class="muted">Criterios de aceptación ejecutados y validados por Historia de Usuario.</p>
+
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-value">21/21</div>
+          <div class="stat-label">Escenarios Aceptados</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">7/7</div>
+          <div class="stat-label">Historias Validadas</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Tasa de Aceptación</div>
+        </div>
+      </div>
+
+      <!-- Sección de Gráficos Estadísticos -->
+      <div class="charts-section">
+        <h3 style="margin: 0 0 0.3rem; color: var(--text); text-align: center; font-size: 1rem;">Análisis Visual de Resultados</h3>
+        <p style="text-align: center; color: var(--muted); font-size: 0.8rem; margin-bottom: 1rem;">Visualización gráfica del estado de las pruebas</p>
+        
+        <div class="charts-grid">
+          <!-- Gráfico Circular: Tasa de Éxito -->
+          <div class="chart-card">
+            <div class="chart-title">Tasa de Aceptación General</div>
+            <div class="circular-chart">
+              <div class="chart-percentage">100%</div>
+            </div>
+            <p style="color: var(--muted); font-size: 0.7rem; margin: 0;">Todos aceptados</p>
+          </div>
+
+          <!-- Gráfico de Barras: Tests por Historia -->
+          <div class="chart-card">
+            <div class="chart-title">Escenarios por Historia de Usuario</div>
+            <div class="bar-chart">
+              <div class="bar-item">
+                <div class="bar-label">
+                  <span>HU-01</span>
+                  <span style="color: var(--muted); font-size: 0.85rem;">3 escenarios</span>
+                </div>
+                <div class="bar-container">
+                  <div class="bar-fill" style="width: 100%;"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label">
+                  <span>HU-02</span>
+                  <span style="color: var(--muted); font-size: 0.85rem;">3 escenarios</span>
+                </div>
+                <div class="bar-container">
+                  <div class="bar-fill" style="width: 100%;"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label">
+                  <span>HU-03</span>
+                  <span style="color: var(--muted); font-size: 0.85rem;">3 escenarios</span>
+                </div>
+                <div class="bar-container">
+                  <div class="bar-fill" style="width: 100%;"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label">
+                  <span>HU-04</span>
+                  <span style="color: var(--muted); font-size: 0.85rem;">4 escenarios</span>
+                </div>
+                <div class="bar-container">
+                  <div class="bar-fill" style="width: 100%;"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label">
+                  <span>HU-05</span>
+                  <span style="color: var(--muted); font-size: 0.85rem;">3 escenarios</span>
+                </div>
+                <div class="bar-container">
+                  <div class="bar-fill" style="width: 100%;"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label">
+                  <span>HU-06</span>
+                  <span style="color: var(--muted); font-size: 0.85rem;">2 escenarios</span>
+                </div>
+                <div class="bar-container">
+                  <div class="bar-fill" style="width: 100%;"></div>
+                </div>
+              </div>
+              <div class="bar-item">
+                <div class="bar-label">
+                  <span>HU-07</span>
+                  <span style="color: var(--muted); font-size: 0.85rem;">3 escenarios</span>
+                </div>
+                <div class="bar-container">
+                  <div class="bar-fill" style="width: 100%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Gráfico Donut: Distribución de Tests -->
+          <div class="chart-card">
+            <div class="chart-title">Cobertura de Requisitos</div>
+            <div class="donut-chart">
+              <div style="position: relative; z-index: 1; text-align: center;">
+                <div style="font-size: 1rem; font-weight: 700; color: var(--text);">21</div>
+                <div style="font-size: 0.6rem; color: var(--muted);">Escenarios</div>
+              </div>
+            </div>
+            <div class="donut-legend">
+              <div class="legend-item">
+                <div class="legend-color" style="background: #10b981;"></div>
+                <span>Aceptados (19)</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-color" style="background: #3b82f6;"></div>
+                <span>Críticos (2)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acceptance-grid">
+        
+        <!-- HU-01 -->
+        <div class="story-card">
+          <div class="story-header">
+            <div>
+              <span class="story-id">HU-01</span>
+              <h3 class="story-title">Control de Acceso Seguro</h3>
+            </div>
+          </div>
+          <p class="story-desc">Como operador del sistema, quiero autenticarme de forma segura para acceder al panel de control del AntCiberDron.</p>
+          
+          <h4 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--text);">Criterios de Aceptación:</h4>
+          <ul class="criteria-list">
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Autenticación exitosa <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> soy un operador con credenciales válidas</div>
+                  <div><span class="step-keyword">Cuando</span> ingreso mi usuario y contraseña correctos</div>
+                  <div><span class="step-keyword">Entonces</span> el sistema me da acceso al panel de control del AntCiberDron</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Bloqueo por intentos fallidos <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> he fallado 2 veces al autenticarme</div>
+                  <div><span class="step-keyword">Cuando</span> fallo por tercera vez consecutiva</div>
+                  <div><span class="step-keyword">Entonces</span> el sistema bloquea mi cuenta y muestra mensaje de bloqueo</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Visualización de datos del equipo <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> he ingresado exitosamente al sistema</div>
+                  <div><span class="step-keyword">Cuando</span> accedo a mi perfil</div>
+                  <div><span class="step-keyword">Entonces</span> veo mi nombre, equipo y rol asignado correctamente</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-02 -->
+        <div class="story-card">
+          <div class="story-header">
+            <div>
+              <span class="story-id">HU-02</span>
+              <h3 class="story-title">Carga de Datos de Inteligencia</h3>
+            </div>
+          </div>
+          <p class="story-desc">Como analista, quiero cargar datos desde archivos CSV para procesar información de inteligencia.</p>
+          
+          <h4 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--text);">Criterios de Aceptación:</h4>
+          <ul class="criteria-list">
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Carga exitosa de archivo CSV <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> tengo un archivo CSV válido con datos de inteligencia</div>
+                  <div><span class="step-keyword">Cuando</span> selecciono y cargo el archivo en el sistema</div>
+                  <div><span class="step-keyword">Entonces</span> los datos se importan correctamente y aparecen en la interfaz</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Validación de formato <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> cargo un archivo CSV</div>
+                  <div><span class="step-keyword">Cuando</span> el archivo no contiene las columnas requeridas</div>
+                  <div><span class="step-keyword">Entonces</span> el sistema muestra error indicando columnas faltantes</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Feedback visual durante carga <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> estoy cargando un archivo grande</div>
+                  <div><span class="step-keyword">Cuando</span> el proceso está en curso</div>
+                  <div><span class="step-keyword">Entonces</span> veo una animación de carga hasta que finaliza</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-03 -->
+        <div class="story-card">
+          <div class="story-header">
+            <div>
+              <span class="story-id">HU-03</span>
+              <h3 class="story-title">Validación de Objetivos (BBA)</h3>
+            </div>
+          </div>
+          <p class="story-desc">Como operador, quiero validar coordenadas mediante autómata BBA para verificar objetivos legítimos.</p>
+          
+          <h4 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--text);">Criterios de Aceptación:</h4>
+          <ul class="criteria-list">
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Validación de coordenada válida <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> ingreso una coordenada que cumple el patrón BBA</div>
+                  <div><span class="step-keyword">Cuando</span> ejecuto la validación</div>
+                  <div><span class="step-keyword">Entonces</span> el sistema marca la coordenada como objetivo legítimo</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Rechazo de coordenada inválida <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> ingreso una coordenada que NO cumple el patrón BBA</div>
+                  <div><span class="step-keyword">Cuando</span> ejecuto la validación</div>
+                  <div><span class="step-keyword">Entonces</span> el sistema rechaza la coordenada y muestra advertencia</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Registro de resultado <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> he validado una coordenada</div>
+                  <div><span class="step-keyword">Cuando</span> consulto el historial</div>
+                  <div><span class="step-keyword">Entonces</span> veo la coordenada con su resultado (válida/inválida)</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-04 -->
+        <div class="story-card">
+          <div class="story-header">
+            <div>
+              <span class="story-id">HU-04</span>
+              <h3 class="story-title">Transformación TIPO_HORMIGA</h3>
+            </div>
+          </div>
+          <p class="story-desc">Como sistema biológico, quiero evolucionar larvas según el alimento proporcionado para especializar hormigas.</p>
+          
+          <h4 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--text);">Criterios de Aceptación:</h4>
+          <ul class="criteria-list">
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Evolución a Hormiga Soldado <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> tengo una larva sin especializar</div>
+                  <div><span class="step-keyword">Cuando</span> le proporciono alimento carnívoro</div>
+                  <div><span class="step-keyword">Entonces</span> la larva evoluciona a Hormiga Soldado con capacidades de combate</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Evolución a Hormiga Rastreadora <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> tengo una larva sin especializar</div>
+                  <div><span class="step-keyword">Cuando</span> le proporciono alimento omnívoro</div>
+                  <div><span class="step-keyword">Entonces</span> la larva evoluciona a Hormiga Rastreadora con capacidades de exploración</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Evolución a Zángano <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> tengo una larva sin especializar</div>
+                  <div><span class="step-keyword">Cuando</span> le proporciono néctar</div>
+                  <div><span class="step-keyword">Entonces</span> la larva evoluciona a Zángano con capacidades reproductivas</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Rechazo de alimento incorrecto <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> tengo una Hormiga Soldado ya evolucionada</div>
+                  <div><span class="step-keyword">Cuando</span> intento darle alimento herbívoro (incompatible)</div>
+                  <div><span class="step-keyword">Entonces</span> el sistema rechaza la acción y muestra error</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-05 -->
+        <div class="story-card">
+          <div class="story-header">
+            <div>
+              <span class="story-id">HU-05</span>
+              <h3 class="story-title">Interfaz de Combate</h3>
+            </div>
+          </div>
+          <p class="story-desc">Como piloto, quiero controlar el AntCiberDron con armas y propulsión para ejecutar misiones de combate.</p>
+          
+          <h4 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--text);">Criterios de Aceptación:</h4>
+          <ul class="criteria-list">
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Equipamiento de armas <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> tengo un AntCiberDron sin equipar</div>
+                  <div><span class="step-keyword">Cuando</span> asigno Metralleta y Láser a sus extremidades</div>
+                  <div><span class="step-keyword">Entonces</span> el dron queda equipado y listo para combate</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Consumo de energía en vuelo <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> el AntCiberDron tiene batería al 100%</div>
+                  <div><span class="step-keyword">Cuando</span> activo el TurboReactor y vuelo</div>
+                  <div><span class="step-keyword">Entonces</span> la batería se reduce al 80% (20% de consumo)</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Propulsión operativa <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> el AntCiberDron está en tierra</div>
+                  <div><span class="step-keyword">Cuando</span> activo el TurboReactor</div>
+                  <div><span class="step-keyword">Entonces</span> el dron se eleva y entra en modo aéreo</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-06 -->
+        <div class="story-card">
+          <div class="story-header">
+            <div>
+              <span class="story-id">HU-06</span>
+              <h3 class="story-title">Entrenamiento de Idiomas</h3>
+            </div>
+          </div>
+          <p class="story-desc">Como experto lingüista, quiero entrenar el sistema en nuevos idiomas para ampliar capacidades de reconocimiento.</p>
+          
+          <h4 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--text);">Criterios de Aceptación:</h4>
+          <ul class="criteria-list">
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Carga de léxico nuevo <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> soy un experto lingüista autenticado</div>
+                  <div><span class="step-keyword">Cuando</span> cargo palabras de un nuevo idioma al sistema</div>
+                  <div><span class="step-keyword">Entonces</span> las palabras se almacenan y quedan disponibles para reconocimiento</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Control de acceso por rol <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> soy un usuario sin rol de 'Experto'</div>
+                  <div><span class="step-keyword">Cuando</span> intento acceder al módulo de entrenamiento</div>
+                  <div><span class="step-keyword">Entonces</span> el sistema me niega el acceso y muestra mensaje de permisos insuficientes</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- HU-07 -->
+        <div class="story-card">
+          <div class="story-header">
+            <div>
+              <span class="story-id">HU-07</span>
+              <h3 class="story-title">Hormiguero Virtual</h3>
+            </div>
+          </div>
+          <p class="story-desc">Como comandante, quiero gestionar un hormiguero virtual para coordinar múltiples AntCiberDrones en misiones.</p>
+          
+          <h4 style="margin-top: 1.5rem; margin-bottom: 0.8rem; color: var(--text);">Criterios de Aceptación:</h4>
+          <ul class="criteria-list">
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Creación de nueva hormiga <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> accedo al hormiguero virtual</div>
+                  <div><span class="step-keyword">Cuando</span> solicito crear una nueva hormiga soldado</div>
+                  <div><span class="step-keyword">Entonces</span> el sistema crea la hormiga con atributos iniciales y la agrega a la colonia</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Asignación de misión <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> tengo hormigas soldado disponibles</div>
+                  <div><span class="step-keyword">Cuando</span> asigno una coordenada validada como misión</div>
+                  <div><span class="step-keyword">Entonces</span> la hormiga queda vinculada a esa coordenada y lista para despliegue</div>
+                </div>
+              </div>
+            </li>
+            <li class="criteria-item">
+              <span class="check-icon">✓</span>
+              <div class="criteria-content">
+                <div class="scenario-title">Gestión de flota <span class="pass-badge">ACEPTADO</span></div>
+                <div class="acceptance-steps">
+                  <div><span class="step-keyword">Dado que</span> he creado múltiples AntCiberDrones</div>
+                  <div><span class="step-keyword">Cuando</span> consulto el hormiguero</div>
+                  <div><span class="step-keyword">Entonces</span> veo todas las unidades activas con su estado y asignaciones</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
     </section>
   </main>
 </body>

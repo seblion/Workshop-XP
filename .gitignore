@@ -1,0 +1,21 @@
+# Archivos compilados
+target/
+
+# Archivos temporales
+nul
+*.log
+
+# Librerías locales (descomentar si son dependencias de Maven)
+# lib/
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

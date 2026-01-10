@@ -29,4 +29,22 @@ public class UsuarioKGDTest {
         UsuarioKGD usuario = new UsuarioKGD("user", "correctPass", "name", "id", "role");
         assertFalse(usuario.validarPassword("wrongPass"), "Debe retornar false para contraseña incorrecta");
     }
+
+    @Test
+    public void testAutenticacionExitosa() {
+        UsuarioKGD usuario = new UsuarioKGD("admin", "password123", "Administrador", "1234567890", "ADMINISTRADOR");
+        assertTrue(usuario.validarPassword("password123"), "Debe retornar true para contraseña correcta");
+    }
+
+    @Test
+    public void testMostrarFichaEquipo() {
+        UsuarioKGD usuario = new UsuarioKGD("dev01", "pass123", "Developer One", "0987654321", "DESARROLLADOR");
+        
+        assertNotNull(usuario.getNombre(), "El nombre no debe ser null");
+        assertNotNull(usuario.getCedula(), "La cédula no debe ser null");
+        assertNotNull(usuario.getRol(), "El rol no debe ser null");
+        assertEquals("Developer One", usuario.getNombre());
+        assertEquals("0987654321", usuario.getCedula());
+        assertEquals("DESARROLLADOR", usuario.getRol());
+    }
 }
