@@ -3,27 +3,1075 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reciclaje - Diseno XP</title>
+  <title>Reciclaje - Diseño XP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
+  <style>
+    /* Hero minimalista */
+    .refactor-hero {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.07);
+    }
+    
+    .refactor-hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+    
+    .refactor-hero p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Stats minimalistas */
+    .refactor-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .refactor-stat {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    
+    .refactor-stat:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-2);
+    }
+    
+    .refactor-stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    
+    .refactor-stat-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* Tabla de contenidos */
+    .toc {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .toc-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 1rem;
+    }
+    
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+    
+    .toc-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.6rem 0.8rem;
+      background: var(--panel);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    
+    .toc-item:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+    
+    .toc-number {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    
+    .toc-text {
+      flex: 1;
+      color: var(--text);
+      font-weight: 500;
+    }
+    
+    .toc-tag {
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    
+    .toc-tag.pattern {
+      background: #ede9fe;
+      color: #5b21b6;
+    }
+    
+    .toc-tag.solid {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+    
+    .toc-tag.yagni {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    /* Refactoring sections */
+    .refactor-section {
+      margin-bottom: 1.5rem;
+    }
+    
+    .refactor-header-bar {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px 12px 0 0;
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .refactor-header-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex: 1;
+    }
+    
+    .refactor-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    
+    .refactor-title-box {
+      flex: 1;
+    }
+    
+    .refactor-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 2px;
+    }
+    
+    .refactor-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    
+    .refactor-badge {
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Patrón info */
+    .pattern-info {
+      background: #eff6ff;
+      border: 1px solid #93c5fd;
+      border-left: 4px solid #3b82f6;
+      border-radius: 0;
+      padding: 1rem 1.2rem;
+      margin: 0;
+    }
+    
+    .pattern-info-title {
+      font-weight: 700;
+      color: #1e40af;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+    
+    .pattern-info-desc {
+      color: #1e3a8a;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Code comparison */
+    .code-wrapper {
+      border: 1px solid var(--border);
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+      background: #0f172a;
+    }
+    
+    .code-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    
+    .code-panel {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .code-panel-header {
+      padding: 0.8rem 1rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px solid;
+    }
+    
+    .code-panel.before .code-panel-header {
+      background: #fef2f2;
+      color: #991b1b;
+      border-bottom-color: #fca5a5;
+    }
+    
+    .code-panel.after .code-panel-header {
+      background: #f0fdf4;
+      color: #166534;
+      border-bottom-color: #86efac;
+    }
+    
+    .code-block {
+      padding: 1.2rem;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.75rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      overflow-x: auto;
+      flex: 1;
+    }
+    
+    .code-block pre {
+      margin: 0;
+      padding: 0;
+      white-space: pre;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+    }
+    
+    /* Syntax highlighting */
+    .keyword { color: #c084fc; }
+    .type { color: #67e8f9; }
+    .string { color: #86efac; }
+    .comment { color: #64748b; font-style: italic; }
+    .method { color: #fbbf24; }
+    .annotation { color: #f472b6; }
+    .number { color: #fb923c; }
+    
+    .removed {
+      background: rgba(239, 68, 68, 0.15);
+      display: block;
+      margin: 0 -1.2rem;
+      padding: 0 1.2rem;
+      border-left: 3px solid #ef4444;
+    }
+    
+    .added {
+      background: rgba(34, 197, 94, 0.15);
+      display: block;
+      margin: 0 -1.2rem;
+      padding: 0 1.2rem;
+      border-left: 3px solid #22c55e;
+    }
+
+    /* Benefits */
+    .benefits-bar {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 12px 12px;
+      padding: 1rem 1.2rem;
+    }
+    
+    .benefits-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 0.8rem;
+    }
+    
+    .benefits-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    
+    .benefit-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.8rem;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.8rem;
+    }
+    
+    .benefit-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    
+    .benefit-icon.green {
+      background: #dcfce7;
+      color: #166534;
+    }
+    
+    .benefit-icon.blue {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+    
+    .benefit-icon.purple {
+      background: #ede9fe;
+      color: #5b21b6;
+    }
+    
+    .benefit-text {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Summary cards */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    
+    .summary-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .summary-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    
+    .summary-card-title {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.95rem;
+      margin: 0 0 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    
+    .summary-card-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .code-comparison {
+        grid-template-columns: 1fr;
+      }
+      
+      .refactor-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="flex">
       <div class="title">Reciclaje</div>
-      <div class="pill">Fase: Diseno</div>
+      <div class="pill">Fase: Diseño</div>
     </div>
     <nav class="nav">
       <a href="../../../index.html">Inicio</a>
       <a href="../../../evidencias.html">Evidencias</a>
     </nav>
   </header>
+  
   <main>
+    <!-- Hero -->
+    <div class="refactor-hero">
+      <h1>Refactoring & Mejoras de Código</h1>
+      <p>Ajustes incrementales aplicando patrones de diseño, principios SOLID y buenas prácticas de ingeniería de software</p>
+    </div>
+
+    <!-- Stats -->
     <section>
-      <h2>Reciclaje</h2>
-      <p class="muted">Registra ajustes incrementales y refactors para mejorar el diseno.</p>
+      <div class="refactor-stats">
+        <div class="refactor-stat">
+          <div class="refactor-stat-value">5</div>
+          <div class="refactor-stat-label">Refactorings Propuestos</div>
+        </div>
+        <div class="refactor-stat">
+          <div class="refactor-stat-value">3</div>
+          <div class="refactor-stat-label">Patrones de Diseño</div>
+        </div>
+        <div class="refactor-stat">
+          <div class="refactor-stat-value">2</div>
+          <div class="refactor-stat-label">Principios SOLID</div>
+        </div>
+        <div class="refactor-stat">
+          <div class="refactor-stat-value">40%</div>
+          <div class="refactor-stat-label">Mejora Estimada</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabla de contenidos -->
+    <section>
+      <div class="toc">
+        <div class="toc-title">Índice de Refactorings</div>
+        <ul class="toc-list">
+          <li class="toc-item">
+            <div class="toc-number">1</div>
+            <div class="toc-text">Eliminar Clases de Alimentos No Utilizadas</div>
+            <span class="toc-tag yagni">YAGNI</span>
+          </li>
+          <li class="toc-item">
+            <div class="toc-number">2</div>
+            <div class="toc-text">Implementar Factory Pattern para Alimentos</div>
+            <span class="toc-tag pattern">Creacional</span>
+          </li>
+          <li class="toc-item">
+            <div class="toc-number">3</div>
+            <div class="toc-text">Aplicar Strategy Pattern para BBA</div>
+            <span class="toc-tag pattern">Comportamiento</span>
+          </li>
+          <li class="toc-item">
+            <div class="toc-number">4</div>
+            <div class="toc-text">Implementar Builder Pattern para AntCiberDron</div>
+            <span class="toc-tag pattern">Creacional</span>
+          </li>
+          <li class="toc-item">
+            <div class="toc-number">5</div>
+            <div class="toc-text">Aplicar Inyección de Dependencias</div>
+            <span class="toc-tag solid">DIP</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Refactor 1: Remove Unused Food Types -->
+    <section class="refactor-section">
+      <div class="refactor-header-bar">
+        <div class="refactor-header-left">
+          <div class="refactor-number">1</div>
+          <div class="refactor-title-box">
+            <div class="refactor-title">Eliminar Clases de Alimentos No Utilizadas</div>
+            <div class="refactor-subtitle">AHervivoro, AOmnivoro - Reducir complejidad innecesaria</div>
+          </div>
+        </div>
+        <span class="refactor-badge" style="background: #dcfce7; color: #166534;">YAGNI</span>
+      </div>
+      
+      <div class="pattern-info">
+        <div class="pattern-info-title">Principio YAGNI (You Aren't Gonna Need It)</div>
+        <div class="pattern-info-desc">No implementes funcionalidad hasta que sea realmente necesaria. El Grupo 1 solo usa Néctar y Carnívoro.</div>
+      </div>
+      
+      <div class="code-wrapper">
+        <div class="code-comparison">
+          <div class="code-panel before">
+            <div class="code-panel-header">ANTES - Clases no utilizadas</div>
+            <div class="code-block"><pre><span class="comment">// AHervivoro.java - NUNCA USADO</span>
+<span class="keyword">public class</span> <span class="type">AHervivoro</span> <span class="keyword">extends</span> <span class="type">Alimento</span> {
+<span class="removed">    <span class="keyword">public</span> <span class="method">AHervivoro</span>() {
+        <span class="keyword">super</span>();
+        <span class="keyword">this</span>.tipo = <span class="string">"Hervivoro"</span>;
+    }</span>
+}
+
+<span class="comment">// AOmnivoro.java - NUNCA USADO</span>
+<span class="keyword">public class</span> <span class="type">AOmnivoro</span> <span class="keyword">extends</span> <span class="type">Alimento</span> {
+<span class="removed">    <span class="keyword">public</span> <span class="method">AOmnivoro</span>() {
+        <span class="keyword">super</span>();
+        <span class="keyword">this</span>.tipo = <span class="string">"Omnivoro"</span>;
+    }</span>
+}
+
+<span class="comment">// Problema: Código muerto que aumenta complejidad</span></pre>
+            </div>
+          </div>
+          
+          <div class="code-panel after">
+            <div class="code-panel-header">DESPUÉS - Solo lo necesario</div>
+            <div class="code-block"><pre><span class="comment">// Solo mantener clases utilizadas</span>
+
+<span class="comment">// ANectar.java - USADO por HLarva</span>
+<span class="keyword">public class</span> <span class="type">ANectar</span> <span class="keyword">extends</span> <span class="type">Alimento</span> {
+<span class="added">    <span class="keyword">public</span> <span class="method">ANectar</span>() {
+        <span class="keyword">super</span>();
+        <span class="keyword">this</span>.tipo = <span class="string">"Nectar"</span>;
+    }</span>
+}
+
+<span class="comment">// ACarnivoro.java - USADO por HSoldado</span>
+<span class="keyword">public class</span> <span class="type">ACarnivoro</span> <span class="keyword">extends</span> <span class="type">Alimento</span> {
+<span class="added">    <span class="keyword">public</span> <span class="method">ACarnivoro</span>() {
+        <span class="keyword">super</span>();
+        <span class="keyword">this</span>.tipo = <span class="string">"Carnivoro"</span>;
+    }</span>
+}
+
+<span class="comment">// ✓ Código limpio y mantenible</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="benefits-bar">
+        <div class="benefits-title">Beneficios de la refactorización</div>
+        <div class="benefits-list">
+          <div class="benefit-chip">
+            <div class="benefit-icon green">✓</div>
+            <div class="benefit-text">Menos código que mantener</div>
+          </div>
+          <div class="benefit-chip">
+            <div class="benefit-icon blue">✓</div>
+            <div class="benefit-text">Reduce confusión del equipo</div>
+          </div>
+          <div class="benefit-chip">
+            <div class="benefit-icon purple">✓</div>
+            <div class="benefit-text">Mejora claridad del dominio</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Refactor 2: Factory Pattern -->
+    <section class="refactor-section">
+      <div class="refactor-header-bar">
+        <div class="refactor-header-left">
+          <div class="refactor-number">2</div>
+          <div class="refactor-title-box">
+            <div class="refactor-title">Implementar Factory Pattern para Alimentos</div>
+            <div class="refactor-subtitle">AlimentoFactory - Centralizar creación de objetos</div>
+          </div>
+        </div>
+        <span class="refactor-badge" style="background: #ede9fe; color: #5b21b6;">Creacional</span>
+      </div>
+      
+      <div class="pattern-info">
+        <div class="pattern-info-title">Factory Method Pattern</div>
+        <div class="pattern-info-desc">Define una interfaz para crear objetos, pero delega a las subclases la decisión de qué clase instanciar. Centraliza la lógica de creación.</div>
+      </div>
+      
+      <div class="code-wrapper">
+        <div class="code-comparison">
+          <div class="code-panel before">
+            <div class="code-panel-header">ANTES - Creación dispersa</div>
+            <div class="code-block"><pre><span class="comment">// Creación directa en múltiples lugares</span>
+
+<span class="comment">// SistemaRusoView.java</span>
+<span class="keyword">switch</span> (tipoAlimento) {
+<span class="removed">    <span class="keyword">case</span> <span class="number">1</span>:
+        alimento = <span class="keyword">new</span> <span class="type">ANectar</span>();
+        <span class="keyword">break</span>;
+    <span class="keyword">case</span> <span class="number">2</span>:
+        alimento = <span class="keyword">new</span> <span class="type">ACarnivoro</span>();
+        <span class="keyword">break</span>;</span>
+}
+
+<span class="comment">// Problema:</span>
+<span class="comment">// - Lógica duplicada</span>
+<span class="comment">// - Acoplamiento con clases concretas</span>
+<span class="comment">// - Difícil agregar nuevos tipos</span></pre>
+            </div>
+          </div>
+          
+          <div class="code-panel after">
+            <div class="code-panel-header">DESPUÉS - Factory centralizado</div>
+            <div class="code-block"><pre><span class="comment">// AlimentoFactory.java</span>
+<span class="keyword">public class</span> <span class="type">AlimentoFactory</span> {
+<span class="added">    <span class="keyword">public static</span> <span class="type">Alimento</span> <span class="method">crear</span>(<span class="type">TipoAlimento</span> tipo) {
+        <span class="keyword">return switch</span> (tipo) {
+            <span class="keyword">case</span> NECTAR -&gt; <span class="keyword">new</span> <span class="type">ANectar</span>();
+            <span class="keyword">case</span> CARNIVORO -&gt; <span class="keyword">new</span> <span class="type">ACarnivoro</span>();
+        };
+    }
+    
+    <span class="keyword">public static</span> <span class="type">Alimento</span> <span class="method">crearDesdeInt</span>(<span class="keyword">int</span> opcion) {
+        <span class="keyword">return</span> <span class="method">crear</span>(<span class="type">TipoAlimento</span>.<span class="method">fromInt</span>(opcion));
+    }</span>
+}
+
+<span class="keyword">enum</span> <span class="type">TipoAlimento</span> {
+<span class="added">    NECTAR(<span class="number">1</span>), CARNIVORO(<span class="number">2</span>);
+    
+    <span class="keyword">static</span> <span class="type">TipoAlimento</span> <span class="method">fromInt</span>(<span class="keyword">int</span> i) {
+        <span class="keyword">return</span> <span class="type">Arrays</span>.<span class="method">stream</span>(<span class="method">values</span>())
+            .<span class="method">filter</span>(t -&gt; t.codigo == i)
+            .<span class="method">findFirst</span>().<span class="method">orElseThrow</span>();
+    }</span>
+}
+
+<span class="comment">// Uso simple</span>
+<span class="type">Alimento</span> alimento = <span class="type">AlimentoFactory</span>.<span class="method">crearDesdeInt</span>(opcion);</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="benefits-bar">
+        <div class="benefits-title">Beneficios de la refactorización</div>
+        <div class="benefits-list">
+          <div class="benefit-chip">
+            <div class="benefit-icon green">✓</div>
+            <div class="benefit-text">Centraliza lógica de creación</div>
+          </div>
+          <div class="benefit-chip">
+            <div class="benefit-icon blue">✓</div>
+            <div class="benefit-text">Fácil agregar nuevos tipos</div>
+          </div>
+          <div class="benefit-chip">
+            <div class="benefit-icon purple">✓</div>
+            <div class="benefit-text">Reduce acoplamiento</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Refactor 3: Strategy Pattern -->
+    <section class="refactor-section">
+      <div class="refactor-header-bar">
+        <div class="refactor-header-left">
+          <div class="refactor-number">3</div>
+          <div class="refactor-title-box">
+            <div class="refactor-title">Aplicar Strategy Pattern para BBA</div>
+            <div class="refactor-subtitle">ValidacionStrategy - Estrategias intercambiables</div>
+          </div>
+        </div>
+        <span class="refactor-badge" style="background: #ede9fe; color: #5b21b6;">Comportamiento</span>
+      </div>
+      
+      <div class="pattern-info">
+        <div class="pattern-info-title">Strategy Pattern</div>
+        <div class="pattern-info-desc">Define una familia de algoritmos, encapsula cada uno y los hace intercambiables. Permite variar el algoritmo independientemente de los clientes que lo usan.</div>
+      </div>
+      
+      <div class="code-wrapper">
+        <div class="code-comparison">
+          <div class="code-panel before">
+            <div class="code-panel-header">ANTES - Lógica acoplada</div>
+            <div class="code-block"><pre><span class="comment">// BBA.java - Validación hardcodeada</span>
+<span class="keyword">public class</span> <span class="type">BBA</span> {
+<span class="removed">    <span class="keyword">public boolean</span> <span class="method">validarObjetivo</span>(<span class="type">String</span> cadena) {
+        <span class="comment">// 200+ líneas de lógica AFD</span>
+        <span class="keyword">int</span> estado = <span class="number">0</span>;
+        <span class="keyword">for</span> (<span class="keyword">char</span> c : cadena.<span class="method">toCharArray</span>()) {
+            <span class="keyword">switch</span> (estado) {
+                <span class="keyword">case</span> <span class="number">0</span>: <span class="comment">// ...</span>
+                <span class="keyword">case</span> <span class="number">1</span>: <span class="comment">// ...</span>
+                <span class="comment">// muchos más casos...</span>
+            }
+        }
+        <span class="keyword">return</span> esEstadoAceptacion(estado);
+    }</span>
+}
+
+<span class="comment">// Problema: imposible cambiar algoritmo</span></pre>
+            </div>
+          </div>
+          
+          <div class="code-panel after">
+            <div class="code-panel-header">DESPUÉS - Estrategias intercambiables</div>
+            <div class="code-block"><pre><span class="comment">// Interfaz de estrategia</span>
+<span class="keyword">public interface</span> <span class="type">ValidacionStrategy</span> {
+<span class="added">    <span class="keyword">boolean</span> <span class="method">validar</span>(<span class="type">String</span> cadena);</span>
+}
+
+<span class="comment">// Implementación AFD</span>
+<span class="keyword">public class</span> <span class="type">AFDValidacion</span> <span class="keyword">implements</span> <span class="type">ValidacionStrategy</span> {
+<span class="added">    <span class="annotation">@Override</span>
+    <span class="keyword">public boolean</span> <span class="method">validar</span>(<span class="type">String</span> cadena) {
+        <span class="comment">// Lógica AFD existente</span>
+    }</span>
+}
+
+<span class="comment">// Implementación Regex (alternativa)</span>
+<span class="keyword">public class</span> <span class="type">RegexValidacion</span> <span class="keyword">implements</span> <span class="type">ValidacionStrategy</span> {
+<span class="added">    <span class="keyword">public boolean</span> <span class="method">validar</span>(<span class="type">String</span> cadena) {
+        <span class="type">Pattern</span> p = <span class="type">Pattern</span>.<span class="method">compile</span>(<span class="string">"^a+|ab*|abc|abcd*|abcdt+$"</span>);
+        <span class="keyword">return</span> p.<span class="method">matcher</span>(cadena).<span class="method">matches</span>();
+    }</span>
+}
+
+<span class="comment">// BBA con estrategia</span>
+<span class="keyword">public class</span> <span class="type">BBA</span> {
+<span class="added">    <span class="keyword">private</span> <span class="type">ValidacionStrategy</span> strategy;
+    
+    <span class="keyword">public</span> <span class="method">BBA</span>(<span class="type">ValidacionStrategy</span> strategy) {
+        <span class="keyword">this</span>.strategy = strategy;
+    }
+    
+    <span class="keyword">public boolean</span> <span class="method">validarObjetivo</span>(<span class="type">String</span> cadena) {
+        <span class="keyword">return</span> strategy.<span class="method">validar</span>(cadena);
+    }</span>
+}</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="benefits-bar">
+        <div class="benefits-title">Beneficios de la refactorización</div>
+        <div class="benefits-list">
+          <div class="benefit-chip">
+            <div class="benefit-icon green">✓</div>
+            <div class="benefit-text">Algoritmos intercambiables</div>
+          </div>
+          <div class="benefit-chip">
+            <div class="benefit-icon blue">✓</div>
+            <div class="benefit-text">Fácil testing (mock strategy)</div>
+          </div>
+          <div class="benefit-chip">
+            <div class="benefit-icon purple">✓</div>
+            <div class="benefit-text">Open/Closed Principle</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Refactor 4: Builder Pattern -->
+    <section class="refactor-section">
+      <div class="refactor-header-bar">
+        <div class="refactor-header-left">
+          <div class="refactor-number">4</div>
+          <div class="refactor-title-box">
+            <div class="refactor-title">Implementar Builder Pattern para AntCiberDron</div>
+            <div class="refactor-subtitle">AntCiberDronBuilder - Construcción fluida</div>
+          </div>
+        </div>
+        <span class="refactor-badge" style="background: #ede9fe; color: #5b21b6;">Creacional</span>
+      </div>
+      
+      <div class="pattern-info">
+        <div class="pattern-info-title">Builder Pattern</div>
+        <div class="pattern-info-desc">Separa la construcción de un objeto complejo de su representación, permitiendo el mismo proceso de construcción crear diferentes representaciones.</div>
+      </div>
+      
+      <div class="code-wrapper">
+        <div class="code-comparison">
+          <div class="code-panel before">
+            <div class="code-panel-header">ANTES - Construcción rígida</div>
+            <div class="code-block"><pre><span class="comment">// AntCiberDron.java - Todo creado en constructor</span>
+<span class="keyword">public class</span> <span class="type">AntCiberDron</span> {
+<span class="removed">    <span class="keyword">public</span> <span class="method">AntCiberDron</span>() {
+        <span class="keyword">this</span>.bomba = <span class="keyword">new</span> <span class="type">BBA</span>();
+        <span class="keyword">this</span>.energia = <span class="keyword">new</span> <span class="type">FuentePoder</span>();
+        <span class="keyword">this</span>.pataDelanteraDerecha = <span class="keyword">new</span> <span class="type">Metralleta</span>();
+        <span class="keyword">this</span>.pataDelanteraIzquierda = <span class="keyword">new</span> <span class="type">Laser</span>();
+        <span class="keyword">this</span>.espalda = <span class="keyword">new</span> <span class="type">TurboReactor</span>();
+    }</span>
+}
+
+<span class="comment">// Problema:</span>
+<span class="comment">// - Configuración fija</span>
+<span class="comment">// - No se puede personalizar</span>
+<span class="comment">// - Difícil crear variantes</span></pre>
+            </div>
+          </div>
+          
+          <div class="code-panel after">
+            <div class="code-panel-header">DESPUÉS - Builder fluido</div>
+            <div class="code-block"><pre><span class="comment">// AntCiberDronBuilder.java</span>
+<span class="keyword">public class</span> <span class="type">AntCiberDronBuilder</span> {
+<span class="added">    <span class="keyword">private</span> <span class="type">AntCiberDron</span> dron = <span class="keyword">new</span> <span class="type">AntCiberDron</span>();
+    
+    <span class="keyword">public</span> <span class="type">AntCiberDronBuilder</span> <span class="method">conBomba</span>(<span class="type">BBA</span> bomba) {
+        dron.<span class="method">setBomba</span>(bomba);
+        <span class="keyword">return this</span>;
+    }
+    
+    <span class="keyword">public</span> <span class="type">AntCiberDronBuilder</span> <span class="method">conEnergia</span>(<span class="keyword">int</span> nivel) {
+        dron.<span class="method">setEnergia</span>(<span class="keyword">new</span> <span class="type">FuentePoder</span>(nivel));
+        <span class="keyword">return this</span>;
+    }
+    
+    <span class="keyword">public</span> <span class="type">AntCiberDronBuilder</span> <span class="method">conLaser</span>(<span class="keyword">int</span> potencia) {
+        dron.<span class="method">setLaser</span>(<span class="keyword">new</span> <span class="type">Laser</span>(potencia));
+        <span class="keyword">return this</span>;
+    }
+    
+    <span class="keyword">public</span> <span class="type">AntCiberDronBuilder</span> <span class="method">conMetralleta</span>() {
+        dron.<span class="method">setMetralleta</span>(<span class="keyword">new</span> <span class="type">Metralleta</span>());
+        <span class="keyword">return this</span>;
+    }
+    
+    <span class="keyword">public</span> <span class="type">AntCiberDronBuilder</span> <span class="method">conPiloto</span>(<span class="type">Hormiga</span> h) {
+        dron.<span class="method">integrarHormiga</span>(h);
+        <span class="keyword">return this</span>;
+    }
+    
+    <span class="keyword">public</span> <span class="type">AntCiberDron</span> <span class="method">build</span>() {
+        <span class="comment">// Validaciones antes de construir</span>
+        <span class="keyword">if</span> (dron.<span class="method">getPiloto</span>() == <span class="keyword">null</span>) {
+            <span class="keyword">throw new</span> <span class="type">IllegalStateException</span>(<span class="string">"Requiere piloto"</span>);
+        }
+        <span class="keyword">return</span> dron;
+    }</span>
+}
+
+<span class="comment">// Uso fluido y legible</span>
+<span class="type">AntCiberDron</span> dron = <span class="keyword">new</span> <span class="type">AntCiberDronBuilder</span>()
+    .<span class="method">conBomba</span>(<span class="keyword">new</span> <span class="type">BBA</span>())
+    .<span class="method">conLaser</span>(<span class="number">150</span>)
+    .<span class="method">conMetralleta</span>()
+    .<span class="method">conPiloto</span>(soldado)
+    .<span class="method">build</span>();</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="benefits-bar">
+        <div class="benefits-title">Beneficios de la refactorización</div>
+        <div class="benefits-list">
+          <div class="benefit-chip">
+            <div class="benefit-icon green">✓</div>
+            <div class="benefit-text">API fluida y legible</div>
+          </div>
+          <div class="benefit-chip">
+            <div class="benefit-icon blue">✓</div>
+            <div class="benefit-text">Configuraciones personalizables</div>
+          </div>
+          <div class="benefit-chip">
+            <div class="benefit-icon purple">✓</div>
+            <div class="benefit-text">Validación centralizada</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Refactor 5: Dependency Injection -->
+    <section class="refactor-section">
+      <div class="refactor-header-bar">
+        <div class="refactor-header-left">
+          <div class="refactor-number">5</div>
+          <div class="refactor-title-box">
+            <div class="refactor-title">Aplicar Inyección de Dependencias</div>
+            <div class="refactor-subtitle">SistemaRuso - Desacoplar componentes</div>
+          </div>
+        </div>
+        <span class="refactor-badge" style="background: #dbeafe; color: #1e40af;">SOLID - DIP</span>
+      </div>
+      
+      <div class="pattern-info">
+        <div class="pattern-info-title">Dependency Inversion Principle (DIP)</div>
+        <div class="pattern-info-desc">Los módulos de alto nivel no deben depender de módulos de bajo nivel. Ambos deben depender de abstracciones. Las abstracciones no deben depender de detalles.</div>
+      </div>
+      
+      <div class="code-wrapper">
+        <div class="code-comparison">
+          <div class="code-panel before">
+            <div class="code-panel-header">ANTES - Dependencias acopladas</div>
+            <div class="code-block"><pre><span class="comment">// SistemaRuso.java - Crea todo internamente</span>
+<span class="keyword">public class</span> <span class="type">SistemaRuso</span> {
+    <span class="keyword">private</span> <span class="type">Map</span>&lt;<span class="type">String</span>, <span class="type">UsuarioKGD</span>&gt; usuarios;
+    <span class="keyword">private</span> <span class="type">AntCiberDron</span> dron;
+    <span class="keyword">private</span> <span class="type">SistemaRusoView</span> vista;
+    <span class="keyword">private</span> <span class="type">Scanner</span> scanner;
+    
+<span class="removed">    <span class="keyword">public</span> <span class="method">SistemaRuso</span>() {
+        <span class="comment">// Crea todas sus dependencias</span>
+        <span class="keyword">this</span>.usuarios = <span class="keyword">new</span> <span class="type">HashMap</span>&lt;&gt;();
+        <span class="keyword">this</span>.dron = <span class="keyword">new</span> <span class="type">AntCiberDron</span>();
+        <span class="keyword">this</span>.scanner = <span class="keyword">new</span> <span class="type">Scanner</span>(<span class="type">System</span>.in);
+        <span class="keyword">this</span>.vista = <span class="keyword">new</span> <span class="type">SistemaRusoView</span>(scanner);
+        
+        <span class="comment">// Usuarios hardcodeados</span>
+        <span class="keyword">this</span>.usuarios.<span class="method">put</span>(<span class="string">"patmic"</span>, 
+            <span class="keyword">new</span> <span class="type">UsuarioKGD</span>(<span class="string">"patmic"</span>, <span class="string">"123"</span>, ...));
+    }</span>
+}
+
+<span class="comment">// Problemas:</span>
+<span class="comment">// - Imposible hacer unit tests</span>
+<span class="comment">// - Acoplamiento fuerte</span>
+<span class="comment">// - No se pueden cambiar implementaciones</span></pre>
+            </div>
+          </div>
+          
+          <div class="code-panel after">
+            <div class="code-panel-header">DESPUÉS - Inyección de dependencias</div>
+            <div class="code-block"><pre><span class="comment">// Interfaces para abstraer dependencias</span>
+<span class="keyword">public interface</span> <span class="type">UsuarioRepository</span> {
+<span class="added">    <span class="type">Optional</span>&lt;<span class="type">UsuarioKGD</span>&gt; <span class="method">buscarPorUsuario</span>(<span class="type">String</span> usuario);
+    <span class="type">List</span>&lt;<span class="type">UsuarioKGD</span>&gt; <span class="method">obtenerTodos</span>();
+    <span class="keyword">void</span> <span class="method">agregar</span>(<span class="type">UsuarioKGD</span> usuario);</span>
+}
+
+<span class="keyword">public interface</span> <span class="type">Vista</span> {
+<span class="added">    <span class="type">String</span>[] <span class="method">solicitarCredenciales</span>();
+    <span class="keyword">void</span> <span class="method">mostrarBienvenida</span>(<span class="type">String</span> nombre);
+    <span class="keyword">void</span> <span class="method">mostrarMensaje</span>(<span class="type">String</span> mensaje);</span>
+}
+
+<span class="comment">// SistemaRuso con inyección de dependencias</span>
+<span class="keyword">public class</span> <span class="type">SistemaRuso</span> {
+    <span class="keyword">private final</span> <span class="type">UsuarioRepository</span> repositorio;
+    <span class="keyword">private final</span> <span class="type">Vista</span> vista;
+    <span class="keyword">private final</span> <span class="type">AntCiberDron</span> dron;
+    
+<span class="added">    <span class="keyword">public</span> <span class="method">SistemaRuso</span>(
+            <span class="type">UsuarioRepository</span> repositorio,
+            <span class="type">Vista</span> vista,
+            <span class="type">AntCiberDron</span> dron) {
+        <span class="keyword">this</span>.repositorio = repositorio;
+        <span class="keyword">this</span>.vista = vista;
+        <span class="keyword">this</span>.dron = dron;
+    }
+    
+    <span class="keyword">private boolean</span> <span class="method">autenticarUsuario</span>() {
+        <span class="type">String</span>[] creds = vista.<span class="method">solicitarCredenciales</span>();
+        <span class="keyword">return</span> repositorio.<span class="method">buscarPorUsuario</span>(creds[<span class="number">0</span>])
+            .<span class="method">filter</span>(u -&gt; u.<span class="method">validarPassword</span>(creds[<span class="number">1</span>]))
+            .<span class="method">isPresent</span>();
+    }</span>
+}
+
+<span class="comment">// Tests fáciles con mocks</span>
+<span class="type">UsuarioRepository</span> mockRepo = <span class="method">mock</span>(<span class="type">UsuarioRepository</span>.<span class="keyword">class</span>);
+<span class="type">Vista</span> mockVista = <span class="method">mock</span>(<span class="type">Vista</span>.<span class="keyword">class</span>);
+<span class="type">SistemaRuso</span> sistema = <span class="keyword">new</span> <span class="type">SistemaRuso</span>(mockRepo, mockVista, dron);</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="benefits-bar">
+        <div class="benefits-title">Beneficios de la refactorización</div>
+        <div class="benefits-list">
+          <div class="benefit-chip">
+            <div class="benefit-icon green">✓</div>
+            <div class="benefit-text">Testabilidad mejorada</div>
+          </div>
+          <div class="benefit-chip">
+            <div class="benefit-icon blue">✓</div>
+            <div class="benefit-text">Componentes intercambiables</div>
+          </div>
+          <div class="benefit-chip">
+            <div class="benefit-icon purple">✓</div>
+            <div class="benefit-text">Desacoplamiento total</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary -->
+    <section>
+      <h2>Resumen de Refactorings</h2>
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="summary-card-title">
+            <span>Eliminar Alimentos No Usados</span>
+            <span class="badge" style="background: #dcfce7; color: #166534; font-size: 0.7rem;">YAGNI</span>
+          </div>
+          <p class="summary-card-desc">Remover AHervivoro y AOmnivoro que no son utilizados por el Grupo 1, reduciendo complejidad innecesaria.</p>
+        </div>
+        
+        <div class="summary-card">
+          <div class="summary-card-title">
+            <span>Factory Pattern</span>
+            <span class="badge" style="background: #ede9fe; color: #5b21b6; font-size: 0.7rem;">Creacional</span>
+          </div>
+          <p class="summary-card-desc">Centralizar la creación de objetos Alimento en una factory, facilitando extensión y mantenimiento.</p>
+        </div>
+        
+        <div class="summary-card">
+          <div class="summary-card-title">
+            <span>Strategy Pattern</span>
+            <span class="badge" style="background: #ede9fe; color: #5b21b6; font-size: 0.7rem;">Comportamiento</span>
+          </div>
+          <p class="summary-card-desc">Encapsular el algoritmo de validación BBA en estrategias intercambiables (AFD, Regex, etc.).</p>
+        </div>
+        
+        <div class="summary-card">
+          <div class="summary-card-title">
+            <span>Builder Pattern</span>
+            <span class="badge" style="background: #ede9fe; color: #5b21b6; font-size: 0.7rem;">Creacional</span>
+          </div>
+          <p class="summary-card-desc">Construcción fluida y configurable del AntCiberDron con validación centralizada.</p>
+        </div>
+        
+        <div class="summary-card">
+          <div class="summary-card-title">
+            <span>Dependency Injection</span>
+            <span class="badge" style="background: #dbeafe; color: #1e40af; font-size: 0.7rem;">SOLID</span>
+          </div>
+          <p class="summary-card-desc">Desacoplar SistemaRuso de sus dependencias concretas para mejorar testabilidad y modularidad.</p>
+        </div>
+      </div>
     </section>
   </main>
 </body>

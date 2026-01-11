@@ -3,27 +3,887 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Funcionalidad minima - Diseno XP</title>
+  <title>Funcionalidad Mínima - Diseño XP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../../style.css" />
+  <style>
+    /* Hero Section MVP - Minimalista */
+    .mvp-hero {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 10px 30px rgba(15,23,42,0.07);
+    }
+    
+    .mvp-hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+    
+    .mvp-hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 0 0 1rem;
+      line-height: 1.5;
+    }
+
+    /* Comparison Section */
+    .comparison-container {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1.5rem;
+      align-items: stretch;
+      margin: 2rem 0;
+    }
+    
+    .comparison-card {
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 1.5rem;
+      border: 2px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    
+    .comparison-card.mvp {
+      border-color: #10b981;
+      box-shadow: 0 0 30px rgba(16, 185, 129, 0.15);
+    }
+    
+    .comparison-card.full {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 30px rgba(139, 92, 246, 0.15);
+    }
+    
+    .comparison-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--border);
+    }
+    
+    .comparison-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .comparison-card.mvp .comparison-icon {
+      background: linear-gradient(135deg, #10b981, #059669);
+    }
+    
+    .comparison-card.full .comparison-icon {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    }
+    
+    .comparison-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    
+    .comparison-subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      margin-bottom: 8px;
+      background: var(--panel-2);
+      border-radius: 10px;
+      transition: transform 0.2s;
+    }
+    
+    .feature-item:hover {
+      transform: translateX(5px);
+    }
+    
+    .feature-check {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+    
+    .feature-check.included {
+      background: #dcfce7;
+      color: #166534;
+    }
+    
+    .feature-check.excluded {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    
+    .feature-check.future {
+      background: #e0e7ff;
+      color: #3730a3;
+    }
+    
+    .feature-text {
+      flex: 1;
+    }
+    
+    .feature-name {
+      font-weight: 600;
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+    
+    .feature-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    
+    .vs-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .vs-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Mockups Section */
+    .mockups-section {
+      margin-top: 3rem;
+    }
+    
+    .mockups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .mockup-card {
+      background: #1e293b;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    
+    .mockup-card:hover {
+      transform: translateY(-8px);
+    }
+    
+    .mockup-header {
+      background: linear-gradient(90deg, #374151, #4b5563);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .mockup-dots {
+      display: flex;
+      gap: 6px;
+    }
+    
+    .mockup-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    
+    .mockup-dot.red { background: #ef4444; }
+    .mockup-dot.yellow { background: #f59e0b; }
+    .mockup-dot.green { background: #10b981; }
+    
+    .mockup-title {
+      color: #9ca3af;
+      font-size: 0.85rem;
+      margin-left: auto;
+    }
+    
+    .mockup-content {
+      padding: 1.5rem;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      min-height: 280px;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+    
+    .mockup-content pre {
+      margin: 0;
+      padding: 0;
+      font-family: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+      background: transparent;
+      white-space: pre;
+    }
+    
+    .mockup-content .prompt {
+      color: #10b981;
+    }
+    
+    .mockup-content .input {
+      color: #f59e0b;
+    }
+    
+    .mockup-content .success {
+      color: #34d399;
+    }
+    
+    .mockup-content .error {
+      color: #f87171;
+    }
+    
+    .mockup-content .info {
+      color: #60a5fa;
+    }
+    
+    .mockup-content .header-box {
+      color: #a78bfa;
+    }
+    
+    .mockup-content .table-border {
+      color: #6b7280;
+    }
+    
+    .mockup-label {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 8px 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Stats Section - Minimalista */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0 0;
+    }
+    
+    .stat-card {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-2);
+    }
+    
+    .stat-value {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    /* Architecture Diagram - Minimalista */
+    .architecture-section {
+      margin-top: 1.5rem;
+    }
+    
+    .architecture-diagram {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+    
+    .arch-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+    
+    .arch-node {
+      background: var(--panel);
+      color: var(--text);
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      text-align: center;
+      min-width: 130px;
+      border: 2px solid var(--border);
+      transition: all 0.2s ease;
+    }
+    
+    .arch-node:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+    }
+    
+    .arch-node.secondary {
+      border-color: #c7d2fe;
+      background: #f5f3ff;
+    }
+    
+    .arch-node.accent {
+      border-color: #a7f3d0;
+      background: #ecfdf5;
+    }
+    
+    .arch-node-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    
+    .arch-node-desc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    
+    .arch-arrow {
+      color: var(--accent-2);
+      font-size: 1.3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .comparison-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .vs-divider {
+        padding: 1rem 0;
+      }
+      
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .mockups-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="flex">
-      <div class="title">Funcionalidad minima</div>
-      <div class="pill">Fase: Diseno</div>
+      <div class="title">Funcionalidad Mínima</div>
+      <div class="pill">Fase: Diseño</div>
     </div>
     <nav class="nav">
       <a href="../../../index.html">Inicio</a>
       <a href="../../../evidencias.html">Evidencias</a>
     </nav>
   </header>
+  
   <main>
+    <!-- Hero Section -->
+    <div class="mvp-hero">
+      <h1>MVP - Producto Mínimo Viable</h1>
+      <p>Sistema AntCiberDron v1.0 - Funcionalidades esenciales implementadas para el primer ciclo de desarrollo</p>
+    </div>
+
+    <!-- Stats Section -->
     <section>
-      <h2>Funcionalidad minima</h2>
-      <p class="muted">Describe la funcionalidad minima y version inicial del producto.</p>
+      <h2>Métricas del MVP</h2>
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-value">5</div>
+          <div class="stat-label">Módulos Core</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">7</div>
+          <div class="stat-label">Historias de Usuario</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">22</div>
+          <div class="stat-label">Tests Unitarios</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Cobertura HU</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section>
+      <h2>MVP vs Sistema Completo</h2>
+      <p class="muted">Comparación entre la funcionalidad mínima entregable y el sistema completo planificado</p>
+      
+      <div class="comparison-container">
+        <!-- MVP Column -->
+        <div class="comparison-card mvp">
+          <div class="comparison-header">
+            <div class="comparison-icon">✓</div>
+            <div>
+              <div class="comparison-title">MVP Entregable</div>
+              <div class="comparison-subtitle">Funcionalidad mínima operativa</div>
+            </div>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="feature-check included">✓</span>
+              <div class="feature-text">
+                <div class="feature-name">Autenticación KGD</div>
+                <div class="feature-desc">Login con 3 intentos máximos, usuarios predefinidos</div>
+              </div>
+            </li>
+            <li class="feature-item">
+              <span class="feature-check included">✓</span>
+              <div class="feature-text">
+                <div class="feature-name">Carga CSV Coordenadas</div>
+                <div class="feature-desc">Lectura de Grupo01.csv con animación de carga</div>
+              </div>
+            </li>
+            <li class="feature-item">
+              <span class="feature-check included">✓</span>
+              <div class="feature-text">
+                <div class="feature-name">Autómata AFD-BBA</div>
+                <div class="feature-desc">Validación L = {a⁺, ab*, abcd*, abcdt⁺}</div>
+              </div>
+            </li>
+            <li class="feature-item">
+              <span class="feature-check included">✓</span>
+              <div class="feature-text">
+                <div class="feature-name">Hormiguero Virtual</div>
+                <div class="feature-desc">CRUD de hormigas con evolución Larva → Soldado</div>
+              </div>
+            </li>
+            <li class="feature-item">
+              <span class="feature-check included">✓</span>
+              <div class="feature-text">
+                <div class="feature-name">Entrenamiento Multilingüe</div>
+                <div class="feature-desc">Inglés, Español con expertos dedicados</div>
+              </div>
+            </li>
+            <li class="feature-item">
+              <span class="feature-check included">✓</span>
+              <div class="feature-text">
+                <div class="feature-name">AntCiberDron Básico</div>
+                <div class="feature-desc">Integración piloto, vuelo, armamento</div>
+              </div>
+            </li>
+            <li class="feature-item">
+              <span class="feature-check included">✓</span>
+              <div class="feature-text">
+                <div class="feature-name">Alimentos del Grupo 1</div>
+                <div class="feature-desc">Néctar (larvas) y Carnívoro (soldados)</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- VS Divider -->
+        <div class="vs-divider">
+          <div class="vs-circle">VS</div>
+        </div>
+
+        <!-- Full System Column -->
+        <div class="comparison-card full">
+          <div class="comparison-header">
+            <div class="comparison-icon">★</div>
+            <div>
+              <div class="comparison-title">Sistema Completo</div>
+              <div class="comparison-subtitle">Funcionalidades planificadas</div>
+            </div>
+          </div>
+          <ul class="feature-list">
+            <li class="feature-item">
+              <span class="feature-check included">✓</span>
+              <div class="feature-text">
+                <div class="feature-name">Todo lo del MVP</div>
+                <div class="feature-desc">Base funcional completa</div>
+              </div>
+            </li>
+            <li class="feature-item">
+              <span class="feature-check future">◐</span>
+              <div class="feature-text">
+                <div class="feature-name">Todos los Alimentos</div>
+                <div class="feature-desc">Herbívoro, Omnívoro (otros grupos)</div>
+              </div>
+            </li>
+            <li class="feature-item">
+              <span class="feature-check future">◐</span>
+              <div class="feature-text">
+                <div class="feature-name">Tipos de Hormiga Extendidos</div>
+                <div class="feature-desc">HRastreadora, HZángano</div>
+              </div>
+            </li>
+            <li class="feature-item">
+              <span class="feature-check future">◐</span>
+              <div class="feature-text">
+                <div class="feature-name">Interfaz Gráfica</div>
+                <div class="feature-desc">UI moderna con dashboards</div>
+              </div>
+            </li>
+            <li class="feature-item">
+              <span class="feature-check future">◐</span>
+              <div class="feature-text">
+                <div class="feature-name">Persistencia de Datos</div>
+                <div class="feature-desc">Base de datos para misiones</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="architecture-section">
+      <h2>Arquitectura del MVP</h2>
+      <p class="muted">Flujo de componentes esenciales del sistema</p>
+      
+      <div class="architecture-diagram">
+        <div class="arch-flow">
+          <div class="arch-node">
+            <div class="arch-node-title">Miembro KGD</div>
+            <div class="arch-node-desc">Autenticación</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node secondary">
+            <div class="arch-node-title">CSV Parser</div>
+            <div class="arch-node-desc">Carga Coordenadas</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node accent">
+            <div class="arch-node-title">AFD-BBA</div>
+            <div class="arch-node-desc">Validación Arsenal</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node">
+            <div class="arch-node-title">Hormiguero</div>
+            <div class="arch-node-desc">Gestión Hormigas</div>
+          </div>
+          <div class="arch-arrow">→</div>
+          <div class="arch-node secondary">
+            <div class="arch-node-title">AntCiberDron</div>
+            <div class="arch-node-desc">Ejecución Misión</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mockups Section -->
+    <section class="mockups-section">
+      <h2>Interfaces del MVP</h2>
+      <p class="muted">Pantallas principales del sistema en consola</p>
+      
+      <div class="mockups-grid">
+        <!-- Mockup 1: Autenticación -->
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+            </div>
+            <div class="mockup-title">terminal — bash</div>
+          </div>
+          <div class="mockup-label">HU-04: Autenticación KGD</div>
+          <div class="mockup-content"><pre><span class="info">KGD System - Authentication Required</span>
+<span class="prompt">Usuario:</span> <span class="input">patmic</span>
+<span class="prompt">Contraseña:</span> <span class="input">***</span>
+
+<span class="success">[+] Autenticación exitosa.</span>
+
+<span class="header-box">╔════════════════════════════════════════════════════════╗
+║           BIENVENIDO AL SISTEMA KGD                    ║
+╚════════════════════════════════════════════════════════╝</span>
+
+<span class="info">[+] TEAM [1]: Retrievforge</span>
+    • Alumno 1: 1727061101 | Alexis Sotomayor
+    • Alumno 2: 1750269407 | Sebastian Leon
+    • Alumno 3: 1726725326 | Evelin Rocha
+    • Alumno 4: 1005387319 | Angel  Anguaya
+    • Alumno 5: 1722208525 | Eduardo Arcos</pre>
+          </div>
+        </div>
+
+        <!-- Mockup 2: Carga CSV -->
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+            </div>
+            <div class="mockup-title">terminal — bash</div>
+          </div>
+          <div class="mockup-label">HU-02: Carga de Coordenadas CSV</div>
+          <div class="mockup-content"><pre><span class="info">[+] Cargando datos desde Grupo01.csv...</span>
+
+<span class="info">[+] COORDENADAS UCRANIANAS:</span>
+Coord-01   ; 01-02 ;       ;        ;       ;       ; a       
+<span class="success">| 100%</span>
+Coord-01   ; 01-02 ;       ;        ;       ;       ; aaaa    
+<span class="success">| 100%</span>
+Coord-05   ;       ;       ;        ;       ; 05-10 ; abcdttt 
+<span class="success">| 100%</span>
+Coord-06   ;       ;       ;        ; 04-08 ;       ; abcdttttt
+<span class="success">| 100%</span>
+Coord-07   ;       ;       ; 03-06  ;       ;       ; abcd    
+<span class="success">| 100%</span>
+Coord-09   ; 01-02 ;       ;        ;       ;       ; ab      
+<span class="success">| 100%</span>
+
+<span class="success">[+] Coordenadas cargadas: 6</span></pre>
+          </div>
+        </div>
+
+        <!-- Mockup 3: Misión de Ataque BBA -->
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+            </div>
+            <div class="mockup-title">terminal — bash</div>
+          </div>
+          <div class="mockup-label">HU-03: Validación AFD-BBA</div>
+          <div class="mockup-content"><pre><span class="header-box">╔════════════════════════════════════════════════════════╗
+║              MISIÓN DE ATAQUE ACTIVADA                 ║
+╚════════════════════════════════════════════════════════╝</span>
+
+COORDENADAS UCRANIANAS A DESTRUIR:
+─────────────────────────────────────────────────────────
+Geoposición    | Tipo Arsenal   | Acción
+─────────────────────────────────────────────────────────
+Coord-01       | a              | <span class="success">true</span>      
+Coord-01       | aaaa           | <span class="success">true</span>      
+Coord-05       | abcdttt        | <span class="success">true</span>      
+Coord-06       | abcdttttt      | <span class="success">true</span>      
+Coord-07       | abcd           | <span class="success">true</span>      
+Coord-09       | ab             | <span class="success">true</span>      
+─────────────────────────────────────────────────────────</pre>
+          </div>
+        </div>
+
+        <!-- Mockup 4: Hormiguero Virtual -->
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+            </div>
+            <div class="mockup-title">terminal — bash</div>
+          </div>
+          <div class="mockup-label">HU-04/07: Hormiguero Virtual</div>
+          <div class="mockup-content"><pre><span class="header-box">╔════════════════════════════════════════════════════════╗
+║              HORMIGUERO VIRTUAL KGD                    ║
+╚════════════════════════════════════════════════════════╝</span>
+  1. Crear nueva hormiga (Larva)
+  2. Alimentar hormiga
+  3. Ver estado de las hormigas
+  4. Eliminar hormiga
+  5. Volver al menú principal
+
+  <span class="prompt">Seleccione una opción:</span> <span class="input">1</span>
+
+<span class="success">[+] Nueva larva creada con ID: 1</span>
+
+<span class="prompt">Seleccione una opción:</span> <span class="input">2</span>
+
+<span class="header-box">╔════════════════════════════════════════════════════════════════════════╗
+║              HORMIGAS DISPONIBLES PARA ALIMENTAR                       ║
+╚════════════════════════════════════════════════════════════════════════╝</span>
+
+ID    | Estado          | Sexo       | Alimento Permitido
+────────────────────────────────────────────────────────────────────────
+1     | Larva           | Hembra     | Néctar (mantiene) / Carnívoro (evoluciona a Soldado)
+────────────────────────────────────────────────────────────────────────
+
+<span class="info">=== ALIMENTAR HORMIGA ===</span>
+<span class="prompt">Ingrese el ID de la hormiga:</span> <span class="input">1</span>
+
+<span class="info">[+] Hormiga seleccionada: Larva (ID: 1)</span>
+<span class="info">[+] Las LARVAS se mantienen con Néctar o evolucionan a SOLDADO con Carnívoro</span>
+
+Tipos de alimento disponibles :
+  1. Néctar
+  2. Carnívoro
+
+<span class="prompt">Seleccione el alimento:</span> <span class="input">2</span>
+
+<span class="success">[+] ¡La larva ha evolucionado a Soldado!</span>
+<span class="info">[+] A partir de ahora solo puede comer Carnivoro</span></pre>
+          </div>
+        </div>
+
+        <!-- Mockup 5: AntCiberDron -->
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+            </div>
+            <div class="mockup-title">terminal — bash</div>
+          </div>
+          <div class="mockup-label">HU-05: Interfaz de Combate</div>
+          <div class="mockup-content"><pre><span class="header-box">╔════════════════════════════════════════════════════════╗
+║           ESTADO DEL ANTICIBERDRON                     ║
+╚════════════════════════════════════════════════════════╝</span>
+
+  • Piloto: <span class="success">Soldado (ID: 1)</span>
+  • Energía: <span class="info">100%</span>
+  • Bomba: Operativa
+  • Pata Delantera Izquierda (Láser): Operativo
+    - Potencia Base: 100
+    - Potencia Actual: 100 (según energía disponible)
+  • Pata Delantera Derecha (Metralleta): Operativa
+    - Munición: 100/100
+  • TurboReactor: Inactivo
+    - Consumo de energía: 20%
+
+<span class="header-box">╔════════════════════════════════════════════════════════╗
+║              PRUEBA DE VUELO                           ║
+╚════════════════════════════════════════════════════════╝</span>
+
+<span class="info">[+] Piloto detectado: Soldado (ID: 1)</span>
+<span class="info">[+] Iniciando secuencia de vuelo...</span>
+| 100%
+
+<span class="header-box">╔══════════════════════════════════════════════════════════╗
+║  [+] VUELO ACTIVADO - TurboReactor operando              ║
+╚══════════════════════════════════════════════════════════╝</span>
+<span class="success">[+] Energía consumida: 20%</span>
+<span class="info">[+] Energía restante: 80%</span></pre>
+          </div>
+        </div>
+
+        <!-- Mockup 6: Menú Principal -->
+        <div class="mockup-card">
+          <div class="mockup-header">
+            <div class="mockup-dots">
+              <div class="mockup-dot red"></div>
+              <div class="mockup-dot yellow"></div>
+              <div class="mockup-dot green"></div>
+            </div>
+            <div class="mockup-title">terminal — bash</div>
+          </div>
+          <div class="mockup-label">Menú Principal del Sistema</div>
+          <div class="mockup-content"><pre><span class="header-box">╔════════════════════════════════════════════════════════╗
+║           SISTEMA KGD - MENÚ PRINCIPAL                 ║
+╚════════════════════════════════════════════════════════╝</span>
+  1. Misión de Ataque (AntCiberDron/Bomba)
+  2. Hormiguero Virtual (Gestión de Hormigas)
+  3. Laboratorio / Entrenamiento
+  4. Salir
+
+  <span class="prompt">Seleccione una opción:</span> <span class="input">_</span>
+
+────────────────────────────────────────────────────────
+<span class="info">Funcionalidades MVP operativas:</span>
+  <span class="success">✓</span> Autenticación segura
+  <span class="success">✓</span> Carga y validación de coordenadas
+  <span class="success">✓</span> Autómata AFD-BBA activo
+  <span class="success">✓</span> Gestión de hormiguero
+  <span class="success">✓</span> Control del AntCiberDron</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section>
+      <h2>Resumen de Funcionalidades Mínimas</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="row">
+            <strong>Autenticación</strong>
+            <span class="badge pill-ok">Operativo</span>
+          </div>
+          <p class="muted" style="margin-top: 8px;">Sistema de login con validación de credenciales y control de intentos fallidos (máximo 3).</p>
+        </div>
+        <div class="card">
+          <div class="row">
+            <strong>Carga CSV</strong>
+            <span class="badge pill-ok">Operativo</span>
+          </div>
+          <p class="muted" style="margin-top: 8px;">Lectura y parseo del archivo Grupo01.csv con animación de progreso por línea.</p>
+        </div>
+        <div class="card">
+          <div class="row">
+            <strong>AFD-BBA</strong>
+            <span class="badge pill-ok">Operativo</span>
+          </div>
+          <p class="muted" style="margin-top: 8px;">Autómata Finito Determinista que valida el lenguaje L = {a⁺, ab*, abc, abcd*, abcdt⁺}.</p>
+        </div>
+        <div class="card">
+          <div class="row">
+            <strong>Hormiguero</strong>
+            <span class="badge pill-ok">Operativo</span>
+          </div>
+          <p class="muted" style="margin-top: 8px;">Gestión completa de hormigas: crear, alimentar, evolucionar y eliminar.</p>
+        </div>
+        <div class="card">
+          <div class="row">
+            <strong>AntCiberDron</strong>
+            <span class="badge pill-ok">Operativo</span>
+          </div>
+          <p class="muted" style="margin-top: 8px;">Integración de piloto, sistema de vuelo, láser, metralleta y gestión de energía.</p>
+        </div>
+        <div class="card">
+          <div class="row">
+            <strong>Alimentos G1</strong>
+            <span class="badge pill-ok">Operativo</span>
+          </div>
+          <p class="muted" style="margin-top: 8px;">Néctar para larvas y Carnívoro para evolución/alimentación de soldados.</p>
+        </div>
+      </div>
     </section>
   </main>
 </body>
