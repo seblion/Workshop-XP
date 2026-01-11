@@ -264,3 +264,8 @@ b → Barco
 c → Convoy
 d → Dron
 t → Tanque
+
+COACH - sebas
+DEVELOPER - Angel, Alexis
+TRACKER - sebas
+TESTER -  evelin
