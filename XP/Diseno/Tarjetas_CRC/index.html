@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tarjetas CRC - Diseno XP</title>
+  <title>Tarjetas CRC - Diseño XP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,97 +13,178 @@
   <header>
     <div class="flex">
       <div class="title">Tarjetas CRC</div>
-      <div class="pill">Fase: Diseno</div>
+      <div class="pill">Fase: Diseño (XP)</div>
     </div>
     <nav class="nav">
       <a href="../../../index.html">Inicio</a>
       <a href="../../../evidencias.html">Evidencias</a>
     </nav>
   </header>
+
   <main>
     <section>
       <h2>Tarjetas CRC</h2>
-      <p class="muted">Incluye las tarjetas Clase-Responsabilidad-Colaborador que soportan las HU.</p>
+      <p class="muted">
+        Tarjetas Clase–Responsabilidad–Colaborador ajustadas al diagrama de clases
+        y alineadas a las Historias de Usuario bajo XP.
+      </p>
     </section>
 
     <section>
       <h3>Clases derivadas de las Historias de Usuario</h3>
-      <div class="cards">
+
+      <div class="cardsCRC">
+
+        <!-- HU-01 -->
         <div class="card">
-          <div class="row"><strong>HU-01 · Control de Acceso</strong><span class="badge">Clase: </span></div>
+          <div class="row">
+            <strong>HU-01 · Control de Acceso</strong>
+            <span class="badge">Clase: SistemaRuso</span>
+          </div>
+
           <div class="muted" style="margin-top:6px;">Responsabilidades</div>
           <ul style="margin-top:4px; margin-left:20px;">
-            <li>Autenticar usuario (patmic/123) y bloquear tras 3 intentos</li>
-            <li>Mostrar ficha del equipo al iniciar sesión</li>
-            <li>Registrar auditoría de accesos</li>
+            <li>Autenticar usuarios y controlar intentos máximos (MAX_ATTEMPTS)</li>
+            <li>Gestionar el usuario actual del sistema</li>
+            <li>Iniciar el flujo principal del sistema</li>
           </ul>
-          <div class="muted" style="margin-top:6px;">Colaboradores: </div>
+
+          <div class="muted" style="margin-top:6px;">Colaboradores</div>
+          <ul style="margin-left:20px;">
+            <li>UsuarioKGD</li>
+            <li>SistemaRusoView</li>
+          </ul>
         </div>
 
+        <!-- HU-02 -->
         <div class="card">
-          <div class="row"><strong>HU-02 · Carga CSV</strong><span class="badge">Clase: </span></div>
+          <div class="row">
+            <strong>HU-02 · Carga CSV</strong>
+            <span class="badge">Clase: SistemaRuso</span>
+          </div>
+
           <div class="muted" style="margin-top:6px;">Responsabilidades</div>
           <ul style="margin-top:4px; margin-left:20px;">
-            <li>Validar formato de columnas en Grupo##.csv</li>
-            <li>Animar progreso por línea (|/-) y mostrar tabla</li>
-            <li>Publicar coordenadas y arsenal al CentroComando</li>
+            <li>Leer y validar archivos de coordenadas (CSV)</li>
+            <li>Crear y almacenar objetos CoordenadaUK</li>
+            <li>Delegar la visualización del progreso y resultados</li>
           </ul>
-          <div class="muted" style="margin-top:6px;">Colaboradores: </div>
+
+          <div class="muted" style="margin-top:6px;">Colaboradores</div>
+          <ul style="margin-left:20px;">
+            <li>CoordenadaUK</li>
+            <li>SistemaRusoView</li>
+          </ul>
         </div>
 
+        <!-- HU-03 -->
         <div class="card">
-          <div class="row"><strong>HU-03 · Validación BBA</strong><span class="badge">Clase: </span></div>
+          <div class="row">
+            <strong>HU-03 · Validación BBA</strong>
+            <span class="badge">Clase: BBA</span>
+          </div>
+
           <div class="muted" style="margin-top:6px;">Responsabilidades</div>
           <ul style="margin-top:4px; margin-left:20px;">
-            <li>Evaluar lenguaje y responder True/False</li>
-            <li>Registrar decisión en tabla de coordenadas a destruir</li>
+            <li>Validar objetivos según lenguaje y estados de aceptación</li>
+            <li>Determinar si una coordenada es válida para ataque</li>
           </ul>
-          <div class="muted" style="margin-top:6px;">Colaboradores: </div>
+
+          <div class="muted" style="margin-top:6px;">Colaboradores</div>
+          <ul style="margin-left:20px;">
+            <li>AntCiberDron</li>
+            <li>CoordenadaUK</li>
+          </ul>
         </div>
 
+        <!-- HU-04 -->
         <div class="card">
-          <div class="row"><strong>HU-04 · Transformacion TIPO_HORMIGA</strong><span class="badge">Clase: </span></div>
+          <div class="row">
+            <strong>HU-04 · Transformación TIPO_HORMIGA</strong>
+            <span class="badge">Clase: HLarva</span>
+          </div>
+
           <div class="muted" style="margin-top:6px;">Responsabilidades</div>
           <ul style="margin-top:4px; margin-left:20px;">
-            <li>Controlar energía y vida según alimento correcto</li>
-            <li>Especializar HLarva (néctar) y HSoldado (carnívoro)</li>
-            <li>Lanzar excepción ante alimento inválido</li>
+            <li>Consumir alimento y validar su tipo</li>
+            <li>Evolucionar a HSoldado según el alimento recibido</li>
+            <li>Rechazar alimentos no compatibles</li>
           </ul>
-          <div class="muted" style="margin-top:6px;">Colaboradores: </div>
+
+          <div class="muted" style="margin-top:6px;">Colaboradores</div>
+          <ul style="margin-left:20px;">
+            <li>Alimento</li>
+            <li>HSoldado</li>
+          </ul>
         </div>
 
+        <!-- HU-05 -->
         <div class="card">
-          <div class="row"><strong>HU-05 · Interfaz de Combate</strong><span class="badge">Clase: </span></div>
+          <div class="row">
+            <strong>HU-05 · Interfaz de Combate</strong>
+            <span class="badge">Clase: AntCiberDron</span>
+          </div>
+
           <div class="muted" style="margin-top:6px;">Responsabilidades</div>
           <ul style="margin-top:4px; margin-left:20px;">
-            <li>Gestionar armas: metralleta (pata der) y láser (pata izq)</li>
-            <li>Controlar fuente de poder recargable</li>
-            <li>Ejecutar vuelo con turbo reactor usando energía disponible</li>
+            <li>Gestionar armas (Laser y Metralleta)</li>
+            <li>Controlar consumo y recarga de energía</li>
+            <li>Ejecutar vuelo mediante TurboReactor</li>
           </ul>
-          <div class="muted" style="margin-top:6px;">Colaboradores: </div>
+
+          <div class="muted" style="margin-top:6px;">Colaboradores</div>
+          <ul style="margin-left:20px;">
+            <li>FuentePoder</li>
+            <li>Laser</li>
+            <li>Metralleta</li>
+            <li>TurboReactor</li>
+          </ul>
         </div>
 
+        <!-- HU-06 -->
         <div class="card">
-          <div class="row"><strong>HU-06 · Entrenamiento de idiomas</strong><span class="badge">Clase: </span></div>
+          <div class="row">
+            <strong>HU-06 · Entrenamiento de Idiomas</strong>
+            <span class="badge">Clase: AntCiberDron</span>
+          </div>
+
           <div class="muted" style="margin-top:6px;">Responsabilidades</div>
           <ul style="margin-top:4px; margin-left:20px;">
-            <li>Validar rol del experto antes de entrenar</li>
-            <li>Cargar léxicos de inglés y español</li>
-            <li>Registrar sesiones con fecha y hora</li>
+            <li>Validar que la hormiga tenga rol de experto</li>
+            <li>Registrar entrenamientos con fecha y hora</li>
+            <li>Gestionar historial de entrenamientos</li>
           </ul>
-          <div class="muted" style="margin-top:6px;">Colaboradores: </div>
+
+          <div class="muted" style="margin-top:6px;">Colaboradores</div>
+          <ul style="margin-left:20px;">
+            <li>Hormiga</li>
+            <li>SistemaRuso</li>
+          </ul>
         </div>
 
+        <!-- HU-07 -->
         <div class="card">
-          <div class="row"><strong>HU-07 · Hormiguero virtual</strong><span class="badge">Clase: </span></div>
+          <div class="row">
+            <strong>HU-07 · Hormiguero Virtual</strong>
+            <span class="badge">Clase: SistemaRuso</span>
+          </div>
+
           <div class="muted" style="margin-top:6px;">Responsabilidades</div>
           <ul style="margin-top:4px; margin-left:20px;">
-            <li>CRUD de hormigas con tipo, energía y alimento</li>
-            <li>Asignar coordenadas y arsenal a cada hormiga</li>
-            <li>Listar hormigas activas y estado de energía</li>
+            <li>Crear, listar y eliminar hormigas</li>
+            <li>Asignar alimento y estado a cada hormiga</li>
+            <li>Integrar hormigas al AntCiberDron</li>
           </ul>
-          <div class="muted" style="margin-top:6px;">Colaboradores: </div>
+
+          <div class="muted" style="margin-top:6px;">Colaboradores</div>
+          <ul style="margin-left:20px;">
+            <li>Hormiga</li>
+            <li>Alimento</li>
+            <li>AntCiberDron</li>
+            <li>SistemaRusoView</li>
+          </ul>
         </div>
+
       </div>
     </section>
   </main>

@@ -142,3 +142,9 @@ th { color: var(--muted); font-weight: 600; }
   line-height: 1.4;
   color: #cbd5f5;
 }
+
+.cardsCRC {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}

@@ -11,7 +11,7 @@ const stories = [
       'Mostrar mensaje de bienvenida al éxito.',
       'Muestra ficha del equipo (cedula, nombre) tras autenticacion'
     ],
-    status: 'En progreso',
+    status: 'Completa',
     priority: 'Alta'
   },
   {
@@ -25,7 +25,7 @@ const stories = [
       'Muestra una animación de carga (`|/- por cada linea antes de presentar la fila',
       'Presenta tabla con geoposicion, dia y tipo de arsenal'
     ],
-    status: 'En progreso',
+    status: 'Completa',
     priority: 'Alta'
   },
   {
@@ -39,7 +39,7 @@ const stories = [
       'Retornar True si la palabra es aceptada y False si no (acepta/rechaza cada arsenal).',
       'Registrar la acción en la tabla de "Coordenadas Ucranianas a Destruir".'
     ],
-    status: 'Pendiente',
+    status: 'Completa',
     priority: 'Alta'
   },
   {
@@ -53,7 +53,7 @@ const stories = [
       'Controla estado de vida segun si come su ALIMENTO.',
       'Lanzar error o excepción si se intenta alimentar con el tipo incorrecto.'
     ],
-    status: 'Pendiente',
+    status: 'Completa',
     priority: 'Media'
   },
   {
@@ -67,7 +67,7 @@ const stories = [
       'Gestiona potencia segun fuente de poder recargable',
       'Permite vuelo con turbo reactor usando energia disponible'
     ],
-    status: 'En progreso',
+    status: 'Completa',
     priority: 'Alta'
   },
   {
@@ -81,7 +81,7 @@ const stories = [
       'Valida idioma y rol antes de actualizar el modelo',
       'Registra sesiones de entrenamiento por fecha y hora'
     ],
-    status: 'Pendiente',
+    status: 'Completa',
     priority: 'Media'
   },
   {
@@ -95,7 +95,7 @@ const stories = [
       'Asigna coordenadas y arsenal a cada hormiga',
       'Lista hormigas activas y estado de energia'
     ],
-    status: 'Pendiente',
+    status: 'Completa',
     priority: 'Media'
   }
 ];
