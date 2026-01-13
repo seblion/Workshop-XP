@@ -132,7 +132,7 @@ function renderStoriesLocal() {
     <div class="card story-item" data-id="${story.id}" onclick="selectStoryLocal('${story.id}')">
       <div class="row"><strong>${story.id}</strong><span class="badge ${statusColorLocal[story.status]}">${story.status}</span></div>
       <div>${story.title}</div>
-      <div class="muted" style="margin-top:4px;">${story.priority} · ${story.estimate}h · Due ${story.due}</div>
+      <div class="muted" style="margin-top:4px;">${story.priority} </div>
     </div>
   `).join('');
 
