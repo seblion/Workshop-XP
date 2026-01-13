@@ -20,12 +20,13 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 1.5rem;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
     }
     .config-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.15);
       border-color: var(--accent);
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
     }
     .config-title {
       font-weight: 600;
@@ -65,8 +66,9 @@
       font-weight: 600;
     }
     .status-success {
-      background: #dcfce7;
-      color: #166534;
+      background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+      color: #1e40af;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
     }
     .timeline {
       position: relative;
@@ -80,7 +82,7 @@
       top: 0;
       bottom: 0;
       width: 2px;
-      background: var(--border);
+      background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 100%);
     }
     .timeline-item {
       position: relative;
@@ -94,13 +96,14 @@
       width: 24px;
       height: 24px;
       border-radius: 50%;
-      background: var(--ok);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       font-size: 0.8rem;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
     }
     .timeline-title {
       font-weight: 600;

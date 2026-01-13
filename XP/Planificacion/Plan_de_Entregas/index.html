@@ -36,8 +36,8 @@
       }
 
       .tareas-disponibles {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: var(--panel);
+        border: 1px solid var(--border);
         border-radius: 12px;
         padding: 20px;
         height: fit-content;
@@ -48,19 +48,19 @@
       }
 
       .tareas-disponibles.drag-over-backlog {
-        background: #ebf4ff;
-        border-color: #667eea;
+        background: var(--panel-2);
+        border-color: var(--accent);
       }
 
       .tareas-disponibles h3 {
         margin: 0 0 15px 0;
         font-size: 18px;
-        color: #1a202c;
+        color: var(--text);
         font-weight: 600;
       }
 
       .task-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
         border-radius: 8px;
         padding: 12px 15px;
         margin-bottom: 10px;
@@ -128,7 +128,7 @@
 
       .task-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
       }
 
       .task-card .release-number {
@@ -193,8 +193,8 @@
       }
 
       .calendario {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
+        background: var(--panel);
+        border: 1px solid var(--border);
         border-radius: 12px;
         padding: 20px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -203,7 +203,7 @@
       .calendario h3 {
         margin: 0 0 20px 0;
         font-size: 18px;
-        color: #1a202c;
+        color: var(--text);
         font-weight: 600;
       }
 
@@ -213,17 +213,17 @@
       }
 
       .mes-section {
-        background: #f7fafc;
+        background: var(--panel-2);
         border-radius: 8px;
         padding: 15px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--border);
       }
 
       .mes-titulo {
         font-size: 16px;
         font-weight: 600;
         margin-bottom: 15px;
-        color: #667eea;
+        color: var(--accent);
       }
 
       .dias-grid {
@@ -233,8 +233,8 @@
       }
 
       .dia-slot {
-        background: #ffffff;
-        border: 2px dashed #cbd5e0;
+        background: var(--panel);
+        border: 2px dashed var(--border);
         border-radius: 8px;
         padding: 10px;
         min-height: 100px;
@@ -242,8 +242,8 @@
       }
 
       .dia-slot.drag-over {
-        background: #ebf4ff;
-        border-color: #667eea;
+        background: var(--panel-2);
+        border-color: var(--accent);
         border-style: solid;
       }
 
@@ -252,21 +252,21 @@
         font-weight: 600;
         margin-bottom: 8px;
         padding-bottom: 8px;
-        border-bottom: 1px solid #e2e8f0;
-        color: #2d3748;
+        border-bottom: 1px solid var(--border);
+        color: var(--text);
       }
 
       .dia-numero {
         font-size: 18px;
         font-weight: 700;
-        color: #1a202c;
+        color: var(--text);
       }
 
       .dia-nombre {
         font-size: 11px;
         opacity: 0.7;
         display: block;
-        color: #4a5568;
+        color: var(--muted);
       }
 
       .dia-tareas {
@@ -276,7 +276,7 @@
       }
 
       .task-card-small {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
         border-radius: 6px;
         padding: 8px 10px;
         font-size: 12px;
@@ -289,7 +289,7 @@
 
       .task-card-small:hover {
         transform: translateY(-1px);
-        box-shadow: 0 3px 8px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 3px 8px rgba(37, 99, 235, 0.4);
       }
 
       .btn-eliminar-small {
@@ -368,7 +368,7 @@
       }
 
       .btn-agregar {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
         border: none;
         border-radius: 6px;
         padding: 10px 20px;
@@ -383,7 +383,7 @@
 
       .btn-agregar:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
       }
 
       /* Modal */
@@ -405,7 +405,7 @@
       }
 
       .modal-content {
-        background: #ffffff;
+        background: var(--panel);
         border-radius: 12px;
         padding: 24px;
         max-width: 500px;
@@ -422,17 +422,17 @@
         align-items: flex-start;
         margin-bottom: 20px;
         padding-bottom: 12px;
-        border-bottom: 2px solid #e2e8f0;
+        border-bottom: 2px solid var(--border);
       }
 
       .modal-header h3 {
         margin: 0;
-        color: #1a202c;
+        color: var(--text);
         font-size: 20px;
       }
 
       .modal-close {
-        background: #e2e8f0;
+        background: var(--border);
         border: none;
         border-radius: 6px;
         width: 32px;
@@ -442,12 +442,12 @@
         justify-content: center;
         cursor: pointer;
         font-size: 20px;
-        color: #4a5568;
+        color: var(--muted);
         transition: all 0.2s ease;
       }
 
       .modal-close:hover {
-        background: #cbd5e0;
+        background: var(--panel-2);
         transform: scale(1.1);
       }
 
@@ -458,13 +458,13 @@
       .modal-section-title {
         font-size: 12px;
         font-weight: 600;
-        color: #667eea;
+        color: var(--accent);
         margin-bottom: 6px;
         text-transform: uppercase;
       }
 
       .modal-section-content {
-        color: #2d3748;
+        color: var(--text);
         font-size: 14px;
         line-height: 1.5;
       }
@@ -476,22 +476,22 @@
       }
 
       .modal-hu-item {
-        background: #f7fafc;
+        background: var(--panel-2);
         padding: 10px 12px;
         margin-bottom: 8px;
         border-radius: 6px;
-        border-left: 3px solid #667eea;
+        border-left: 3px solid var(--accent);
       }
 
       .modal-hu-item strong {
         display: block;
-        color: #667eea;
+        color: var(--accent);
         margin-bottom: 4px;
         font-size: 13px;
       }
 
       .modal-hu-item span {
-        color: #4a5568;
+        color: var(--muted);
         font-size: 13px;
       }
 
@@ -515,13 +515,13 @@
       }
 
       .modal-btn-edit {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
         color: white;
       }
 
       .modal-btn-edit:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
       }
 
       .modal-btn-delete {

@@ -19,11 +19,12 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 1.5rem;
-      transition: all 0.2s;
+      transition: all 0.3s ease;
     }
     .story-card:hover {
-      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+      box-shadow: 0 12px 24px rgba(37, 99, 235, 0.15);
       border-color: var(--accent);
+      background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
     }
     .story-header {
       display: flex;
@@ -37,9 +38,10 @@
       font-size: 0.9rem;
       font-weight: 700;
       color: var(--accent);
-      background: #eff6ff;
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
       padding: 6px 12px;
       border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
     }
     .story-title {
       font-weight: 600;
@@ -64,12 +66,12 @@
       gap: 12px;
       padding: 12px;
       margin-bottom: 8px;
-      background: #fafafa;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
       border-radius: 8px;
-      border-left: 3px solid var(--ok);
+      border-left: 3px solid var(--accent);
     }
     .check-icon {
-      color: var(--ok);
+      color: var(--accent);
       font-weight: 700;
       font-size: 1.1rem;
       flex-shrink: 0;
@@ -96,8 +98,8 @@
       display: inline-block;
       margin-left: 8px;
       padding: 2px 8px;
-      background: #dcfce7;
-      color: #166534;
+      background: linear-gradient(135deg, #dbeafe 0%, #93c5fd 100%);
+      color: #1e40af;
       border-radius: 6px;
       font-weight: 700;
       font-size: 0.75rem;
@@ -112,9 +114,10 @@
       gap: 1rem;
       margin-bottom: 2rem;
       padding: 1rem;
-      background: #eff6ff;
+      background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
       border-radius: 12px;
       justify-content: center;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
     }
     .stat-item {
       text-align: center;
@@ -122,7 +125,7 @@
     .stat-value {
       font-size: 1.8rem;
       font-weight: 700;
-      color: var(--ok);
+      color: var(--accent);
     }
     .stat-label {
       font-size: 0.85rem;
@@ -133,9 +136,10 @@
     .charts-section {
       margin: 2rem 0;
       padding: 1.5rem;
-      background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
       border-radius: 12px;
-      border: 1px solid var(--border);
+      border: 1px solid #93c5fd;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
     }
     .charts-grid {
       display: grid;
@@ -161,11 +165,12 @@
       height: 100px;
       margin: 0 auto 0.5rem;
       border-radius: 50%;
-      background: conic-gradient(var(--ok) 0deg 360deg, #e5e7eb 360deg);
+      background: conic-gradient(#0ea5e9 0deg 360deg, var(--border) 360deg);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.2);
     }
     .circular-chart::before {
       content: '';
@@ -180,7 +185,7 @@
       z-index: 1;
       font-size: 1.3rem;
       font-weight: 700;
-      color: var(--ok);
+      color: #0ea5e9;
     }
     .bar-chart {
       display: flex;
@@ -200,14 +205,14 @@
     }
     .bar-container {
       height: 16px;
-      background: #e5e7eb;
+      background: var(--border);
       border-radius: 8px;
       overflow: hidden;
       position: relative;
     }
     .bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--ok));
+      background: linear-gradient(90deg, #0ea5e9, #06b6d4);
       border-radius: 12px;
       transition: width 1s ease;
       display: flex;
@@ -217,6 +222,7 @@
       color: white;
       font-size: 0.75rem;
       font-weight: 700;
+      box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
     }
     .donut-chart {
       width: 100px;
@@ -224,13 +230,14 @@
       margin: 0 auto 0.5rem;
       border-radius: 50%;
       background: conic-gradient(
-        #10b981 0deg 328deg,
-        #3b82f6 328deg 360deg
+        #06b6d4 0deg 328deg,
+        #0ea5e9 328deg 360deg
       );
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
     }
     .donut-chart::before {
       content: '';
@@ -386,11 +393,11 @@
             </div>
             <div class="donut-legend">
               <div class="legend-item">
-                <div class="legend-color" style="background: #10b981;"></div>
+                <div class="legend-color" style="background: #06b6d4;"></div>
                 <span>Aceptados (19)</span>
               </div>
               <div class="legend-item">
-                <div class="legend-color" style="background: #3b82f6;"></div>
+                <div class="legend-color" style="background: #0ea5e9;"></div>
                 <span>Críticos (2)</span>
               </div>
             </div>
