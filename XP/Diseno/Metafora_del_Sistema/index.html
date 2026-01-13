@@ -17,7 +17,7 @@
     </div>
     <nav class="nav">
       <a href="../../../index.html">Inicio</a>
-      <a href="https://epnecuador-my.sharepoint.com/my?id=%2Fpersonal%2Fjuan%5Fleon01%5Fepn%5Fedu%5Fec%2FDocuments%2FEvidenciasXP&ga=1">Evidencias</a>
+      <a href="https://epnecuador-my.sharepoint.com/personal/juan_leon01_epn_edu_ec/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fjuan%5Fleon01%5Fepn%5Fedu%5Fec%2FDocuments%2FEvidenciasXP&ga=1">Evidencias</a>
     </nav>
   </header>
   <main>
@@ -98,25 +98,25 @@
       <div class="card">
         <p style="margin:0;"><strong>Paso 1: Autenticación (Identificación del Operario)</strong></p>
         <p style="margin-top:8px; margin-bottom:6px;">El operario se identifica ante el KGD.</p>
-        <p style="margin:0; color:#666; font-size:0.95rem;">→ Sistema: Valida credenciales y carga el equipo del operario.</p>
+        <p style="margin:0; color:var(--muted); font-size:0.95rem;">→ Sistema: Valida credenciales y carga el equipo del operario.</p>
       </div>
 
       <div class="card">
         <p style="margin:0;"><strong>Paso 2: Carga de Inteligencia (Lectura del CSV)</strong></p>
         <p style="margin-top:8px; margin-bottom:6px;">El KGD lee el archivo CSV que contiene todas las misiones.</p>
-        <p style="margin:0; color:#666; font-size:0.95rem;">→ Sistema: Muestra una barra de progreso (loading) mientras procesa cada coordenada.</p>
+        <p style="margin:0; color:var(--muted); font-size:0.95rem;">→ Sistema: Muestra una barra de progreso (loading) mientras procesa cada coordenada.</p>
       </div>
 
       <div class="card">
         <p style="margin:0;"><strong>Paso 3: Asignación de Drones (Iteración por Misión)</strong></p>
         <p style="margin-top:8px; margin-bottom:6px;">Para cada coordenada del CSV, el KGD asigna un AntCiberDron.</p>
-        <p style="margin:0; color:#666; font-size:0.95rem;">→ Sistema: Cada dron recibe (geoposición, día, horario, tipo de arsenal).</p>
+        <p style="margin:0; color:var(--muted); font-size:0.95rem;">→ Sistema: Cada dron recibe (geoposición, día, horario, tipo de arsenal).</p>
       </div>
 
       <div class="card">
         <p style="margin:0;"><strong>Paso 4: Validación con Bomba BBA (Evaluación del Arsenal)</strong></p>
         <p style="margin-top:8px; margin-bottom:6px;">El dron envía el tipo de arsenal al autómata BBA para validar si es detonable.</p>
-        <p style="margin:0; color:#666; font-size:0.95rem;">→ Ejemplo: "abcdt" coincide con L={abcdt⁺, ab*} → VÁLIDO ✓</p>
+        <p style="margin:0; color:var(--muted); font-size:0.95rem;">→ Ejemplo: "abcdt" coincide con L={abcdt⁺, ab*} → VÁLIDO ✓</p>
       </div>
 
       <div class="card">

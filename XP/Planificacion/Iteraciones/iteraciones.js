@@ -6,7 +6,7 @@ const iterations = [
     start: '2025-12-30',
     end: '2026-01-01',
     hours: 24,
-    progress: { Planificacion: 90, Diseno: 0, Coding: 0, Testing: 0 }
+    progress: { Planificacion: 100, Diseno: 100, Coding: 100, Testing: 100 }
   },
   {
     name: 'Iteracion 2',
@@ -14,7 +14,7 @@ const iterations = [
     start: '2026-01-02',
     end: '2026-01-05',
     hours: 16,
-    progress: { Planificacion: 70, Diseno: 0, Coding: 0, Testing: 0 }
+    progress: { Planificacion: 100, Diseno: 100, Coding: 100, Testing: 100 }
   }
 ];
 

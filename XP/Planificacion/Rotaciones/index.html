@@ -33,8 +33,8 @@
       }
 
       .iteracion-box {
-        background: #ffffff;
-        border: 2px solid #e2e8f0;
+        background: var(--panel);
+        border: 2px solid var(--border);
         border-radius: 12px;
         padding: 25px;
         margin-bottom: 30px;
@@ -44,10 +44,10 @@
       .iteracion-header {
         font-size: 20px;
         font-weight: 600;
-        color: #1a202c;
+        color: var(--text);
         margin-bottom: 20px;
         padding-bottom: 10px;
-        border-bottom: 2px solid #667eea;
+        border-bottom: 2px solid var(--accent);
       }
 
       .rotacion-grid {
@@ -58,11 +58,11 @@
       }
 
       .par-box {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
         border-radius: 10px;
         padding: 15px;
         color: white;
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
       }
 
       .par-title {
@@ -93,20 +93,20 @@
         border: none;
         border-radius: 6px;
         background: rgba(255, 255, 255, 0.9);
-        color: #1a202c;
+        color: var(--text);
         font-size: 14px;
         font-weight: 500;
         transition: all 0.2s ease;
       }
 
       .nombre-input:hover {
-        background: #ffffff;
+        background: var(--panel);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       }
 
       .nombre-input:focus {
         outline: none;
-        background: #ffffff;
+        background: var(--panel);
         box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
       }
 
@@ -116,7 +116,7 @@
         border: none;
         border-radius: 6px;
         background: rgba(255, 255, 255, 0.9);
-        color: #1a202c;
+        color: var(--text);
         font-size: 13px;
         font-weight: 500;
         cursor: pointer;
@@ -124,7 +124,7 @@
       }
 
       .rol-select:hover {
-        background: #ffffff;
+        background: var(--panel);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       }
 
@@ -141,8 +141,8 @@
       }
 
       .releases-box {
-        background: #f7fafc;
-        border: 2px solid #cbd5e0;
+        background: var(--panel-2);
+        border: 2px solid var(--border);
         border-radius: 10px;
         padding: 15px;
       }
@@ -150,7 +150,7 @@
       .releases-header {
         font-size: 14px;
         font-weight: 600;
-        color: #2d3748;
+        color: var(--text);
         margin-bottom: 10px;
       }
 
@@ -165,9 +165,9 @@
         gap: 8px;
         padding: 8px 12px;
         margin-bottom: 6px;
-        background: white;
+        background: var(--panel);
         border-radius: 6px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--border);
       }
 
       .release-checkbox {
@@ -179,13 +179,13 @@
       .release-label {
         flex: 1;
         font-size: 13px;
-        color: #4a5568;
+        color: var(--muted);
         cursor: pointer;
       }
 
       .tiempo-box {
-        background: #f7fafc;
-        border: 2px solid #cbd5e0;
+        background: var(--panel-2);
+        border: 2px solid var(--border);
         border-radius: 10px;
         padding: 15px;
         display: flex;
@@ -198,26 +198,26 @@
       .tiempo-label {
         font-size: 13px;
         font-weight: 600;
-        color: #2d3748;
+        color: var(--text);
         margin-bottom: 8px;
       }
 
       .tiempo-input {
         width: 80px;
         padding: 8px 12px;
-        border: 2px solid #cbd5e0;
+        border: 2px solid var(--border);
         border-radius: 6px;
         font-size: 16px;
         font-weight: 600;
         text-align: center;
-        color: #1a202c;
+        color: var(--text);
         transition: all 0.2s ease;
       }
 
       .tiempo-input:focus {
         outline: none;
-        border-color: #667eea;
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
       }
 
       .arrow-icon {
@@ -231,7 +231,7 @@
       .btn-guardar {
         margin-top: 30px;
         padding: 12px 30px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
         color: white;
         border: none;
         border-radius: 8px;
@@ -239,12 +239,12 @@
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
       }
 
       .btn-guardar:hover {
         transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
       }
 
       .btn-guardar:active {

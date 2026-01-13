@@ -15,7 +15,7 @@
   <style>
     .tooltip {
       position: absolute;
-      background-color: #333;
+      background-color: var(--text);
       color: white;
       padding: 8px 12px;
       border-radius: 5px;
@@ -55,13 +55,13 @@
     }
 
     .modal-content {
-      background-color: #fffff0;
+      background-color: var(--panel);
       margin: 6% auto;
       padding: 0;
       width: 80%;
       max-width: 820px;
       border-radius: 6px;
-      border: 1px solid #c9c28f;
+      border: 1px solid var(--border);
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
       font-family: 'Space Grotesk', sans-serif;
     }
@@ -79,10 +79,10 @@
     }
 
     .modal-header {
-      background-color: #e9e6ff;
-      color: #2b2b2b;
+      background-color: var(--panel-2);
+      color: var(--text);
       padding: 16px 20px;
-      border-bottom: 1px solid #9370DB;
+      border-bottom: 1px solid var(--accent);
       border-radius: 6px 6px 0 0;
     }
 
@@ -96,22 +96,22 @@
       padding: 22px 26px;
       max-height: 65vh;
       overflow-y: auto;
-      background-color: #fffff8;
+      background-color: var(--panel);
     }
 
     .close {
-      color: #555;
+      color: var(--muted);
       font-size: 22px;
       font-weight: bold;
       cursor: pointer;
     }
 
     .close:hover {
-      color: #000;
+      color: var(--text);
     }
 
     .close:focus {
-      color: #ddd;
+      color: var(--border);
     }
 
     .spec-section {
@@ -121,8 +121,8 @@
     .spec-section h3 {
       font-size: 15px;
       font-weight: 600;
-      color: #2c2c2c;
-      border-bottom: 1px solid #b6b2e3;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
       padding-bottom: 4px;
       margin-bottom: 8px;
     }
@@ -130,7 +130,7 @@
     .spec-section p,
     .spec-section li {
       font-size: 14px;
-      color: #333;
+      color: var(--text);
       line-height: 1.6;
     }
 
@@ -155,7 +155,7 @@
     }
 
     th {
-      background-color: #e9e6ff;
+      background-color: var(--panel-2);
       padding: 12px;
       text-align: center;
       font-weight: bold;
@@ -163,11 +163,11 @@
 
     td {
       padding: 12px;
-      border-bottom: 1px solid #ddd;
+      border-bottom: 1px solid var(--border);
     }
 
     tr:hover {
-      background-color: #f8f9fa;
+      background-color: var(--panel-2);
     }
 
     tr:last-child td {
@@ -176,39 +176,39 @@
 
     .coordenada {
       font-weight: bold;
-      color: #2980b9;
+      color: var(--accent);
     }
 
     .patron {
       font-family: 'Courier New', monospace;
-      background-color: #ecf0f1;
+      background-color: var(--panel-2);
       padding: 2px 6px;
       border-radius: 3px;
     }
 
     .estado-col {
-      background-color: #ecf0f1;
+      background-color: var(--panel-2);
       font-weight: bold;
-      color: #2c3e50;
+      color: var(--text);
       text-align: center;
     }
 
     .estado-inicial {
-      color: #27ae60;
+      color: var(--ok);
       font-weight: bold;
     }
 
     .estado-final {
-      color: #e74c3c;
+      color: var(--danger);
       font-weight: bold;
     }
 
     .estado-error {
-      color: #95a5a6;
+      color: var(--muted);
     }
 
     tbody tr:nth-child(even) {
-      background-color: #f9f9f9;
+      background-color: var(--panel-2);
     }
 
     table td {
@@ -221,7 +221,7 @@
 
     .cadena {
       font-family: 'Courier New', monospace;
-      background-color: #ecf0f1;
+      background-color: var(--panel-2);
       padding: 4px 8px;
       border-radius: 3px;
       font-weight: bold;
@@ -230,34 +230,34 @@
     .traza {
       font-family: 'Courier New', monospace;
       font-size: 13px;
-      color: #2c3e50;
+      color: var(--text);
     }
 
     .aceptada {
-      color: #27ae60;
+      color: var(--ok);
       font-weight: bold;
     }
 
     .rechazada {
-      color: #e74c3c;
+      color: var(--danger);
       font-weight: bold;
     }
 
     .lenguaje {
       font-family: 'Courier New', monospace;
-      background-color: #e8f5e9;
+      background-color: var(--panel-2);
       padding: 4px 8px;
       border-radius: 3px;
-      color: #2e7d32;
+      color: var(--ok);
       font-weight: 500;
     }
 
     .no-lenguaje {
-      color: #95a5a6;
+      color: var(--muted);
     }
 
     g[id^="elem_CU"]:hover ellipse {
-      fill: #e9e6ff;
+      fill: var(--panel-2);
       stroke-width: 1.5;
     }
   </style>
