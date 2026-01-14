@@ -60,7 +60,7 @@ public class SistemaRusoView {
     }
     
     public void mostrarEquipo(String[] estudiantes) {
-        System.out.println("\n[+] TEAM [1]: Retrievforge");
+        System.out.println("\n[+] TEAM [1]: ShadowSpartans");
         for (int i = 0; i < estudiantes.length; i++) {
             System.out.println("    • Alumno " + (i + 1) + ": " + estudiantes[i]);
         }
